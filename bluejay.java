@@ -76,6 +76,7 @@ public class bluejay extends Actor
     public void jumpTimer()
     {
         timer.mark();
+
         while(Greenfoot.isKeyDown("up") && onGround())
         {
             chargeTime = timer.millisElapsed();
