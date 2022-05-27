@@ -44,16 +44,26 @@ public class MyWorld extends World
         addObject(platform2, 500,575);
         //Block block3 = new Block(150, 150);
         //addObject(block3, 250, 398);
-        
+
         slopeLeftRight diagonal_block = new slopeLeftRight(this, 100, 100, 300, 400);
         addObject(diagonal_block,300,400);
-        
+
         slopeLeftRight diagonal_block1 = new slopeLeftRight(this, 100, 100, 350, 450);
         addObject(diagonal_block1,350,450);
-        
+
         slopeLeftRight diagonal_block2 = new slopeLeftRight(this, 100, 100, 400, 500);
         addObject(diagonal_block2,400,500);
-        
+
+        Block block8 = new Block(200, 200);
+        addObject(block8,6,400);
+        Block block9 = new Block(200, 200);
+        addObject(block9,142,564);
+        bluejay.setLocation(272,224);
+        block9.setLocation(775,421);
+        block9.setLocation(472,436);
+        block9.setLocation(671,448);
+        Block block10 = new Block(200, 200);
+        addObject(block10,172,509);
     }
     //Setter method for global y coordniate to allow communication between the objects and the world class
     public void setYCoord(int bgYCoord)

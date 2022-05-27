@@ -80,6 +80,7 @@ public class bluejay extends Actor
         {
             chargeTime = timer.millisElapsed();
         }
+
         if(chargeTime > 1000)
         {
             chargeTime = 1000;
