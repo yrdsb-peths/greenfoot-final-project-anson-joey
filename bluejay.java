@@ -3,13 +3,15 @@ import greenfoot.World;
 
 public class bluejay extends Actor
 {
-    private static int gravity = 1;
-    private String direction;
+    private static int GRAVITY = 1;
+    private int SPEED = 5;
     private int velocityY, velocityX;
+    private String direction;
     private boolean onSlope;
-    private int speed = 5;
     private int chargeTime;
-    SimpleTimer timer = new SimpleTimer();
+    
+    private SimpleTimer timer = new SimpleTimer();
+    
     public bluejay(int x, int y)
     {
         GreenfootImage image = getImage();
@@ -24,21 +26,29 @@ public class bluejay extends Actor
         {
             jumpTimer(); 
         }
-        walkMovement();
+        if(onGround())
+        {
+            walkMovement();
+        }
     }
     
     public void setVelocity(int velocityY)
     {
         this.velocityY = velocityY;
     }
-
+    
+    public void setvelocityY(int velocityY)
+    {
+        this.velocityY = velocityY;
+    }
+    
     public void fallPhysics()
     {   
         if(onSlope)
         {   
             setLocation(getX() + 8, getY() + 8);
             velocityY = 0;
-        }  
+        }
         
         setLocation(getX(), getY() + velocityY);
         if(onGround() || onSlope)
@@ -54,7 +64,6 @@ public class bluejay extends Actor
         else if (velocityY < 0 && bumpedHead())
         {
             velocityY = 0;
-            
             while(bumpedHead())
             {
                 setLocation(getX(), getY()+1);
@@ -62,10 +71,17 @@ public class bluejay extends Actor
         }
         else
         {
-            velocityY += gravity; 
+            velocityY += GRAVITY; 
         }
-        
-        setLocation(getX() + velocityX, getY());
+
+        if(velocityX > 0 && canMoveRight())
+        {
+            setLocation(getX() + velocityX, getY());
+        }
+        if(velocityX < 0 && canMoveLeft())
+        {
+            setLocation(getX() + velocityX, getY());
+        }
         if(!canMoveRight() || !canMoveLeft())
         {
             velocityX = velocityX * -1;
@@ -80,6 +96,18 @@ public class bluejay extends Actor
         while(Greenfoot.isKeyDown("up") && onGround())
         {
             chargeTime = timer.millisElapsed();
+            if(!Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("right"))
+            {
+                direction = "null";
+            }
+            if(Greenfoot.isKeyDown("left"))
+            {
+                direction = "left";
+            }
+            if(Greenfoot.isKeyDown("right"))
+            {
+                direction = "right";
+            }
         }
 
         if(chargeTime > 1000)
@@ -105,26 +133,15 @@ public class bluejay extends Actor
         
     public void walkMovement()
     {
-        if(!Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("right"))
-        {
-            direction = "null";
-        }
-        
         if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft()){
-            direction = "left";
-            setLocation(getX() - speed, getY());
+            setLocation(getX() - SPEED, getY());
         }
-        
         if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight()){
-            direction = "right";
-            setLocation(getX() + speed, getY());
+            setLocation(getX() + SPEED, getY());
         }
     }
 
-    public void setvelocityY(int velocityY)
-    {
-        this.velocityY = velocityY;
-    }
+
     
     public boolean onGround()
     {
@@ -151,10 +168,10 @@ public class bluejay extends Actor
     public boolean canMoveLeft()
     {
         boolean canMoveL = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/-2-speed - 1, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/-2-speed - 1, getImage().getHeight()/2-1, Block.class) != null)
-            //getOneObjectAtOffset(getImage().getWidth()/-2-speed - 1, getImage().getHeight()/-2, slopeLeftRight.class) != null || 
-            //getOneObjectAtOffset(getImage().getWidth()/-2-speed - 1, getImage().getHeight()/2-1, slopeLeftRight.class) != null )
+        if (getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/-2, Block.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/2-1, Block.class) != null)
+            //getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/-2, slopeLeftRight.class) != null || 
+            //getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/2-1, slopeLeftRight.class) != null )
             {
                 canMoveL = false;
             }
@@ -164,8 +181,8 @@ public class bluejay extends Actor
     public boolean canMoveRight()
     {
         boolean canMoveR = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/2 + speed, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/2 + speed, getImage().getHeight()/2-1, Block.class) != null)
+        if (getOneObjectAtOffset(getImage().getWidth()/2 + SPEED, getImage().getHeight()/-2, Block.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/2 + SPEED, getImage().getHeight()/2-1, Block.class) != null)
             {
                 canMoveR = false;
             }
