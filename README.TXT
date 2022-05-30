@@ -7,9 +7,8 @@ USER INSTRUCTIONS:
 
 
 BUGS:
-- No movement input when in air
 - Phasing up slopes when walking into them
-- Phasing up blocks when jumping too hard right next to them
+- Phasing into blocks when jumping into them near the top
 - Walking into slopes
 - Floating slightly above ground when holding up after jumping
 
