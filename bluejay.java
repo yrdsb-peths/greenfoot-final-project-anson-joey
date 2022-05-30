@@ -37,11 +37,6 @@ public class bluejay extends Actor
         this.velocityY = velocityY;
     }
     
-    public void setvelocityY(int velocityY)
-    {
-        this.velocityY = velocityY;
-    }
-    
     public void fallPhysics()
     {   
         if(onSlope)
@@ -74,15 +69,16 @@ public class bluejay extends Actor
             velocityY += GRAVITY; 
         }
 
-        if(velocityX > 0 && canMoveRight())
+        if(velocityX > 0 && canJumpRight())
         {
             setLocation(getX() + velocityX, getY());
         }
-        if(velocityX < 0 && canMoveLeft())
+        if(velocityX < 0 && canJumpLeft())
         {
             setLocation(getX() + velocityX, getY());
         }
-        if(!canMoveRight() || !canMoveLeft())
+        
+        if(!canJumpRight() || !canJumpLeft())
         {
             velocityX = velocityX * -1;
         }
@@ -141,8 +137,6 @@ public class bluejay extends Actor
         }
     }
 
-
-    
     public boolean onGround()
     {
         boolean isOnGround = false;
@@ -168,10 +162,8 @@ public class bluejay extends Actor
     public boolean canMoveLeft()
     {
         boolean canMoveL = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/2-1, Block.class) != null)
-            //getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/-2, slopeLeftRight.class) != null || 
-            //getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/2-1, slopeLeftRight.class) != null )
+        if (getOneObjectAtOffset(getImage().getWidth()/-2-SPEED, getImage().getHeight()/-2, Block.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/-2-SPEED, getImage().getHeight()/2-1, Block.class) != null)
             {
                 canMoveL = false;
             }
@@ -187,6 +179,28 @@ public class bluejay extends Actor
                 canMoveR = false;
             }
         return canMoveR;
+    }
+    
+    public boolean canJumpLeft()
+    {
+        boolean canJumpL = true;
+        if (getOneObjectAtOffset(getImage().getWidth()/-2-velocityX, getImage().getHeight()/-2, Block.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/-2-velocityX, getImage().getHeight()/2-1, Block.class) != null)
+            {
+                canJumpL = false;
+            }
+        return canJumpL;
+    }
+    
+    public boolean canJumpRight()
+    {
+        boolean canJumpR = true;
+        if (getOneObjectAtOffset(getImage().getWidth()/2 + velocityX, getImage().getHeight()/-2, Block.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/2 + velocityX, getImage().getHeight()/2-1, Block.class) != null)
+            {
+                canJumpR = false;
+            }
+        return canJumpR;
     }
     
     public void onSlope(boolean onSlope)
