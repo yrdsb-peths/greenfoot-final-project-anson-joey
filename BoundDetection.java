@@ -10,9 +10,11 @@ public abstract class BoundDetection extends Actor
 {
     private boolean onSlopeLeft, onSlopeRight;
     private int SPEED = 5;
+    
+    
     public void act()
     {
-        // Add your action code here.
+        
     }
     
         public boolean onGround()
@@ -80,6 +82,8 @@ public abstract class BoundDetection extends Actor
             }
         return canMoveR;
     }
+    
+
     
     public int map(int number, int givenSmallNum, int givenBigNum, int desiredSmallNum, int desiredBigNum)
     {

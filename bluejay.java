@@ -37,11 +37,6 @@ public class bluejay extends BoundDetection
         this.velocityY = velocityY;
     }
     
-    public void setvelocityY(int velocityY)
-    {
-        this.velocityY = velocityY;
-    }
-    
     public void fallPhysics()
     {   
         if(onSlopeLeft)
@@ -79,15 +74,15 @@ public class bluejay extends BoundDetection
             velocityY += GRAVITY; 
         }
 
-        if(velocityX > 0 && canMoveRight())
+        if(velocityX > 0 && canJumpRight())
         {
             setLocation(getX() + velocityX, getY());
         }
-        if(velocityX < 0 && canMoveLeft())
+        if(velocityX < 0 && canJumpLeft())
         {
             setLocation(getX() + velocityX, getY());
         }
-        if(!canMoveRight() || !canMoveLeft())
+        if(!canJumpRight() || !canJumpLeft())
         {
             velocityX = velocityX * -1;
         }
@@ -127,11 +122,11 @@ public class bluejay extends BoundDetection
         {
             velocityX = 0;
         }
-        else if(direction.equals("left"))
+        if(direction.equals("left"))
         {
             velocityX = Math.abs(velocityX) * -1;
         }
-        else if(direction.equals("right"))
+        if(direction.equals("right"))
         {
             velocityX = Math.abs(velocityX);
         }   
@@ -145,6 +140,28 @@ public class bluejay extends BoundDetection
         if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight() && canMoveRightSlope()){
             setLocation(getX() + SPEED, getY());
         }
+    }
+    
+    public boolean canJumpLeft()
+    {
+        boolean canJumpL = true;
+        if (getOneObjectAtOffset(getImage().getWidth()/-2-velocityX, getImage().getHeight()/-2, Block.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/-2-velocityX, getImage().getHeight()/2-1, Block.class) != null)
+            {
+                canJumpL = false;
+            }
+        return canJumpL;
+    }
+
+    public boolean canJumpRight()
+    {
+        boolean canJumpR = true;
+        if (getOneObjectAtOffset(getImage().getWidth()/2 + velocityX, getImage().getHeight()/-2, Block.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/2 + velocityX, getImage().getHeight()/2-1, Block.class) != null)
+            {
+                canJumpR = false;
+            }
+        return canJumpR;
     }
     
     public void onSlopeLeft(boolean onSlopeLeft)
