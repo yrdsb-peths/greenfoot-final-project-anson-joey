@@ -1,13 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import greenfoot.World;
 
-public class bluejay extends Actor
+public class bluejay extends BoundDetection
 {
     private static int GRAVITY = 1;
     private int SPEED = 5;
     private int velocityY, velocityX;
     private String direction;
-    private boolean onSlope;
+    private boolean onSlopeLeft, onSlopeRight;
     private int chargeTime;
     
     private SimpleTimer timer = new SimpleTimer();
@@ -44,14 +44,19 @@ public class bluejay extends Actor
     
     public void fallPhysics()
     {   
-        if(onSlope)
+        if(onSlopeLeft)
         {   
             setLocation(getX() + 8, getY() + 8);
             velocityY = 0;
         }
+        if(onSlopeRight)
+        {
+            setLocation(getX() - 8, getY() + 8);
+            velocityY = 0;
+        }
         
         setLocation(getX(), getY() + velocityY);
-        if(onGround() || onSlope)
+        if(onGround() || onSlopeLeft || onSlopeRight)
         {
             velocityY = 0;
             velocityX = 0;
@@ -86,7 +91,8 @@ public class bluejay extends Actor
         {
             velocityX = velocityX * -1;
         }
-        onSlope = false;
+        onSlopeLeft = false;
+        onSlopeRight = false;
     }
 
     public void jumpTimer()
@@ -133,69 +139,21 @@ public class bluejay extends Actor
         
     public void walkMovement()
     {
-        if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft()){
+        if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
             setLocation(getX() - SPEED, getY());
         }
-        if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight()){
+        if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight() && canMoveRightSlope()){
             setLocation(getX() + SPEED, getY());
         }
     }
-
-
     
-    public boolean onGround()
+    public void onSlopeLeft(boolean onSlopeLeft)
     {
-        boolean isOnGround = false;
-        if (getOneObjectAtOffset(getImage().getWidth()/2, getImage().getHeight()/2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/-2, getImage().getHeight()/2, Block.class) != null)
-        {
-            isOnGround = true;
-        }
-        return isOnGround;
+        this.onSlopeLeft = onSlopeLeft;
     }
     
-    public boolean bumpedHead()
+    public void onSlopeRight(boolean onSlopeRight)
     {
-        boolean didBumpHead = false;
-        if (getOneObjectAtOffset(getImage().getWidth()/2, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/-2, getImage().getHeight()/-2, Block.class) != null)
-        {
-            didBumpHead = true;
-        }
-        return didBumpHead;
-    }
-    
-    public boolean canMoveLeft()
-    {
-        boolean canMoveL = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/2-1, Block.class) != null)
-            //getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/-2, slopeLeftRight.class) != null || 
-            //getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/2-1, slopeLeftRight.class) != null )
-            {
-                canMoveL = false;
-            }
-        return canMoveL;
-    }
-    
-    public boolean canMoveRight()
-    {
-        boolean canMoveR = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/2 + SPEED, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/2 + SPEED, getImage().getHeight()/2-1, Block.class) != null)
-            {
-                canMoveR = false;
-            }
-        return canMoveR;
-    }
-    
-    public void onSlope(boolean onSlope)
-    {
-        this.onSlope = onSlope;
-    }
-    
-    public int map(int number, int givenSmallNum, int givenBigNum, int desiredSmallNum, int desiredBigNum)
-    {
-        return (number - givenSmallNum) * (desiredBigNum - desiredSmallNum) / (givenBigNum - givenSmallNum) + desiredSmallNum;
+        this.onSlopeRight = onSlopeRight;
     }
 }

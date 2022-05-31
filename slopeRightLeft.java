@@ -6,14 +6,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class slopeLeftRight extends ScrollObjects
+public class slopeRightLeft extends ScrollObjects
 {
     /**
      * Act - do whatever the diagonal_block wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private boolean isOnSlope;
-    public slopeLeftRight (World world, int x, int y, int xCoord,int yCoord)
+    public slopeRightLeft (World world, int x, int y, int xCoord,int yCoord)
     {
         
         GreenfootImage image = getImage();
@@ -21,7 +21,7 @@ public class slopeLeftRight extends ScrollObjects
         setImage(image);
         
         Block blockLeft = new Block(x / 2, y);
-        world.addObject(blockLeft, xCoord - getImage().getWidth() / 4 - 3 , yCoord);
+        world.addObject(blockLeft, xCoord + getImage().getWidth() / 4 + 3 , yCoord);
         Block blockBottom = new Block(x, y / 2);
         world.addObject(blockBottom, xCoord, yCoord + getImage().getWidth() / 4);
     }
@@ -30,7 +30,7 @@ public class slopeLeftRight extends ScrollObjects
     {
         if(onSlope() == true)
         {
-            getWorld().getObjects(bluejay.class).get(0).onSlopeLeft(onSlope());
+            getWorld().getObjects(bluejay.class).get(0).onSlopeRight(onSlope());
         }
     }
     

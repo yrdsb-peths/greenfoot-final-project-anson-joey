@@ -39,11 +39,9 @@ public class MyWorld extends World
         //Block platform = new Block(150, 150);
         //addObject(platform, 417, 600);
         bluejay bluejay = new bluejay(38, 58);
-        addObject(bluejay,300,200); 
+        addObject(bluejay,272,224); 
         Block platform2 = new Block(150, 150);
         addObject(platform2, 500,575);
-        //Block block3 = new Block(150, 150);
-        //addObject(block3, 250, 398);
 
         slopeLeftRight diagonal_block = new slopeLeftRight(this, 100, 100, 300, 400);
         addObject(diagonal_block,300,400);
@@ -53,17 +51,22 @@ public class MyWorld extends World
 
         slopeLeftRight diagonal_block2 = new slopeLeftRight(this, 100, 100, 400, 500);
         addObject(diagonal_block2,400,500);
+        
+        slopeRightLeft diagonal_block3 = new slopeRightLeft(this, 100, 100, 600, 500);
+        addObject(diagonal_block3,600,500);
+        slopeRightLeft diagonal_block4 = new slopeRightLeft(this, 100, 100, 650, 450);
+        addObject(diagonal_block4,650,450);
+        slopeRightLeft diagonal_block5 = new slopeRightLeft(this, 100, 100, 700, 400);
+        addObject(diagonal_block5,700,400);
 
         Block block8 = new Block(200, 200);
         addObject(block8,6,400);
         Block block9 = new Block(200, 200);
-        addObject(block9,142,564);
-        bluejay.setLocation(272,224);
-        block9.setLocation(775,421);
-        block9.setLocation(472,436);
-        block9.setLocation(671,448);
+        addObject(block9,850,450);
         Block block10 = new Block(200, 200);
         addObject(block10,172,509);
+        Block block11 = new Block(150, 150);
+        addObject(block11,650,575);
     }
     //Setter method for global y coordniate to allow communication between the objects and the world class
     public void setYCoord(int bgYCoord)
