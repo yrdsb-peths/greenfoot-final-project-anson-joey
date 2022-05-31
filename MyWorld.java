@@ -14,7 +14,7 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(850, 735, 1, false); 
+        super(800, 800, 1, false); 
         prepare();
     }
     //Scrolls the world down, sets global y coordinate += 1
@@ -36,13 +36,17 @@ public class MyWorld extends World
     
     private void prepare()
     {
+        GreenfootImage bg = new GreenfootImage("GrassBg.png");
+        bg.scale(getWidth(), getHeight());
+        setBackground(bg);
+        
         //Block platform = new Block(150, 150);
         //addObject(platform, 417, 600);
-        bluejay bluejay = new bluejay(38, 58);
+        bluejay bluejay = new bluejay(50, 50);
         addObject(bluejay,272,224); 
-        Block platform2 = new Block(150, 150);
-        addObject(platform2, 500,575);
-
+        Block platform2 = new Block(50, 50);
+        addObject(platform2, 500,620);
+        /*
         slopeLeftRight diagonal_block = new slopeLeftRight(this, 100, 100, 300, 400);
         addObject(diagonal_block,300,400);
 
@@ -58,15 +62,16 @@ public class MyWorld extends World
         addObject(diagonal_block4,650,450);
         slopeRightLeft diagonal_block5 = new slopeRightLeft(this, 100, 100, 700, 400);
         addObject(diagonal_block5,700,400);
+        */
 
-        Block block8 = new Block(200, 200);
-        addObject(block8,6,400);
-        Block block9 = new Block(200, 200);
-        addObject(block9,850,450);
-        Block block10 = new Block(200, 200);
-        addObject(block10,172,509);
-        Block block11 = new Block(150, 150);
-        addObject(block11,650,575);
+        Block block8 = new Block(50, 50);
+        addObject(block8,6,620);
+        Block block9 = new Block(50, 50);
+        addObject(block9,850,620);
+        Block block10 = new Block(50, 50);
+        addObject(block10,172,620);
+        Block block11 = new Block(50, 50);
+        addObject(block11,650,620);
     }
     //Setter method for global y coordniate to allow communication between the objects and the world class
     public void setYCoord(int bgYCoord)
