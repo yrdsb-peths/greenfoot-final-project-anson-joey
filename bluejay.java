@@ -129,7 +129,7 @@ public class bluejay extends BoundDetection
         if(direction.equals("right"))
         {
             velocityX = Math.abs(velocityX);
-        }   
+        }
     }
         
     public void walkMovement()
@@ -145,8 +145,8 @@ public class bluejay extends BoundDetection
     public boolean canJumpLeft()
     {
         boolean canJumpL = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/-2-velocityX, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/-2-velocityX, getImage().getHeight()/2-1, Block.class) != null)
+        if (getOneObjectAtOffset(getImage().getWidth()/-2 + velocityX, getImage().getHeight()/-2, Block.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/-2 + velocityX, getImage().getHeight()/2-1, Block.class) != null)
             {
                 canJumpL = false;
             }
