@@ -21,7 +21,7 @@ public class slopeLeftRight extends ScrollObjects
         setImage(image);
         
         Block blockLeft = new Block(x / 2, y);
-        world.addObject(blockLeft, xCoord - getImage().getWidth() / 4 - 3 , yCoord);
+        world.addObject(blockLeft, xCoord - getImage().getWidth() / 4 , yCoord);
         Block blockBottom = new Block(x, y / 2);
         world.addObject(blockBottom, xCoord, yCoord + getImage().getWidth() / 4);
     }
