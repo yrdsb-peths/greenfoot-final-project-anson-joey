@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    GreenfootImage background = new GreenfootImage("background.png");
+    //GreenfootImage background = new GreenfootImage("background.png");
     private int bgYCoord;
     private int speed = 5;
     public MyWorld()
@@ -36,19 +36,17 @@ public class MyWorld extends World
     
     private void prepare()
     {
-        //GreenfootImage bg = new GreenfootImage("GrassBg.png");
-        //bg.scale(getWidth(), getHeight());
-        //setBackground(bg);
-        
-        //Block platform = new Block(150, 150);
-        //addObject(platform, 417, 600);
+        GreenfootImage bg = new GreenfootImage("GrassBg.png");
+        bg.scale(getWidth(), getHeight());
+        setBackground(bg);
+
         bluejay bluejay = new bluejay(48,48);
         addObject(bluejay,272,224); 
-        
-        slopeLeftRight diagonal_block1 = new slopeLeftRight(this,96, 96, 48*4, 550);
-        addObject(diagonal_block1,48*4,550);
+
         slopeLeftRight diagonal_block = new slopeLeftRight(this, 96,96, 48*3,500);
         addObject(diagonal_block,48*3,500);
+        slopeLeftRight diagonal_block1 = new slopeLeftRight(this,96, 96, 48*4, 548);
+        addObject(diagonal_block1,48*4,548);
         /*
         slopeRightLeft diagonal_block3 = new slopeRightLeft(this, 100, 100, 600, 500);
         addObject(diagonal_block3,600,500);
@@ -56,15 +54,17 @@ public class MyWorld extends World
         addObject(diagonal_block4,650,450);
         slopeRightLeft diagonal_block5 = new slopeRightLeft(this, 100, 100, 700, 400);
         addObject(diagonal_block5,700,400);
-        */
-        Block platform2 = new Block(96, 96);
-        addObject(platform2, 475,600);
+         */
         Block block8 = new Block(96, 96);
         addObject(block8,48,500);
+        Block platform2 = new Block(96, 96);
+        addObject(platform2, 288+96*2,596);
         Block block9 = new Block(96, 96);
-        addObject(block9,500,596);
+        addObject(block9,288+96,596);
         Block block10 = new Block(96, 96);
-        addObject(block10,400,596);
+        addObject(block10,288,596);
+        Block block = new Block(96, 96);
+        addObject(block, 288-96, 596);
     }
     //Setter method for global y coordniate to allow communication between the objects and the world class
     public void setYCoord(int bgYCoord)

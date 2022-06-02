@@ -4,23 +4,38 @@ import greenfoot.World;
 public class bluejay extends BoundDetection
 {
     private static int GRAVITY = 1;
-    private int SPEED = 5;
+    private int SPEED = 5, imageIndex = 0;
     private int velocityY, velocityX;
-    private String direction;
+    private String direction = "left";
     private boolean onSlopeLeft, onSlopeRight;
     private int chargeTime;
     
     private SimpleTimer timer = new SimpleTimer();
+    private SimpleTimer animationTimer = new SimpleTimer();
     
+    GreenfootImage walk[] = new GreenfootImage[4];
+    GreenfootImage leftWalk[] = new GreenfootImage[4];
     public bluejay(int x, int y)
     {
-        GreenfootImage image = getImage();
-        image.scale(x, y);
-        setImage(image);
+        for(int i = 0; i < walk.length; i++)
+        {
+            GreenfootImage image = new GreenfootImage("walk" + i + ".png");
+            image.scale(x, y);
+            walk[i] = image;
+        }
+        
+        for(int i = 0; i < leftWalk.length; i++)
+        {
+            leftWalk[i] = new GreenfootImage("walk" + i + ".png");
+            leftWalk[i].scale(x, y);
+            leftWalk[i].mirrorHorizontally();
+        }
+        setImage(walk[0]);
     }
 
     public void act()
     {
+        animateWalk();
         fallPhysics();
         if(Greenfoot.isKeyDown("up") && onGround())
         {
@@ -32,14 +47,23 @@ public class bluejay extends BoundDetection
         }
     }
     
-    public void setVelocity(int velocityY)
+    public void animateWalk()
     {
-        this.velocityY = velocityY;
-    }
-    
-    public void setvelocityY(int velocityY)
-    {
-        this.velocityY = velocityY;
+        if(animationTimer.millisElapsed() < 100)
+        {
+            return;
+        }
+        animationTimer.mark();
+        if(direction.equals("right"))
+        {
+            setImage(walk[imageIndex]);
+            imageIndex = (imageIndex + 1) % walk.length;
+        }
+        if(direction.equals("left")) 
+        {
+            setImage(leftWalk[imageIndex]);
+            imageIndex = (imageIndex + 1) % leftWalk.length;
+        }
     }
     
     public void fallPhysics()
@@ -141,9 +165,11 @@ public class bluejay extends BoundDetection
     {
         if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
             setLocation(getX() - SPEED, getY());
+            direction = "left";
         }
         if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight() && canMoveRightSlope()){
             setLocation(getX() + SPEED, getY());
+            direction = "right";
         }
     }
     

@@ -1,9 +1,9 @@
 #Greenfoot project file
 class.Block.image=tile001.png
-class.MyWorld.image=bluerock.jpg
-class.bluejay.image=bluej-icon.png
-class.slopeLeftRight.image=pixil-frame-0.png
-class.slopeRightLeft.image=MiroTools_pixilart-drawing.png
+class.MyWorld.image=GrassBg.png
+class.bluejay.image=idle0.png
+class.slopeLeftRight.image=slopeLeftRight.png
+class.slopeRightLeft.image=slopeRightLeft.png
 dependency1.from=MyWorld
 dependency1.to=bluejay
 dependency1.type=UsesDependency
