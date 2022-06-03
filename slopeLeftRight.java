@@ -22,10 +22,7 @@ public class slopeLeftRight extends ScrollObjects
     
         Block blockLeft = new Block(x / 2 - 10, y);
         world.addObject(blockLeft, xCoord - getImage().getWidth() / 4 - 5, yCoord);
-        /*
-        Block blockBottom = new Block(x, y / 2 - 10);
-        world.addObject(blockBottom, xCoord, yCoord + getImage().getWidth() / 4 + 5);
-        */
+
     }
     
     public void act()

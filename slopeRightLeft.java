@@ -20,10 +20,8 @@ public class slopeRightLeft extends ScrollObjects
         image.scale(x, y);
         setImage(image);
         
-        Block blockLeft = new Block(x / 2, y);
-        world.addObject(blockLeft, xCoord + getImage().getWidth() / 4 + 3 , yCoord);
-        Block blockBottom = new Block(x, y / 2);
-        world.addObject(blockBottom, xCoord, yCoord + getImage().getWidth() / 4);
+        Block blockLeft = new Block(x / 2 - 10, y);
+        world.addObject(blockLeft, xCoord + getImage().getWidth() / 4 + 5, yCoord);
     }
     
     public void act()
@@ -37,7 +35,7 @@ public class slopeRightLeft extends ScrollObjects
     public boolean onSlope()
     {
         isOnSlope = false;
-        if (!getNeighbours(getImage().getWidth() - 2, false, bluejay.class).isEmpty())
+        if (!getNeighbours(getImage().getWidth() - 3, false, bluejay.class).isEmpty())
         {
             isOnSlope = true;
         }
