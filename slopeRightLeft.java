@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
  * Write a description of class diagonal_block here.
  * 
@@ -16,8 +15,9 @@ public class slopeRightLeft extends ScrollObjects
     public slopeRightLeft (World world, int x, int y, int xCoord,int yCoord)
     {
         
-        GreenfootImage image = getImage();
+        GreenfootImage image = new GreenfootImage("slopeLeftRight.png");
         image.scale(x, y);
+        image.mirrorHorizontally();
         setImage(image);
         
         Block blockLeft = new Block(x / 2 - 10, y);
@@ -26,16 +26,16 @@ public class slopeRightLeft extends ScrollObjects
     
     public void act()
     {
-        if(onSlope() == true)
+        if(onSlopeRight() == true)
         {
-            getWorld().getObjects(bluejay.class).get(0).onSlopeRight(onSlope());
+            getWorld().getObjects(bluejay.class).get(0).onSlopeRight(onSlopeRight());
         }
     }
     
-    public boolean onSlope()
+    public boolean onSlopeRight()
     {
         isOnSlope = false;
-        if (!getNeighbours(getImage().getWidth() - 3, false, bluejay.class).isEmpty())
+        if (!getNeighbours(getImage().getWidth() - 10, false, bluejay.class).isEmpty())
         {
             isOnSlope = true;
         }

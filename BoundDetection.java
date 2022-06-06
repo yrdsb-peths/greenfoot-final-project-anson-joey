@@ -18,8 +18,8 @@ public abstract class BoundDetection extends Actor
         public boolean onGround()
     {
         boolean isOnGround = false;
-        if (getOneObjectAtOffset(getImage().getWidth()/2, getImage().getHeight()/2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/-2, getImage().getHeight()/2, Block.class) != null)
+        if (getOneObjectAtOffset(getImage().getWidth()/2 - 10, getImage().getHeight()/2, Block.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/-2 + 10, getImage().getHeight()/2, Block.class) != null)
         {
             isOnGround = true;
         }
@@ -51,8 +51,8 @@ public abstract class BoundDetection extends Actor
     public boolean canMoveRightSlope()
     {
         boolean canMoveRS = true;
-        if(getOneObjectAtOffset(getImage().getWidth()/2 + SPEED, getImage().getHeight()/-2, slopeRightLeft.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/2 + SPEED, getImage().getHeight()/2-1, slopeRightLeft.class) != null)
+        if(getOneObjectAtOffset(getImage().getWidth()/2 + SPEED + 1, getImage().getHeight()/-2, slopeRightLeft.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/2 + SPEED + 1, getImage().getHeight()/2-1, slopeRightLeft.class) != null)
             {
                 canMoveRS = false;
             }
@@ -73,8 +73,8 @@ public abstract class BoundDetection extends Actor
     public boolean canMoveRight()
     {
         boolean canMoveR = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/2 + SPEED, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/2 + SPEED, getImage().getHeight()/2-1, Block.class) != null)
+        if (getOneObjectAtOffset(getImage().getWidth()/2 + SPEED + 1, getImage().getHeight()/-2, Block.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/2 + SPEED + 1, getImage().getHeight()/2-1, Block.class) != null)
             {
                 canMoveR = false;
             }

@@ -19,7 +19,7 @@ public class bluejay extends BoundDetection
     GreenfootImage leftIdle[] = new GreenfootImage[3];
     GreenfootImage jump[] = new GreenfootImage[3];
     GreenfootImage leftJump[] = new GreenfootImage[3];
-    GreenfootImage slopeImage, leftSlopeImage;
+    GreenfootImage rightSlopeImage, leftSlopeImage;
 
     
     public bluejay(int x, int y)
@@ -53,8 +53,8 @@ public class bluejay extends BoundDetection
             leftJump[i].mirrorHorizontally();
         }
         
-        slopeImage = new GreenfootImage("jumpWall.png");
-        slopeImage.scale(x, y);
+        rightSlopeImage = new GreenfootImage("jumpWall.png");
+        rightSlopeImage.scale(x, y);
         
         leftSlopeImage = new GreenfootImage("jumpWall.png");
         leftSlopeImage.scale(x, y);
@@ -65,16 +65,17 @@ public class bluejay extends BoundDetection
 
     public void act()
     {
+        if(getY() > 790)
+        {
+            setLocation(672, 250);
+        }
         animate();
         fallPhysics();
         if(Greenfoot.isKeyDown("up") && onGround())
         {
             jumpTimer(); 
         }
-        if(onGround())
-        {
-            walkMovement();
-        }
+        walkMovement();
     }
     
     public void animate()
@@ -126,15 +127,17 @@ public class bluejay extends BoundDetection
     {   
         if(onSlopeLeft)
         {   
-            setImage(slopeImage);
-            setLocation(getX() + 8, getY() + 8);
+            setImage(rightSlopeImage);
+            setLocation(getX() + 5, getY() + 5);
             velocityY = 0;
+            velocityX = 0;
         }
         if(onSlopeRight)
         {
             setImage(leftSlopeImage);
-            setLocation(getX() - 8, getY() + 8);
+            setLocation(getX() - 5, getY() + 5);
             velocityY = 0;
+            velocityX = 0;
         }
         
         setLocation(getX(), getY() + velocityY);
@@ -197,13 +200,11 @@ public class bluejay extends BoundDetection
             {
                 direction = "right";
             }
-        }
-        
+        }        
         if(chargeTime > 1000)
         {
             chargeTime = 1000;
         }
-        
         velocityY = map(chargeTime, 0, 1000, 0 , 20) * -1;
         velocityX = map(chargeTime, 0, 1000, 0, 10);
         if(direction.equals("null"))
@@ -222,13 +223,16 @@ public class bluejay extends BoundDetection
         
     public void walkMovement()
     {
-        if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
-            setLocation(getX() - SPEED, getY());
-            facing = "left";
-        }
-        if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight() && canMoveRightSlope()){
-            setLocation(getX() + SPEED, getY());
-            facing = "right";
+        if(onGround())
+        {
+            if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
+                setLocation(getX() - SPEED, getY());
+                facing = "left";
+            }
+            if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight() && canMoveRightSlope()){
+                setLocation(getX() + SPEED, getY());
+                facing = "right";
+            }
         }
     }
     
