@@ -65,10 +65,7 @@ public class bluejay extends BoundDetection
 
     public void act()
     {
-        if(getY() > 790)
-        {
-            setLocation(672, 250);
-        }
+        changeArea();
         animate();
         fallPhysics();
         if(Greenfoot.isKeyDown("up") && onGround())
@@ -76,6 +73,20 @@ public class bluejay extends BoundDetection
             jumpTimer(); 
         }
         walkMovement();
+    }
+    
+    public void changeArea()
+    {
+        if(getY() == 0)//going up
+        {
+            ((MyWorld)getWorld()).nextLevel();
+            setLocation(getX(), 795);
+        }
+        if(getY() == 799) //going down
+        {
+            ((MyWorld)getWorld()).previousLevel();
+            setLocation(getX(), 0);
+        }
     }
     
     public void animate()
@@ -205,7 +216,7 @@ public class bluejay extends BoundDetection
         {
             chargeTime = 1000;
         }
-        velocityY = map(chargeTime, 0, 1000, 0 , 20) * -1;
+        velocityY = map(chargeTime, 0, 1000, 0 , 30) * -1;
         velocityX = map(chargeTime, 0, 1000, 0, 10);
         if(direction.equals("null"))
         {
