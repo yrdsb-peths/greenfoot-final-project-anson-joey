@@ -28,14 +28,14 @@ public class slopeRightLeft extends Terrain
     {
         if(onSlopeRight() == true)
         {
-            getWorld().getObjects(bluejay.class).get(0).onSlopeRight(onSlopeRight());
+            getWorld().getObjects(SquatKing.class).get(0).onSlopeRight(onSlopeRight());
         }
     }
     
     public boolean onSlopeRight()
     {
         isOnSlope = false;
-        if (!getNeighbours(getImage().getWidth() - 10, false, bluejay.class).isEmpty())
+        if (!getNeighbours(getImage().getWidth() - 10, false, SquatKing.class).isEmpty())
         {
             isOnSlope = true;
         }

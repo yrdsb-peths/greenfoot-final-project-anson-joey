@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import greenfoot.World;
 
-public class bluejay extends BoundDetection
+public class SquatKing extends BoundDetection
 {
     private static int GRAVITY = 1;
     private int SPEED = 5, imageIndex = 0;
@@ -22,7 +22,7 @@ public class bluejay extends BoundDetection
     GreenfootImage rightSlopeImage, leftSlopeImage;
 
     
-    public bluejay(int x, int y)
+    public SquatKing(int x, int y)
     {
      
         for(int i = 0; i < walk.length; i++)
