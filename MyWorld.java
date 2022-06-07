@@ -12,6 +12,10 @@ public class MyWorld extends World
     private int bgYCoord;
     private int speed = 5;
     private int level = 1;
+    
+    GreenfootImage grass = new GreenfootImage("tile001.png");
+    
+    
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -49,31 +53,31 @@ public class MyWorld extends World
                 slopeRightLeft slopeRL0 = new slopeRightLeft(this, 96, 96, 48*12, 548);
                 addObject(slopeRL0,48*12,548);
         
-                Block block1 = new Block(96, 96);
+                Block block1 = new Block(96, 96, grass);
                 addObject(block1, 48, 500);
-                Block block2 = new Block(96, 96);
+                Block block2 = new Block(96, 96, grass);
                 addObject(block2, 480, 596);
-                Block block3 = new Block(96, 96);
+                Block block3 = new Block(96, 96, grass);
                 addObject(block3, 384, 596);
-                Block block4 = new Block(96, 96);
+                Block block4 = new Block(96, 96, grass);
                 addObject(block4, 288, 596);
-                Block block5 = new Block(96, 96);
+                Block block5 = new Block(96, 96, grass);
                 addObject(block5, 576, 596);
-                Block block6 = new Block(96, 96);
+                Block block6 = new Block(96, 96, grass);
                 addObject(block6, 192, 596);
-                Block block7 = new Block(96, 96);
+                Block block7 = new Block(96, 96, grass);
                 addObject(block7, 672, 500);
                 
-                Block block8 = new Block(96, 96); //spawning location
+                Block block8 = new Block(96, 96, grass); //spawning location
                 addObject(block8, 272, 200);
                 
-                Block block9 = new Block(96, 96);
+                Block block9 = new Block(96, 96, grass);
                 addObject(block9, 768, 500);
-                Block block10 = new Block(96, 96);
+                Block block10 = new Block(96, 96, grass);
                 addObject(block10, 865, 500);
-                Block block11 = new Block(96, 96);
+                Block block11 = new Block(96, 96, grass);
                 addObject(block11, 961, 500);
-                Block block12 = new Block(96, 96);
+                Block block12 = new Block(96, 96, grass);
                 addObject(block10, 1057, 500);
                 
                 
@@ -86,20 +90,12 @@ public class MyWorld extends World
                 bg2.scale(getWidth(), getHeight());
                 setBackground(bg2);
             
-                Block platform12 = new Block(150, 150);
+                Block platform12 = new Block(150, 150, grass);
                 addObject(platform12, 600,650);
                 
-                Block platform13 = new Block(150, 150);
+                Block platform13 = new Block(150, 150, grass);
                 addObject(platform13, 850,500);
                 
-                
-                break;
-            
-            case 3:
-                
-                
-                Block B = new Block(150, 150);
-                addObject(B, 600, 600);
                 
                 break;
         }

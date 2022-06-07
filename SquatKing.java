@@ -21,10 +21,8 @@ public class SquatKing extends BoundDetection
     GreenfootImage leftJump[] = new GreenfootImage[3];
     GreenfootImage rightSlopeImage, leftSlopeImage;
 
-    
     public SquatKing(int x, int y)
     {
-     
         for(int i = 0; i < walk.length; i++)
         {
             walk[i] = new GreenfootImage("walk" + i + ".png");

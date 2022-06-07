@@ -11,6 +11,7 @@ public class slopeLeftRight extends Terrain
      * Act - do whatever the diagonal_block wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
     private boolean isOnSlope;
     public slopeLeftRight (World world, int x, int y, int xCoord,int yCoord)
     {
