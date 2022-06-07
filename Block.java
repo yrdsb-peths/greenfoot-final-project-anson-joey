@@ -14,7 +14,7 @@ public class Block extends Terrain
      */
     public Block(int x, int y)
     {
-        GreenfootImage image = getImage();
+        GreenfootImage image = new GreenfootImage("images/Snow terrain/tile001.png");
         image.scale(x, y);
         setImage(image);
     }
