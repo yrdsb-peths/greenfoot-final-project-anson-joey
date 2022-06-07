@@ -8,13 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Block extends Terrain
 {  
-    /**
-     * Act - do whatever the platform wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    GreenfootImage grass = new GreenfootImage("tile001.png");
+    
+    public Block(int x, int y, GreenfootImage terrainType)
+    {
+        GreenfootImage image = terrainType;
+        image.scale(x, y);
+        setImage(image);
+    }
+    
     public Block(int x, int y)
     {
-        GreenfootImage image = new GreenfootImage("images/Snow terrain/tile001.png");
+        GreenfootImage image = grass;
         image.scale(x, y);
         setImage(image);
     }

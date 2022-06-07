@@ -11,6 +11,7 @@ public class slopeLeftRight extends Terrain
      * Act - do whatever the diagonal_block wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
     private boolean isOnSlope;
     public slopeLeftRight (World world, int x, int y, int xCoord,int yCoord)
     {
@@ -27,14 +28,14 @@ public class slopeLeftRight extends Terrain
     {
         if(onSlopeLeft() == true)
         {
-            getWorld().getObjects(bluejay.class).get(0).onSlopeLeft(onSlopeLeft());
+            getWorld().getObjects(SquatKing.class).get(0).onSlopeLeft(onSlopeLeft());
         }
     }
     
     public boolean onSlopeLeft()
     {
         isOnSlope = false;
-        if (!getNeighbours(getImage().getWidth() - 10, false, bluejay.class).isEmpty())
+        if (!getNeighbours(getImage().getWidth() - 10, false, SquatKing.class).isEmpty())
         {
             isOnSlope = true;
         }
