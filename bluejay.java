@@ -4,50 +4,151 @@ import greenfoot.World;
 public class bluejay extends BoundDetection
 {
     private static int GRAVITY = 1;
-    private int SPEED = 5;
+    private int SPEED = 5, imageIndex = 0;
     private int velocityY, velocityX;
-    private String direction;
+    private String direction = "left", facing = "right";
     private boolean onSlopeLeft, onSlopeRight;
     private int chargeTime;
     
     private SimpleTimer timer = new SimpleTimer();
+    private SimpleTimer animationTimer = new SimpleTimer();
+    
+    GreenfootImage walk[] = new GreenfootImage[4];
+    GreenfootImage leftWalk[] = new GreenfootImage[4];
+    GreenfootImage idle[] = new GreenfootImage[3];
+    GreenfootImage leftIdle[] = new GreenfootImage[3];
+    GreenfootImage jump[] = new GreenfootImage[3];
+    GreenfootImage leftJump[] = new GreenfootImage[3];
+    GreenfootImage rightSlopeImage, leftSlopeImage;
+
     
     public bluejay(int x, int y)
     {
-        GreenfootImage image = getImage();
-        image.scale(x, y);
-        setImage(image);
+     
+        for(int i = 0; i < walk.length; i++)
+        {
+            walk[i] = new GreenfootImage("walk" + i + ".png");
+            walk[i].scale(x, y);
+            
+            leftWalk[i] = new GreenfootImage("walk" + i + ".png");
+            leftWalk[i].scale(x, y);
+            leftWalk[i].mirrorHorizontally();
+        }
+        for(int i = 0; i < idle.length; i++)
+        {
+            idle[i] = new GreenfootImage("idle" + i + ".png");
+            idle[i].scale(x, y);
+            
+            leftIdle[i] = new GreenfootImage("idle" + i + ".png");
+            leftIdle[i].scale(x, y);
+            leftIdle[i].mirrorHorizontally();
+        }
+        for(int i = 0; i < jump.length; i++)
+        {
+            jump[i] = new GreenfootImage("jump" + i + ".png");
+            jump[i].scale(x, y);
+            
+            leftJump[i] = new GreenfootImage("jump" + i + ".png");
+            leftJump[i].scale(x, y);
+            leftJump[i].mirrorHorizontally();
+        }
+        
+        rightSlopeImage = new GreenfootImage("jumpWall.png");
+        rightSlopeImage.scale(x, y);
+        
+        leftSlopeImage = new GreenfootImage("jumpWall.png");
+        leftSlopeImage.scale(x, y);
+        leftSlopeImage.mirrorHorizontally();
+
+        setImage(idle[0]);
     }
 
     public void act()
     {
+        changeArea();
+        animate();
         fallPhysics();
         if(Greenfoot.isKeyDown("up") && onGround())
         {
             jumpTimer(); 
         }
-        if(onGround())
+        walkMovement();
+    }
+    
+    public void changeArea()
+    {
+        if(getY() == 0)//going up
         {
-            walkMovement();
+            ((MyWorld)getWorld()).nextLevel();
+            setLocation(getX(), 795);
+        }
+        if(getY() == 799) //going down
+        {
+            ((MyWorld)getWorld()).previousLevel();
+            setLocation(getX(), 0);
         }
     }
     
-    public void setVelocity(int velocityY)
+    public void animate()
     {
-        this.velocityY = velocityY;
+        if(animationTimer.millisElapsed() < 100)
+        {
+            return;
+        }
+        animationTimer.mark();
+        if(facing.equals("left") && !Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("right"))
+        {
+            imageIndex = (imageIndex + 1) % idle.length;
+            setImage(leftIdle[imageIndex]);
+        }
+        if(facing.equals("right") && !Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("right"))
+        {
+            imageIndex = (imageIndex + 1) % leftIdle.length;
+            setImage(idle[imageIndex]);
+        }
+        if(Greenfoot.isKeyDown("right"))
+        {
+            setImage(walk[imageIndex]);
+            imageIndex = (imageIndex + 1) % walk.length;
+        }
+        if(Greenfoot.isKeyDown("left")) 
+        {
+            setImage(leftWalk[imageIndex]);
+            imageIndex = (imageIndex + 1) % leftWalk.length;
+        }
+        if(velocityY < 0 && facing.equals("right"))
+        {
+            setImage(jump[1]);
+        }
+        if(velocityY < 0 && facing.equals("left"))
+        {
+            setImage(leftJump[1]);
+        }
+        if(velocityY > 0 && facing.equals("right"))
+        {
+            setImage(jump[2]);
+        }
+        if(velocityY > 0 && facing.equals("left"))
+        {
+            setImage(leftJump[2]);
+        }
     }
     
     public void fallPhysics()
     {   
         if(onSlopeLeft)
         {   
-            setLocation(getX() + 8, getY() + 8);
+            setImage(rightSlopeImage);
+            setLocation(getX() + 5, getY() + 5);
             velocityY = 0;
+            velocityX = 0;
         }
         if(onSlopeRight)
         {
-            setLocation(getX() - 8, getY() + 8);
+            setImage(leftSlopeImage);
+            setLocation(getX() - 5, getY() + 5);
             velocityY = 0;
+            velocityX = 0;
         }
         
         setLocation(getX(), getY() + velocityY);
@@ -74,15 +175,15 @@ public class bluejay extends BoundDetection
             velocityY += GRAVITY; 
         }
 
-        if(velocityX > 0 && canJumpRight())
+        if(velocityX > 0 && canMoveRight())
         {
             setLocation(getX() + velocityX, getY());
         }
-        if(velocityX < 0 && canJumpLeft())
+        if(velocityX < 0 && canMoveLeft())
         {
             setLocation(getX() + velocityX, getY());
         }
-        if(!canJumpRight() || !canJumpLeft())
+        if(!canMoveRight() || !canMoveLeft())
         {
             velocityX = velocityX * -1;
         }
@@ -92,10 +193,11 @@ public class bluejay extends BoundDetection
 
     public void jumpTimer()
     {
+        setImage(jump[0]);
         timer.mark();
-
         while(Greenfoot.isKeyDown("up") && onGround())
         {
+            getWorld().repaint();
             chargeTime = timer.millisElapsed();
             if(!Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("right"))
             {
@@ -109,59 +211,40 @@ public class bluejay extends BoundDetection
             {
                 direction = "right";
             }
-        }
-
+        }        
         if(chargeTime > 1000)
         {
             chargeTime = 1000;
         }
-        
-        velocityY = map(chargeTime, 0, 1000, 0 , 20) * -1;
+        velocityY = map(chargeTime, 0, 1000, 0 , 30) * -1;
         velocityX = map(chargeTime, 0, 1000, 0, 10);
         if(direction.equals("null"))
         {
             velocityX = 0;
         }
-        if(direction.equals("left"))
+        else if(direction.equals("left"))
         {
             velocityX = Math.abs(velocityX) * -1;
         }
-        if(direction.equals("right"))
+        else if(direction.equals("right"))
         {
             velocityX = Math.abs(velocityX);
-        }
+        }   
     }
         
     public void walkMovement()
     {
-        if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
-            setLocation(getX() - SPEED, getY());
-        }
-        if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight() && canMoveRightSlope()){
-            setLocation(getX() + SPEED, getY());
-        }
-    }
-    
-    public boolean canJumpLeft()
-    {
-        boolean canJumpL = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/-2 + velocityX, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/-2 + velocityX, getImage().getHeight()/2-1, Block.class) != null)
-            {
-                canJumpL = false;
+        if(onGround())
+        {
+            if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
+                setLocation(getX() - SPEED, getY());
+                facing = "left";
             }
-        return canJumpL;
-    }
-
-    public boolean canJumpRight()
-    {
-        boolean canJumpR = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/2 + velocityX, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/2 + velocityX, getImage().getHeight()/2-1, Block.class) != null)
-            {
-                canJumpR = false;
+            if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight() && canMoveRightSlope()){
+                setLocation(getX() + SPEED, getY());
+                facing = "right";
             }
-        return canJumpR;
+        }
     }
     
     public void onSlopeLeft(boolean onSlopeLeft)

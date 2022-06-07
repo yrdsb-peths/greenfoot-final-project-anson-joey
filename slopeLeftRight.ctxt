@@ -6,5 +6,5 @@ comment1.target=slopeLeftRight(greenfoot.World,\ int,\ int,\ int,\ int)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
-comment3.target=boolean\ onSlope()
+comment3.target=boolean\ onSlopeLeft()
 numComments=4

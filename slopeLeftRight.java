@@ -1,12 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
  * Write a description of class diagonal_block here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class slopeLeftRight extends ScrollObjects
+public class slopeLeftRight extends Terrain
 {
     /**
      * Act - do whatever the diagonal_block wants to do. This method is called whenever
@@ -19,25 +18,23 @@ public class slopeLeftRight extends ScrollObjects
         GreenfootImage image = getImage();
         image.scale(x, y);
         setImage(image);
-        
-        Block blockLeft = new Block(x / 2, y);
-        world.addObject(blockLeft, xCoord - getImage().getWidth() / 4 , yCoord);
-        Block blockBottom = new Block(x, y / 2);
-        world.addObject(blockBottom, xCoord, yCoord + getImage().getWidth() / 4);
+    
+        Block blockRight = new Block(x / 2 - 10, y);
+        world.addObject(blockRight, xCoord - getImage().getWidth() / 4 - 5, yCoord);
     }
     
     public void act()
     {
-        if(onSlope() == true)
+        if(onSlopeLeft() == true)
         {
-            getWorld().getObjects(bluejay.class).get(0).onSlopeLeft(onSlope());
+            getWorld().getObjects(bluejay.class).get(0).onSlopeLeft(onSlopeLeft());
         }
     }
     
-    public boolean onSlope()
+    public boolean onSlopeLeft()
     {
         isOnSlope = false;
-        if (!getNeighbours(getImage().getWidth() - 2, false, bluejay.class).isEmpty())
+        if (!getNeighbours(getImage().getWidth() - 10, false, bluejay.class).isEmpty())
         {
             isOnSlope = true;
         }

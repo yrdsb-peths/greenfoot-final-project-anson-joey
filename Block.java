@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Block extends ScrollObjects
+public class Block extends Terrain
 {  
     /**
      * Act - do whatever the platform wants to do. This method is called whenever
