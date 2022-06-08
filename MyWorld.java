@@ -13,7 +13,7 @@ public class MyWorld extends World
     private int speed = 5;
     private int level = 1;
     
-    GreenfootImage grass = new GreenfootImage("tile001.png");
+    GreenfootImage grass = new GreenfootImage("images/Grass terrain/tile010.png");
     
     
     public MyWorld()
@@ -40,7 +40,7 @@ public class MyWorld extends World
         switch(level)
         {
             case 1:
-                GreenfootImage bg1 = new GreenfootImage("GrassBg.png");
+                GreenfootImage bg1 = new GreenfootImage("images/Grass terrain/GrassBg.png");
                 bg1.scale(getWidth(), getHeight());
                 setBackground(bg1);
 
