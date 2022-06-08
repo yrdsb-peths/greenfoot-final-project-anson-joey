@@ -13,7 +13,11 @@ public class MyWorld extends World
     private int speed = 5;
     private int level = 1;
     
-    GreenfootImage grass = new GreenfootImage("images/Grass terrain/tile010.png");
+    GreenfootImage grass = new GreenfootImage("images/Grass terrain/tile002.png");
+    
+    
+    GreenfootImage grassBg = new GreenfootImage("images/Grass terrain/GrassBg.png");
+    GreenfootImage snowBg = new GreenfootImage("images/Snow terrain/SnowBg.png");           
     
     
     public MyWorld()
@@ -40,9 +44,8 @@ public class MyWorld extends World
         switch(level)
         {
             case 1:
-                GreenfootImage bg1 = new GreenfootImage("images/Grass terrain/GrassBg.png");
-                bg1.scale(getWidth(), getHeight());
-                setBackground(bg1);
+                grassBg.scale(getWidth(), getHeight());
+                setBackground(grassBg);
 
                 slopeLeftRight slopeLR0 = new slopeLeftRight(this, 96,96, 48*3,500);
                 addObject(slopeLR0,48*3,500);
@@ -84,11 +87,11 @@ public class MyWorld extends World
                 
                 
                 break;
+                
             case 2:
                 
-                GreenfootImage bg2 = new GreenfootImage("bluej-icon.png");
-                bg2.scale(getWidth(), getHeight());
-                setBackground(bg2);
+                snowBg.scale(getWidth(), getHeight());
+                setBackground(snowBg);
             
                 Block platform12 = new Block(150, 150, grass);
                 addObject(platform12, 600,650);
