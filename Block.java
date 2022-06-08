@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Block extends Terrain
 {  
-    GreenfootImage grass = new GreenfootImage("images/Grass terrain/tile010.png");
+    GreenfootImage grass = new GreenfootImage("images/Grass terrain/tile002.png");
     
     public Block(int x, int y, GreenfootImage terrainType)
     {
