@@ -83,7 +83,15 @@ public abstract class BoundDetection extends Actor
         return canMoveR;
     }
     
-
+    public boolean isTouchingBBQ()
+    {
+        boolean touchingBBQ = false;
+        if(isTouching(SmokingHotBBQ.class))
+        {
+            touchingBBQ = true;
+        }
+        return touchingBBQ;
+    }
     
     public int map(int number, int givenSmallNum, int givenBigNum, int desiredSmallNum, int desiredBigNum)
     {

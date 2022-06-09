@@ -13,13 +13,5 @@ public class SmokingHotBBQ extends Terrain
         GreenfootImage image = getImage();
         image.scale(x, y);
     }
-    
-    public void act()
-    {
-        if(isTouching(SquatKing.class))
-        {
-            BBQScene bbq = new BBQScene();
-            Greenfoot.setWorld(bbq);
-        }
-    }
+
 }
