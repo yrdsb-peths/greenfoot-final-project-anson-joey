@@ -6,20 +6,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class SmokingHotBBQ extends Actor
+public class SmokingHotBBQ extends Terrain
 {
-    private SimpleTimer animationTimer = new SimpleTimer(); 
-    GreenfootImage animate[] = new GreenfootImage[4];
-    
     public SmokingHotBBQ(int x, int y)
     {
-        
+        GreenfootImage image = getImage();
+        image.scale(x, y);
     }
     
     public void act()
     {
-        
+        if(isTouching(SquatKing.class))
+        {
+            BBQScene bbq = new BBQScene();
+            Greenfoot.setWorld(bbq);
+        }
     }
-    
-    
 }

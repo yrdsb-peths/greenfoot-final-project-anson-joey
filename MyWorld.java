@@ -13,7 +13,11 @@ public class MyWorld extends World
     private int speed = 5;
     private int level = 1;
     
-    GreenfootImage grass = new GreenfootImage("tile001.png");
+    GreenfootImage grass = new GreenfootImage("images/Grass terrain/tile002.png");
+    GreenfootImage snow = new GreenfootImage("images/Snow terrain/tile002.png");
+    
+    GreenfootImage grassBg = new GreenfootImage("images/Grass terrain/GrassBg.png");
+    GreenfootImage snowBg = new GreenfootImage("images/Snow terrain/SnowBg.png");           
     
     
     public MyWorld()
@@ -40,9 +44,8 @@ public class MyWorld extends World
         switch(level)
         {
             case 1:
-                GreenfootImage bg1 = new GreenfootImage("GrassBg.png");
-                bg1.scale(getWidth(), getHeight());
-                setBackground(bg1);
+                grassBg.scale(getWidth(), getHeight());
+                setBackground(grassBg);
 
                 slopeLeftRight slopeLR0 = new slopeLeftRight(this, 96,96, 48*3,500);
                 addObject(slopeLR0,48*3,500);
@@ -52,7 +55,7 @@ public class MyWorld extends World
                 addObject(slopeRL1,48*13,500);
                 slopeRightLeft slopeRL0 = new slopeRightLeft(this, 96, 96, 48*12, 548);
                 addObject(slopeRL0,48*12,548);
-        
+
                 Block block1 = new Block(96, 96, grass);
                 addObject(block1, 48, 500);
                 Block block2 = new Block(96, 96, grass);
@@ -67,10 +70,10 @@ public class MyWorld extends World
                 addObject(block6, 192, 596);
                 Block block7 = new Block(96, 96, grass);
                 addObject(block7, 672, 500);
-                
+
                 Block block8 = new Block(96, 96, grass); //spawning location
                 addObject(block8, 272, 200);
-                
+
                 Block block9 = new Block(96, 96, grass);
                 addObject(block9, 768, 500);
                 Block block10 = new Block(96, 96, grass);
@@ -80,26 +83,27 @@ public class MyWorld extends World
                 Block block12 = new Block(96, 96, grass);
                 addObject(block10, 1057, 500);
                 
+                Block block16 = new Block(96, 96);
+                addObject(block16,420,333);
                 
-                
+                SmokingHotBBQ bbq = new SmokingHotBBQ(96,96);
+                addObject(bbq, 800, 410);
                 
                 break;
             case 2:
-                
-                GreenfootImage bg2 = new GreenfootImage("bluej-icon.png");
-                bg2.scale(getWidth(), getHeight());
-                setBackground(bg2);
-            
-                Block platform12 = new Block(150, 150, grass);
+                snowBg.scale(getWidth(), getHeight());
+                setBackground(snowBg);
+
+                Block platform12 = new Block(150, 150, snow);
                 addObject(platform12, 600,650);
-                
-                Block platform13 = new Block(150, 150, grass);
+
+                Block platform13 = new Block(150, 150, snow);
                 addObject(platform13, 850,500);
-                
                 
                 break;
         }
-    }
+        }
+
     public void nextLevel()
     {
         removeObjects(getObjects(Terrain.class)); //Removes all objects

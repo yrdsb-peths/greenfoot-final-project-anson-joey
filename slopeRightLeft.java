@@ -15,7 +15,7 @@ public class slopeRightLeft extends Terrain
     public slopeRightLeft (World world, int x, int y, int xCoord,int yCoord)
     {
         
-        GreenfootImage image = new GreenfootImage("slopeLeftRight.png");
+        GreenfootImage image = new GreenfootImage("images/Grass terrain/slopeLeftRight.png");
         image.scale(x, y);
         image.mirrorHorizontally();
         setImage(image);
