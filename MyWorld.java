@@ -26,9 +26,10 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1, true); 
+        addObject(new fade(null), getWidth()/2, getHeight()/2);
+        setPaintOrder(fade.class, SquatKing.class, Terrain.class);
         prepareActor();
         prepare();
-        addObject(new fade(null), getWidth()/2, getHeight()/2);
     }
     
     public void act()
@@ -77,17 +78,17 @@ public class MyWorld extends World
 
                 Block block1 = new Block(96, 96, grass);
                 addObject(block1, 48, 500);
-                iceBlock block2 = new iceBlock(96, 96, grass);
+                Block block2 = new Block(96, 96, grass);
                 addObject(block2, 480, 596);
-                iceBlock block3 = new iceBlock(96, 96, grass);
+                Block block3 = new Block(96, 96, grass);
                 addObject(block3, 384, 596);
-                iceBlock block4 = new iceBlock(96, 96, grass);
+                Block block4 = new Block(96, 96, grass);
                 addObject(block4, 288, 596);
-                iceBlock block5 = new iceBlock(96, 96, grass);
+                Block block5 = new Block(96, 96, grass);
                 addObject(block5, 576, 596);
-                iceBlock block6 = new iceBlock(96, 96, grass);
+                Block block6 = new Block(96, 96, grass);
                 addObject(block6, 192, 596);
-                iceBlock block7 = new iceBlock(96, 96, grass);
+                Block block7 = new Block(96, 96, grass);
                 addObject(block7, 672, 500);
 
                 Block block8 = new Block(96, 96, grass); //spawning location
@@ -104,7 +105,7 @@ public class MyWorld extends World
                 Block block16 = new Block(96, 96);
                 addObject(block16,420,333);
                 
-                SmokingHotBBQ bbq = new SmokingHotBBQ(96,96);
+                SmokingHotBBQ bbq = new SmokingHotBBQ(60,100);
                 addObject(bbq, 800, 410);
                 
                 break;
