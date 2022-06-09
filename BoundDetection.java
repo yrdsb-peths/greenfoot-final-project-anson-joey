@@ -17,7 +17,7 @@ public abstract class BoundDetection extends Actor
         
     }
     
-        public boolean onGround()
+    public boolean onGround()
     {
         boolean isOnGround = false;
         if (getOneObjectAtOffset(getImage().getWidth()/2 - 10, getImage().getHeight()/2, Block.class) != null ||
@@ -26,6 +26,17 @@ public abstract class BoundDetection extends Actor
             isOnGround = true;
         }
         return isOnGround;
+    }
+    
+    public boolean onIceGround()
+    {
+        boolean isOnIceGround = false;
+        if (getOneObjectAtOffset(getImage().getWidth()/2 - 10, getImage().getHeight()/2, iceBlock.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/-2 + 10, getImage().getHeight()/2, iceBlock.class) != null)
+        {
+            isOnIceGround = true;
+        }
+        return isOnIceGround;
     }
     
     public boolean bumpedHead()

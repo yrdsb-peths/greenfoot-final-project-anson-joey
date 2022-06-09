@@ -4,8 +4,8 @@ import greenfoot.World;
 public class SquatKing extends BoundDetection
 {
     private static int GRAVITY = 1;
-    private int SPEED = 5, imageIndex = 0;
-    private int velocityY, velocityX;
+    private int SPEED = 5, imageIndex = 0, slideSpeed = 5;
+    private int velocityY, velocityX, slideVelocity;
     private String direction = "left", facing = "right";
     private boolean onSlopeLeft, onSlopeRight;
     private int chargeTime;
@@ -66,7 +66,7 @@ public class SquatKing extends BoundDetection
         changeArea();
         animate();
         fallPhysics();
-        if(Greenfoot.isKeyDown("up") && onGround())
+        if(Greenfoot.isKeyDown("up") && (onGround() || onIceGround()))
         {
             jumpTimer(); 
         }
@@ -150,7 +150,39 @@ public class SquatKing extends BoundDetection
         }
         
         setLocation(getX(), getY() + velocityY);
-        if(onGround() || onSlopeLeft || onSlopeRight)
+        if(onIceGround())
+        {
+            while(onIceGround())
+            {
+                setLocation(getX(), getY()-1);
+            }
+            setLocation(getX(), getY()+1);
+            velocityY = 0;
+            
+            if(velocityX > 0 )
+            {
+                //slideVelocity = map(velocityX, 1, 9, 0, 15);
+                slideVelocity = 15;
+                velocityX = 0;
+            }
+            else if(velocityX < 0)
+            {
+                //slideVelocity = (map(velocityX * -1, 1, 9, 0, 15)) * -1;
+                slideVelocity = -15;
+                velocityX = 0;
+            }
+            
+            if(slideVelocity > 0)
+            {
+                slideVelocity--;
+            }
+            else if(slideVelocity < 0)
+            {
+                slideVelocity++;
+            }
+            
+        }
+        else if(onGround())
         {
             velocityY = 0;
             velocityX = 0;
@@ -173,13 +205,15 @@ public class SquatKing extends BoundDetection
             velocityY += GRAVITY; 
         }
 
-        if(velocityX > 0 && canMoveRight())
+        if(velocityX > 0 && canMoveRight() || (slideVelocity > 0 && canMoveRight()))
         {
             setLocation(getX() + velocityX, getY());
+            setLocation(getX() + slideVelocity, getY());
         }
-        if(velocityX < 0 && canMoveLeft())
+        if((velocityX < 0 && canMoveLeft()) || (slideVelocity < 0 && canMoveLeft()))
         {
             setLocation(getX() + velocityX, getY());
+            setLocation(getX() + slideVelocity, getY());
         }
         if(!canMoveRight() || !canMoveLeft())
         {
@@ -193,7 +227,7 @@ public class SquatKing extends BoundDetection
     {
         setImage(jump[0]);
         timer.mark();
-        while(Greenfoot.isKeyDown("up") && onGround())
+        while(Greenfoot.isKeyDown("up") && (onGround() || onIceGround()))
         {
             getWorld().repaint();
             chargeTime = timer.millisElapsed();
@@ -232,7 +266,7 @@ public class SquatKing extends BoundDetection
         
     public void walkMovement()
     {
-        if(onGround())
+        if(onGround() || onIceGround())
         {
             if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
                 setLocation(getX() - SPEED, getY());

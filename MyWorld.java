@@ -26,9 +26,9 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1, true); 
-        addObject(new fade(null), getWidth()/2, getHeight()/2);
         prepareActor();
         prepare();
+        addObject(new fade(null), getWidth()/2, getHeight()/2);
     }
     
     public void act()
@@ -77,17 +77,17 @@ public class MyWorld extends World
 
                 Block block1 = new Block(96, 96, grass);
                 addObject(block1, 48, 500);
-                Block block2 = new Block(96, 96, grass);
+                iceBlock block2 = new iceBlock(96, 96, grass);
                 addObject(block2, 480, 596);
-                Block block3 = new Block(96, 96, grass);
+                iceBlock block3 = new iceBlock(96, 96, grass);
                 addObject(block3, 384, 596);
-                Block block4 = new Block(96, 96, grass);
+                iceBlock block4 = new iceBlock(96, 96, grass);
                 addObject(block4, 288, 596);
-                Block block5 = new Block(96, 96, grass);
+                iceBlock block5 = new iceBlock(96, 96, grass);
                 addObject(block5, 576, 596);
-                Block block6 = new Block(96, 96, grass);
+                iceBlock block6 = new iceBlock(96, 96, grass);
                 addObject(block6, 192, 596);
-                Block block7 = new Block(96, 96, grass);
+                iceBlock block7 = new iceBlock(96, 96, grass);
                 addObject(block7, 672, 500);
 
                 Block block8 = new Block(96, 96, grass); //spawning location
