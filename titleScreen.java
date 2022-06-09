@@ -23,7 +23,9 @@ public class titleScreen extends World
     {
         if(Greenfoot.isKeyDown("space"))
         {
-               
+            MyWorld world = new MyWorld();
+            fade fadeout = new fade(world);
+            addObject(fadeout, getWidth() / 2, getHeight() / 2);
         }
     }
 }

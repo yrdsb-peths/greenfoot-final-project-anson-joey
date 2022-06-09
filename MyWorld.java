@@ -12,6 +12,7 @@ public class MyWorld extends World
     private int bgYCoord;
     private int speed = 5;
     private int level = 1;
+    private boolean touchingbbq = false;
     
     GreenfootImage grass = new GreenfootImage("images/Grass terrain/tile002.png");
     GreenfootImage snow = new GreenfootImage("images/Snow terrain/tile002.png");
@@ -19,24 +20,42 @@ public class MyWorld extends World
     GreenfootImage grassBg = new GreenfootImage("images/Grass terrain/GrassBg.png");
     GreenfootImage snowBg = new GreenfootImage("images/Snow terrain/SnowBg.png");           
     
-    
+    SquatKing actor;
+    SmokingHotBBQ BBQ;
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1, true); 
+        addObject(new fade(null), getWidth()/2, getHeight()/2);
         prepareActor();
         prepare();
     }
     
     public void act()
     {
-        repaint();
+        actor = getObjects(SquatKing.class).get(0);
+        if(actor.isTouchingBBQ() == true && touchingbbq == false)
+        {
+            changeWorld();
+        }
+        if(touchingbbq == false)
+        {
+            repaint();
+        }
     }
     
     private void prepareActor()
     {
         SquatKing squattyboi = new SquatKing(48,48);
         addObject(squattyboi,272,100); 
+    }
+    
+    private void changeWorld()
+    {
+        touchingbbq = true;
+        BBQScene world1 = new BBQScene();
+        fade fadeout1 = new fade(world1);
+        addObject(fadeout1, getWidth() / 2, getHeight() / 2);
     }
     
     private void prepare()
@@ -77,11 +96,10 @@ public class MyWorld extends World
                 Block block9 = new Block(96, 96, grass);
                 addObject(block9, 768, 500);
                 Block block10 = new Block(96, 96, grass);
-                addObject(block10, 865, 500);
+                addObject(block10, 864, 500);
                 Block block11 = new Block(96, 96, grass);
-                addObject(block11, 961, 500);
-                Block block12 = new Block(96, 96, grass);
-                addObject(block10, 1057, 500);
+                addObject(block11, 960, 500);
+                
                 
                 Block block16 = new Block(96, 96);
                 addObject(block16,420,333);
