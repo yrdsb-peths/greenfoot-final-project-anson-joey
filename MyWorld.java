@@ -27,6 +27,7 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1, true); 
         addObject(new fade(null), getWidth()/2, getHeight()/2);
+        setPaintOrder(fade.class, SquatKing.class, Terrain.class);
         prepareActor();
         prepare();
     }
@@ -104,7 +105,7 @@ public class MyWorld extends World
                 Block block16 = new Block(96, 96);
                 addObject(block16,420,333);
                 
-                SmokingHotBBQ bbq = new SmokingHotBBQ(96,96);
+                SmokingHotBBQ bbq = new SmokingHotBBQ(60,100);
                 addObject(bbq, 800, 410);
                 
                 break;
