@@ -15,6 +15,10 @@ public class MyWorld extends World
     private boolean touchingbbq = false;
     
     GreenfootImage grass = new GreenfootImage("images/Grass terrain/tile002.png");
+    GreenfootImage grassL = new GreenfootImage("images/Grass terrain/tile002.png");
+    GreenfootImage grassR = new GreenfootImage("images/Grass terrain/tile002.png");
+    
+    GreenfootImage dirt = new GreenfootImage("images/Grass terrain/tile013.png");
     GreenfootImage snow = new GreenfootImage("images/Snow terrain/tile002.png");
     
     GreenfootImage grassBg = new GreenfootImage("images/Grass terrain/GrassBg.png");
@@ -27,6 +31,10 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1, true); 
         addObject(new fade(null), getWidth()/2, getHeight()/2);
+        
+        grassL.rotate(270);
+        grassR.rotate(90);
+        
         setPaintOrder(fade.class, SquatKing.class, Terrain.class);
         prepareActor();
         prepare();
@@ -48,7 +56,7 @@ public class MyWorld extends World
     private void prepareActor()
     {
         SquatKing squattyboi = new SquatKing(48,48);
-        addObject(squattyboi,272,100); 
+        addObject(squattyboi,500,740); 
     }
     
     private void changeWorld()
@@ -66,58 +74,66 @@ public class MyWorld extends World
             case 1:
                 grassBg.scale(getWidth(), getHeight());
                 setBackground(grassBg);
-
-                slopeLeftRight slopeLR0 = new slopeLeftRight(this, 96,96, 48*3,500);
-                addObject(slopeLR0,48*3,500);
-                slopeLeftRight slopeLR1 = new slopeLeftRight(this,96, 96, 48*4, 548);
-                addObject(slopeLR1,48*4,548);        
-                slopeRightLeft slopeRL1 = new slopeRightLeft(this, 96, 96, 48*13, 500);
-                addObject(slopeRL1,48*13,500);
-                slopeRightLeft slopeRL0 = new slopeRightLeft(this, 96, 96, 48*12, 548);
-                addObject(slopeRL0,48*12,548);
-
-                Block block1 = new Block(96, 96, grass);
-                addObject(block1, 48, 500);
+                
+                Block block1 = new Block(96, 96, grass); // spawning block
+                addObject(block1, 500, 800);
+                
                 Block block2 = new Block(96, 96, grass);
-                addObject(block2, 480, 596);
+                addObject(block2, 404, 800);
+                
                 Block block3 = new Block(96, 96, grass);
-                addObject(block3, 384, 596);
-                Block block4 = new Block(96, 96, grass);
-                addObject(block4, 288, 596);
-                Block block5 = new Block(96, 96, grass);
-                addObject(block5, 576, 596);
-                Block block6 = new Block(96, 96, grass);
-                addObject(block6, 192, 596);
-                Block block7 = new Block(96, 96, grass);
-                addObject(block7, 672, 500);
-
-                Block block8 = new Block(96, 96, grass); //spawning location
-                addObject(block8, 272, 200);
-
-                Block block9 = new Block(96, 96, grass);
-                addObject(block9, 768, 500);
+                addObject(block3, 596, 800);
+                
+                
+                slopeRightLeft slopeRL1 = new slopeRightLeft(this, 96, 96, 692, 550); // right side
+                addObject(slopeRL1, 692, 550);
+                Block block4 = new Block(96, 96, dirt);
+                addObject(block4, 692, 800);
+                Block block5 = new Block(96, 96, dirt);
+                addObject(block5, 692, 704);
+                Block block6 = new Block(96, 96, dirt);
+                addObject(block6, 692, 608);
+                
+                slopeLeftRight slopeLR0 = new slopeLeftRight(this, 96,96, 308,550); // left side
+                addObject(slopeLR0,308,550);
+                Block block7 = new Block(96, 96, dirt);
+                addObject(block7, 308, 800);
+                Block block8 = new Block(96, 96, dirt);
+                addObject(block8, 308, 704);
+                Block block9 = new Block(96, 96, dirt);
+                addObject(block9, 308, 608);
+                
                 Block block10 = new Block(96, 96, grass);
-                addObject(block10, 864, 500);
+                addObject(block10, 212, 550);
                 Block block11 = new Block(96, 96, grass);
-                addObject(block11, 960, 500);
+                addObject(block11, 116, 550);
+                Block block12 = new Block(96, 96, grass);
+                addObject(block12, 20, 550);
+
+                Block block13 = new Block(96, 96, grass);
+                addObject(block13, 788, 550);
+                Block block14 = new Block(96, 96, grass);
+                addObject(block14, 884, 550);
+                Block block15 = new Block(96, 96, grass);
+                addObject(block15, 980, 550);
                 
-                
-                Block block16 = new Block(96, 96);
-                addObject(block16,420,333);
-                
-                SmokingHotBBQ bbq = new SmokingHotBBQ(60,100);
-                addObject(bbq, 800, 410);
+                Block block16 = new Block(96, 96, grass);
+                addObject(block16, 500, 300);
+                Block block17 = new Block(96, 96, grass);
+                addObject(block17, 596, 300);
+                Block block18 = new Block(96, 96, grass);
+                addObject(block18, 404, 300);
                 
                 break;
             case 2:
                 snowBg.scale(getWidth(), getHeight());
                 setBackground(snowBg);
 
-                Block platform12 = new Block(150, 150, snow);
-                addObject(platform12, 600,650);
+                Block platform12 = new Block(96, 96, snow);
+                addObject(platform12, 500,500);
 
-                Block platform13 = new Block(150, 150, snow);
-                addObject(platform13, 850,500);
+                Block platform13 = new Block(96, 96, snow);
+                addObject(platform13, 500,500);
                 
                 break;
         }
