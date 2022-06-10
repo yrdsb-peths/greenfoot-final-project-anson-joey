@@ -22,6 +22,7 @@ public class MyWorld extends World
     GreenfootImage snow = new GreenfootImage("images/Snow terrain/tile002.png");
     
     GreenfootImage grassBg = new GreenfootImage("images/Grass terrain/GrassBg.png");
+    GreenfootImage cloudsBg = new GreenfootImage("images/Grass terrain/CloudsBg.png");
     GreenfootImage snowBg = new GreenfootImage("images/Snow terrain/SnowBg.png");           
     
     SquatKing actor;
@@ -77,16 +78,17 @@ public class MyWorld extends World
                 
                 Block block1 = new Block(96, 96, grass); // spawning block
                 addObject(block1, 500, 800);
-                
                 Block block2 = new Block(96, 96, grass);
                 addObject(block2, 404, 800);
-                
                 Block block3 = new Block(96, 96, grass);
                 addObject(block3, 596, 800);
                 
+                slopeRightLeft slopeRL2 = new slopeRightLeft(this, 96, 96, 740, 512); 
+                addObject(slopeRL2, 740, 512);
+                slopeRightLeft slopeRL1 = new slopeRightLeft(this, 96, 96, 692, 560); //right side
+                addObject(slopeRL1, 692, 560);
                 
-                slopeRightLeft slopeRL1 = new slopeRightLeft(this, 96, 96, 692, 550); // right side
-                addObject(slopeRL1, 692, 550);
+                
                 Block block4 = new Block(96, 96, dirt);
                 addObject(block4, 692, 800);
                 Block block5 = new Block(96, 96, dirt);
@@ -94,8 +96,12 @@ public class MyWorld extends World
                 Block block6 = new Block(96, 96, dirt);
                 addObject(block6, 692, 608);
                 
-                slopeLeftRight slopeLR0 = new slopeLeftRight(this, 96,96, 308,550); // left side
-                addObject(slopeLR0,308,550);
+                slopeLeftRight slopeLR2 = new slopeLeftRight(this, 96,96, 260,512); 
+                addObject(slopeLR2,260,512);
+                slopeLeftRight slopeLR1 = new slopeLeftRight(this, 96,96, 308,560); //left side
+                addObject(slopeLR1,308,560);
+                
+                
                 Block block7 = new Block(96, 96, dirt);
                 addObject(block7, 308, 800);
                 Block block8 = new Block(96, 96, dirt);
@@ -103,19 +109,20 @@ public class MyWorld extends World
                 Block block9 = new Block(96, 96, dirt);
                 addObject(block9, 308, 608);
                 
+                
                 Block block10 = new Block(96, 96, grass);
-                addObject(block10, 212, 550);
+                addObject(block10, 212, 512);
                 Block block11 = new Block(96, 96, grass);
-                addObject(block11, 116, 550);
+                addObject(block11, 116, 512);
                 Block block12 = new Block(96, 96, grass);
-                addObject(block12, 20, 550);
+                addObject(block12, 20, 512);
 
                 Block block13 = new Block(96, 96, grass);
-                addObject(block13, 788, 550);
+                addObject(block13, 788, 512);
                 Block block14 = new Block(96, 96, grass);
-                addObject(block14, 884, 550);
+                addObject(block14, 884, 512);
                 Block block15 = new Block(96, 96, grass);
-                addObject(block15, 980, 550);
+                addObject(block15, 980, 512);
                 
                 Block block16 = new Block(96, 96, grass);
                 addObject(block16, 500, 300);
@@ -124,18 +131,22 @@ public class MyWorld extends World
                 Block block18 = new Block(96, 96, grass);
                 addObject(block18, 404, 300);
                 
+               
                 break;
             case 2:
-                snowBg.scale(getWidth(), getHeight());
-                setBackground(snowBg);
+                cloudsBg.scale(getWidth(), getHeight());
+                setBackground(cloudsBg);
 
-                Block platform12 = new Block(96, 96, snow);
+                Block platform12 = new Block(96, 96, grass);
                 addObject(platform12, 500,500);
 
-                Block platform13 = new Block(96, 96, snow);
+                Block platform13 = new Block(96, 96, grass);
                 addObject(platform13, 500,500);
                 
                 break;
+                
+            case 3:
+                
         }
         }
 
