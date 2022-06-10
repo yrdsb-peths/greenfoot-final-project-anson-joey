@@ -1,29 +1,30 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class titleScreen here.
+ * Write a description of class descriptionWorld here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class titleScreen extends World
+public class descriptionWorld extends World
 {
-    private int transVal;
+
     /**
-     * Constructor for objects of class titleScreen.
+     * Constructor for objects of class descriptionWorld.
      * 
      */
-    public titleScreen()
+    public descriptionWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1); 
+        addObject(new fade(null), getWidth()/2, getHeight()/2);
     }
     
     public void act()
     {
         if(Greenfoot.isKeyDown("space"))
         {
-            descriptionWorld world = new descriptionWorld();
+            MyWorld world = new MyWorld();
             fade fadeout = new fade(world);
             addObject(fadeout, getWidth() / 2, getHeight() / 2);
         }

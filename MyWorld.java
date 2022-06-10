@@ -61,11 +61,11 @@ public class MyWorld extends World
     
     private void prepare()
     {
+        SquatKing actor = getObjects(SquatKing.class).get(0);
         switch(level)
         {
             case 1:
-                SquatKing actor = getObjects(SquatKing.class).get(0);
-                actor.windyLvl(true, "right");
+                actor.windyLvl(true, "left");
                 grassBg.scale(getWidth(), getHeight());
                 setBackground(grassBg);
 
@@ -112,6 +112,7 @@ public class MyWorld extends World
                 
                 break;
             case 2:
+                actor.windyLvl(false, "left");
                 snowBg.scale(getWidth(), getHeight());
                 setBackground(snowBg);
 
