@@ -64,6 +64,8 @@ public class MyWorld extends World
         switch(level)
         {
             case 1:
+                SquatKing actor = getObjects(SquatKing.class).get(0);
+                actor.windyLvl(true, "right");
                 grassBg.scale(getWidth(), getHeight());
                 setBackground(grassBg);
 
@@ -76,19 +78,19 @@ public class MyWorld extends World
                 slopeRightLeft slopeRL0 = new slopeRightLeft(this, 96, 96, 48*12, 548);
                 addObject(slopeRL0,48*12,548);
 
-                Block block1 = new Block(96, 96, grass);
+                iceBlock block1 = new iceBlock(96, 96, grass);
                 addObject(block1, 48, 500);
-                Block block2 = new Block(96, 96, grass);
+                iceBlock block2 = new iceBlock(96, 96, grass);
                 addObject(block2, 480, 596);
-                Block block3 = new Block(96, 96, grass);
+                iceBlock block3 = new iceBlock(96, 96, grass);
                 addObject(block3, 384, 596);
-                Block block4 = new Block(96, 96, grass);
+                iceBlock block4 = new iceBlock(96, 96, grass);
                 addObject(block4, 288, 596);
-                Block block5 = new Block(96, 96, grass);
+                iceBlock block5 = new iceBlock(96, 96, grass);
                 addObject(block5, 576, 596);
-                Block block6 = new Block(96, 96, grass);
+                iceBlock block6 = new iceBlock(96, 96, grass);
                 addObject(block6, 192, 596);
-                Block block7 = new Block(96, 96, grass);
+                iceBlock block7 = new iceBlock(96, 96, grass);
                 addObject(block7, 672, 500);
 
                 Block block8 = new Block(96, 96, grass); //spawning location
@@ -106,7 +108,7 @@ public class MyWorld extends World
                 addObject(block16,420,333);
                 
                 SmokingHotBBQ bbq = new SmokingHotBBQ(60,100);
-                addObject(bbq, 800, 410);
+                //addObject(bbq, 800, 410);
                 
                 break;
             case 2:
@@ -126,14 +128,12 @@ public class MyWorld extends World
     public void nextLevel()
     {
         removeObjects(getObjects(Terrain.class)); //Removes all objects
-        
         level++;
         prepare();
     }
     public void previousLevel()
     {
         removeObjects(getObjects(Terrain.class)); //Removes all objects 
-        
         level--;
         prepare();
     }

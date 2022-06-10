@@ -4,10 +4,10 @@ import greenfoot.World;
 public class SquatKing extends BoundDetection
 {
     private static int GRAVITY = 1;
-    private int SPEED = 5, imageIndex = 0, slideSpeed = 5;
+    private int SPEED = 5, imageIndex = 0, slideSpeed = 5, windSpeed = 3;
     private int velocityY, velocityX, slideVelocity;
-    private String direction = "left", facing = "right";
-    private boolean onSlopeLeft, onSlopeRight;
+    private String direction = "left", facing = "right",  windDirection;
+    private boolean onSlopeLeft, onSlopeRight, isWindyLvl;
     private int chargeTime;
     
     private SimpleTimer timer = new SimpleTimer();
@@ -66,11 +66,27 @@ public class SquatKing extends BoundDetection
         changeArea();
         animate();
         fallPhysics();
+        wind();
         if(Greenfoot.isKeyDown("up") && (onGround() || onIceGround()))
         {
             jumpTimer(); 
         }
         walkMovement();
+    }
+    
+    public void wind()
+    {
+        if(isWindyLvl == true && onGround() == false && onIceGround() == false)
+        {
+            if(windDirection == "right")
+            {
+                setLocation(getX() + windSpeed, getY());
+            }
+            if(windDirection == "left")
+            {       
+                setLocation(getX() - windSpeed, getY());
+            }
+        }
     }
     
     public void changeArea()
@@ -159,16 +175,14 @@ public class SquatKing extends BoundDetection
             setLocation(getX(), getY()+1);
             velocityY = 0;
             
-            if(velocityX > 0 )
+            if(velocityX > 0)
             {
-                //slideVelocity = map(velocityX, 1, 9, 0, 15);
-                slideVelocity = 15;
+                slideVelocity = map(velocityX, 1, 9, 8, 15);
                 velocityX = 0;
             }
             else if(velocityX < 0)
             {
-                //slideVelocity = (map(velocityX * -1, 1, 9, 0, 15)) * -1;
-                slideVelocity = -15;
+                slideVelocity = (map(velocityX * -1, 1, 9, 8, 15)) * -1;
                 velocityX = 0;
             }
             
@@ -186,6 +200,7 @@ public class SquatKing extends BoundDetection
         {
             velocityY = 0;
             velocityX = 0;
+            slideVelocity = 0;
             while(onGround())
             {
                 setLocation(getX(), getY()-1);
@@ -287,5 +302,11 @@ public class SquatKing extends BoundDetection
     public void onSlopeRight(boolean onSlopeRight)
     {
         this.onSlopeRight = onSlopeRight;
+    }
+    
+    public void windyLvl(boolean isWindyLvl, String windDirection)
+    {
+        this.isWindyLvl = isWindyLvl;
+        this.windDirection = windDirection;
     }
 }
