@@ -263,7 +263,7 @@ public class SquatKing extends BoundDetection
         {
             chargeTime = 1000;
         }
-        velocityY = map(chargeTime, 0, 1000, 0 , 30) * -1;
+        velocityY = map(chargeTime, 0, 1000, 0 , 25) * -1;
         velocityX = map(chargeTime, 0, 1000, 0, 10);
         if(direction.equals("null"))
         {
