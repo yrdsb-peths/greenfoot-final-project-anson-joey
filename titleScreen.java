@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class titleScreen extends World
 {
     private int transVal;
-    public static GreenfootSound menuTheme = new GreenfootSound("menuTheme.mp3");
+    public static GreenfootSound menuMusic = new GreenfootSound("menuMusic.mp3");
     public titleScreen()
     {    
         super(1000, 800, 1);
@@ -17,7 +17,7 @@ public class titleScreen extends World
     
     public void act()
     {
-        menuTheme.playLoop();
+        menuMusic.playLoop();
         if(Greenfoot.isKeyDown("space"))
         {
             descriptionWorld world = new descriptionWorld();

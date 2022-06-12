@@ -6,13 +6,15 @@ public class SquatKing extends BoundDetection
     private static int GRAVITY = 1;
     private int SPEED = 5, imageIndex = 0, slideSpeed = 5, windSpeed = 3;
     private int velocityY, velocityX, slideVelocity;
+    private int chargeTime;
     private String direction = "left", facing = "right",  windDirection;
     private boolean onSlopeLeft, onSlopeRight, isWindyLvl;
-    private int chargeTime;
-    
+
+    private boolean landed = true; //keeps track of when landing sfx should be played
+
     private SimpleTimer timer = new SimpleTimer();
     private SimpleTimer animationTimer = new SimpleTimer();
-    
+
     GreenfootImage walk[] = new GreenfootImage[4];
     GreenfootImage leftWalk[] = new GreenfootImage[4];
     GreenfootImage idle[] = new GreenfootImage[3];
@@ -27,7 +29,7 @@ public class SquatKing extends BoundDetection
         {
             walk[i] = new GreenfootImage("walk" + i + ".png");
             walk[i].scale(x, y);
-            
+
             leftWalk[i] = new GreenfootImage("walk" + i + ".png");
             leftWalk[i].scale(x, y);
             leftWalk[i].mirrorHorizontally();
@@ -36,7 +38,7 @@ public class SquatKing extends BoundDetection
         {
             idle[i] = new GreenfootImage("idle" + i + ".png");
             idle[i].scale(x, y);
-            
+
             leftIdle[i] = new GreenfootImage("idle" + i + ".png");
             leftIdle[i].scale(x, y);
             leftIdle[i].mirrorHorizontally();
@@ -45,15 +47,15 @@ public class SquatKing extends BoundDetection
         {
             jump[i] = new GreenfootImage("jump" + i + ".png");
             jump[i].scale(x, y);
-            
+
             leftJump[i] = new GreenfootImage("jump" + i + ".png");
             leftJump[i].scale(x, y);
             leftJump[i].mirrorHorizontally();
         }
-        
+
         rightSlopeImage = new GreenfootImage("jumpWall.png");
         rightSlopeImage.scale(x, y);
-        
+
         leftSlopeImage = new GreenfootImage("jumpWall.png");
         leftSlopeImage.scale(x, y);
         leftSlopeImage.mirrorHorizontally();
@@ -73,7 +75,7 @@ public class SquatKing extends BoundDetection
         }
         walkMovement();
     }
-    
+
     public void wind()
     {
         if(isWindyLvl == true && onGround() == false && onIceGround() == false)
@@ -88,7 +90,7 @@ public class SquatKing extends BoundDetection
             }
         }
     }
-    
+
     public void changeArea()
     {
         if(getY() == 0)//going up
@@ -102,7 +104,7 @@ public class SquatKing extends BoundDetection
             setLocation(getX(), 0);
         }
     }
-    
+
     public void animate()
     {
         if(animationTimer.millisElapsed() < 100)
@@ -147,9 +149,7 @@ public class SquatKing extends BoundDetection
             setImage(leftJump[2]);
         }
     }
-    
-    public boolean landed = true;
-    
+
     public void fallPhysics()
     {   
         if(onSlopeLeft)
@@ -166,7 +166,7 @@ public class SquatKing extends BoundDetection
             velocityY = 0;
             velocityX = 0;
         }
-        
+
         if(velocityY == map(chargeTime, 0, 1000, 5, 25) * -1)
         {
             Greenfoot.playSound("jumpSound.mp3");
@@ -182,7 +182,13 @@ public class SquatKing extends BoundDetection
             }
             setLocation(getX(), getY()+1);
             velocityY = 0;
-            
+
+            if(landed == false)
+            {
+                Greenfoot.playSound("iceLandSound.mp3");
+                landed = true;
+            }
+
             if(velocityX > 0)
             {
                 slideVelocity = map(velocityX, 1, 9, 8, 15);
@@ -193,7 +199,7 @@ public class SquatKing extends BoundDetection
                 slideVelocity = (map(velocityX * -1, 1, 9, 8, 15)) * -1;
                 velocityX = 0;
             }
-            
+
             if(slideVelocity > 0)
             {
                 slideVelocity--;
@@ -202,7 +208,7 @@ public class SquatKing extends BoundDetection
             {
                 slideVelocity++;
             }
-            
+
         }
         else if(onGround())
         {
@@ -232,7 +238,7 @@ public class SquatKing extends BoundDetection
         {
             velocityY += GRAVITY; 
         }
-        
+
         if(velocityX > 0 && canMoveRight() || (slideVelocity > 0 && canMoveRight()))
         {
             setLocation(getX() + velocityX, getY());
@@ -248,7 +254,7 @@ public class SquatKing extends BoundDetection
             velocityX = velocityX * -1;
             if(velocityX != 0)
             {
-               Greenfoot.playSound("bumpSound.mp3"); 
+                Greenfoot.playSound("bumpSound.mp3");
             }
         }
         onSlopeLeft = false;
@@ -295,7 +301,7 @@ public class SquatKing extends BoundDetection
             velocityX = Math.abs(velocityX);
         }   
     }
-        
+
     public void walkMovement()
     {
         if(onGround() || onIceGround())
@@ -310,17 +316,17 @@ public class SquatKing extends BoundDetection
             }
         }
     }
-    
+
     public void onSlopeLeft(boolean onSlopeLeft)
     {
         this.onSlopeLeft = onSlopeLeft;
     }
-    
+
     public void onSlopeRight(boolean onSlopeRight)
     {
         this.onSlopeRight = onSlopeRight;
     }
-    
+
     public void windyLvl(boolean isWindyLvl, String windDirection)
     {
         this.isWindyLvl = isWindyLvl;

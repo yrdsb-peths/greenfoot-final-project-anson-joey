@@ -8,10 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SmokingHotBBQ extends Terrain
 {
+    public GreenfootSound endMusic = new GreenfootSound("endMusic.mp3");
     public SmokingHotBBQ(int x, int y)
     {
         GreenfootImage image = getImage();
         image.scale(x, y);
     }
-
+    
+    public void act()
+    {
+        if(isTouching(SquatKing.class))
+        {
+            endMusic.playLoop();
+        }
+    }
 }

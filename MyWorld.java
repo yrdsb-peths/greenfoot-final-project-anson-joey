@@ -25,7 +25,7 @@ public class MyWorld extends World
     GreenfootImage cloudsBg = new GreenfootImage("images/Grass terrain/CloudsBg.png");
     GreenfootImage snowBg = new GreenfootImage("images/Snow terrain/SnowBg.png");           
     
-    
+    GreenfootSound bgMusic = new GreenfootSound("bgMusic.mp3");
     
     SquatKing actor;
     SmokingHotBBQ BBQ;
@@ -147,6 +147,9 @@ public class MyWorld extends World
 
                 Block platform13 = new Block(96, 96, grass);
                 addObject(platform13, 500,500);
+                
+                bgMusic.setVolume(70);
+                bgMusic.playLoop();
                 
                 break;
                 
