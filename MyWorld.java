@@ -25,6 +25,8 @@ public class MyWorld extends World
     GreenfootImage cloudsBg = new GreenfootImage("images/Grass terrain/CloudsBg.png");
     GreenfootImage snowBg = new GreenfootImage("images/Snow terrain/SnowBg.png");           
     
+    
+    
     SquatKing actor;
     SmokingHotBBQ BBQ;
     public MyWorld()
@@ -124,12 +126,15 @@ public class MyWorld extends World
                 Block block15 = new Block(96, 96, grass);
                 addObject(block15, 980, 512);
                 
+                
                 Block block16 = new Block(96, 96, grass);
                 addObject(block16, 500, 300);
                 Block block17 = new Block(96, 96, grass);
                 addObject(block17, 596, 300);
                 Block block18 = new Block(96, 96, grass);
                 addObject(block18, 404, 300);
+                
+                
                 
                
                 break;

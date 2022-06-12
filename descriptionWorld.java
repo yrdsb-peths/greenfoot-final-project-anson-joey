@@ -8,14 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class descriptionWorld extends World
 {
-
-    /**
-     * Constructor for objects of class descriptionWorld.
-     * 
-     */
+    titleScreen world = new titleScreen();
     public descriptionWorld()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1); 
         addObject(new fade(null), getWidth()/2, getHeight()/2);
     }
@@ -24,6 +19,8 @@ public class descriptionWorld extends World
     {
         if(Greenfoot.isKeyDown("space"))
         {
+            world.menuTheme.stop();
+            Greenfoot.playSound("startSound.mp3");
             MyWorld world = new MyWorld();
             fade fadeout = new fade(world);
             addObject(fadeout, getWidth() / 2, getHeight() / 2);

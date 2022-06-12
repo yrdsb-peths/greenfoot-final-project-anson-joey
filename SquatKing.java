@@ -148,6 +148,8 @@ public class SquatKing extends BoundDetection
         }
     }
     
+    public boolean landed = true;
+    
     public void fallPhysics()
     {   
         if(onSlopeLeft)
@@ -165,6 +167,12 @@ public class SquatKing extends BoundDetection
             velocityX = 0;
         }
         
+        if(velocityY == map(chargeTime, 0, 1000, 5, 25) * -1)
+        {
+            Greenfoot.playSound("jumpSound.mp3");
+            landed = false;
+        }
+
         setLocation(getX(), getY() + velocityY);
         if(onIceGround())
         {
@@ -201,6 +209,11 @@ public class SquatKing extends BoundDetection
             velocityY = 0;
             velocityX = 0;
             slideVelocity = 0;
+            if(landed == false)
+            {
+                Greenfoot.playSound("landSound.mp3");
+                landed = true;
+            }
             while(onGround())
             {
                 setLocation(getX(), getY()-1);
@@ -219,7 +232,7 @@ public class SquatKing extends BoundDetection
         {
             velocityY += GRAVITY; 
         }
-
+        
         if(velocityX > 0 && canMoveRight() || (slideVelocity > 0 && canMoveRight()))
         {
             setLocation(getX() + velocityX, getY());
@@ -233,6 +246,10 @@ public class SquatKing extends BoundDetection
         if(!canMoveRight() || !canMoveLeft())
         {
             velocityX = velocityX * -1;
+            if(velocityX != 0)
+            {
+               Greenfoot.playSound("bumpSound.mp3"); 
+            }
         }
         onSlopeLeft = false;
         onSlopeRight = false;
@@ -258,13 +275,13 @@ public class SquatKing extends BoundDetection
             {
                 direction = "right";
             }
-        }        
+        }
         if(chargeTime > 1000)
         {
             chargeTime = 1000;
         }
-        velocityY = map(chargeTime, 0, 1000, 0 , 25) * -1;
-        velocityX = map(chargeTime, 0, 1000, 0, 10);
+        velocityY = map(chargeTime, 0, 1000, 5, 25) * -1;
+        velocityX = map(chargeTime, 0, 1000, 5, 10);
         if(direction.equals("null"))
         {
             velocityX = 0;
