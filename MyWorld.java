@@ -86,7 +86,7 @@ public class MyWorld extends World
     {
         switch(level)
         {
-            case 1:
+            case 5:
                 //sets background
                 dungeonBg1.scale(getWidth(), getHeight());
                 setBackground(dungeonBg1);
@@ -278,7 +278,7 @@ public class MyWorld extends World
                 strongholdBg2.scale(getWidth(), getHeight());
                 setBackground(strongholdBg2);
                 break;
-            case 5://grass
+            case 1://grass
                 grassBg.scale(getWidth(), getHeight());
                 setBackground(grassBg);
                 

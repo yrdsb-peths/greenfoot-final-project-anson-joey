@@ -36,8 +36,8 @@ public abstract class BoundDetection extends Actor
     public boolean bumpedHead()
     {
         boolean didBumpHead = false;
-        if (getOneObjectAtOffset(getImage().getWidth()/2, getImage().getHeight()/-2+3, Block.class) != null || //top right
-            getOneObjectAtOffset(getImage().getWidth()/-2, getImage().getHeight()/-2+3, Block.class) != null) //top left
+        if (getOneObjectAtOffset(getImage().getWidth()/2, getImage().getHeight()/-2, Block.class) != null || //top right
+            getOneObjectAtOffset(getImage().getWidth()/-2, getImage().getHeight()/-2, Block.class) != null) //top left
         {
             didBumpHead = true;
         }

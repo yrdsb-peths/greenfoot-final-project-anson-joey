@@ -4,7 +4,7 @@ import greenfoot.World;
 public class SquatKing extends BoundDetection
 {
     private static int GRAVITY = 1;
-    private int SPEED = 3, imageIndex = 0, slideSpeed = 5, windSpeed = 3;
+    private int SPEED = 5, imageIndex = 0, slideSpeed = 5, windSpeed = 3;
     private int velocityY, velocityX, slideVelocity;
     private int chargeTime;
     private String direction = "left", facing = "right",  windDirection;
@@ -240,7 +240,7 @@ public class SquatKing extends BoundDetection
             }
             Greenfoot.playSound("bumpSound.mp3"); 
         }
-        else if(!canJumpRight() || !canJumpLeft()) // bouncing off walls
+        if(!canJumpRight() || !canJumpLeft()) // bouncing off walls
         {
             velocityX = velocityX * -1;
             if(velocityX != 0) //so that it doesn't play when standing next to wall
@@ -323,7 +323,7 @@ public class SquatKing extends BoundDetection
     public boolean canJumpLeft()
     {
         boolean canJumpL = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/-2, Block.class) != null || //top left
+        if (getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/-2+1, Block.class) != null || //top left
             getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/2-1, Block.class) != null) //bottom left
             {
                 canJumpL = false;
@@ -334,7 +334,7 @@ public class SquatKing extends BoundDetection
     public boolean canJumpRight()
     {
         boolean canJumpR = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/-2, Block.class) != null || //top right
+        if (getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/-2+1, Block.class) != null || //top right
             getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/2-1, Block.class) != null) //bottom right
             {
                 canJumpR = false;
