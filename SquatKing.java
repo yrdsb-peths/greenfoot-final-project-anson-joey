@@ -4,7 +4,7 @@ import greenfoot.World;
 public class SquatKing extends BoundDetection
 {
     private static int GRAVITY = 1;
-    private int SPEED = 5, imageIndex = 0, slideSpeed = 5, windSpeed = 3;
+    private int SPEED = 3, imageIndex = 0, slideSpeed = 5, windSpeed = 3;
     private int velocityY, velocityX, slideVelocity;
     private int chargeTime;
     private String direction = "left", facing = "right",  windDirection;
@@ -167,7 +167,7 @@ public class SquatKing extends BoundDetection
             velocityX = 0;
         }
 
-        if(velocityY == map(chargeTime, 0, 1000, 5, 25) * -1)
+        if(velocityY == map(chargeTime, 0, 1000, 5, 25) * -1) // plays sound when jumping
         {
             Greenfoot.playSound("jumpSound.mp3");
             landed = false;
@@ -183,7 +183,7 @@ public class SquatKing extends BoundDetection
             setLocation(getX(), getY()+1);
             velocityY = 0;
 
-            if(landed == false)
+            if(landed == false) // plays sound when landing
             {
                 Greenfoot.playSound("iceLandSound.mp3");
                 landed = true;
@@ -215,7 +215,7 @@ public class SquatKing extends BoundDetection
             velocityY = 0;
             velocityX = 0;
             slideVelocity = 0;
-            if(landed == false)
+            if(landed == false) // plays sound when landing
             {
                 Greenfoot.playSound("landSound.mp3");
                 landed = true;
@@ -226,37 +226,40 @@ public class SquatKing extends BoundDetection
             }
             setLocation(getX(), getY()+1);
         }
-        else if (velocityY < 0 && bumpedHead())
+        else
+        {
+            velocityY += GRAVITY; 
+        }
+        
+        if(bumpedHead()) // bouncing off ceilings
         {
             velocityY = 0;
             while(bumpedHead())
             {
                 setLocation(getX(), getY()+1);
             }
+            Greenfoot.playSound("bumpSound.mp3"); 
         }
-        else
-        {
-            velocityY += GRAVITY; 
-        }
-
-        if(velocityX > 0 && canMoveRight() || (slideVelocity > 0 && canMoveRight()))
-        {
-            setLocation(getX() + velocityX, getY());
-            setLocation(getX() + slideVelocity, getY());
-        }
-        if((velocityX < 0 && canMoveLeft()) || (slideVelocity < 0 && canMoveLeft()))
-        {
-            setLocation(getX() + velocityX, getY());
-            setLocation(getX() + slideVelocity, getY());
-        }
-        if(!canMoveRight() || !canMoveLeft())
+        else if(!canJumpRight() || !canJumpLeft()) // bouncing off walls
         {
             velocityX = velocityX * -1;
-            if(velocityX != 0)
+            if(velocityX != 0) //so that it doesn't play when standing next to wall
             {
-                Greenfoot.playSound("bumpSound.mp3");
+                Greenfoot.playSound("bumpSound.mp3");   
             }
         }
+        
+        if(velocityX > 0 && canJumpRight() || (slideVelocity > 0 && canJumpRight()))
+        {
+            setLocation(getX() + velocityX, getY());
+            setLocation(getX() + slideVelocity, getY());
+        }
+        if((velocityX < 0 && canJumpLeft()) || (slideVelocity < 0 && canJumpLeft()))
+        {
+            setLocation(getX() + velocityX, getY());
+            setLocation(getX() + slideVelocity, getY());
+        }
+        
         onSlopeLeft = false;
         onSlopeRight = false;
     }
@@ -317,6 +320,28 @@ public class SquatKing extends BoundDetection
         }
     }
 
+    public boolean canJumpLeft()
+    {
+        boolean canJumpL = true;
+        if (getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/-2, Block.class) != null || //top left
+            getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/2-1, Block.class) != null) //bottom left
+            {
+                canJumpL = false;
+            }
+        return canJumpL;
+    }
+
+    public boolean canJumpRight()
+    {
+        boolean canJumpR = true;
+        if (getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/-2, Block.class) != null || //top right
+            getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/2-1, Block.class) != null) //bottom right
+            {
+                canJumpR = false;
+            }
+        return canJumpR;
+    }
+    
     public void onSlopeLeft(boolean onSlopeLeft)
     {
         this.onSlopeLeft = onSlopeLeft;

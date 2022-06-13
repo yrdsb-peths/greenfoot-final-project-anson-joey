@@ -15,8 +15,17 @@ public class slopeLeftRight extends Terrain
     private boolean isOnSlope;
     public slopeLeftRight (World world, int x, int y, int xCoord,int yCoord)
     {
-        
         GreenfootImage image = new GreenfootImage("images/Grass terrain/slopeLeftRight.png");
+        image.scale(x, y);
+        setImage(image);
+    
+        Block blockRight = new Block(x / 2 - 10, y);
+        world.addObject(blockRight, xCoord - getImage().getWidth() / 4 - 5, yCoord);
+    }
+    
+    public slopeLeftRight (World world, int x, int y, int xCoord,int yCoord, GreenfootImage terrainType)
+    {
+        GreenfootImage image = new GreenfootImage(terrainType);
         image.scale(x, y);
         setImage(image);
     

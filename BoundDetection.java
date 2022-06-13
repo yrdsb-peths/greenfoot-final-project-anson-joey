@@ -11,12 +11,6 @@ public abstract class BoundDetection extends Actor
     private boolean onSlopeLeft, onSlopeRight;
     private int SPEED = 5;
     
-    
-    public void act()
-    {
-        
-    }
-    
     public boolean onGround()
     {
         boolean isOnGround = false;
@@ -42,8 +36,8 @@ public abstract class BoundDetection extends Actor
     public boolean bumpedHead()
     {
         boolean didBumpHead = false;
-        if (getOneObjectAtOffset(getImage().getWidth()/2-3, getImage().getHeight()/-2+3, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/-2+3, getImage().getHeight()/-2+3, Block.class) != null)
+        if (getOneObjectAtOffset(getImage().getWidth()/2, getImage().getHeight()/-2+3, Block.class) != null || //top right
+            getOneObjectAtOffset(getImage().getWidth()/-2, getImage().getHeight()/-2+3, Block.class) != null) //top left
         {
             didBumpHead = true;
         }
