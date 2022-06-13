@@ -36,8 +36,8 @@ public abstract class BoundDetection extends Actor
     public boolean bumpedHead()
     {
         boolean didBumpHead = false;
-        if (getOneObjectAtOffset(getImage().getWidth()/2, getImage().getHeight()/-2, Block.class) != null || //top right
-            getOneObjectAtOffset(getImage().getWidth()/-2, getImage().getHeight()/-2, Block.class) != null) //top left
+        if (getOneObjectAtOffset(getImage().getWidth()/2-10, getImage().getHeight()/-2, Block.class) != null || //top right
+            getOneObjectAtOffset(getImage().getWidth()/-2+10, getImage().getHeight()/-2, Block.class) != null) //top left
         {
             didBumpHead = true;
         }
@@ -69,8 +69,8 @@ public abstract class BoundDetection extends Actor
     public boolean canMoveLeft()
     {
         boolean canMoveL = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/2-1, Block.class) != null)
+        if (getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/-2, Terrain.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/-2-SPEED - 1, getImage().getHeight()/2-1, Terrain.class) != null)
             {
                 canMoveL = false;
             }
@@ -80,8 +80,8 @@ public abstract class BoundDetection extends Actor
     public boolean canMoveRight()
     {
         boolean canMoveR = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/2 + SPEED + 1, getImage().getHeight()/-2, Block.class) != null ||
-            getOneObjectAtOffset(getImage().getWidth()/2 + SPEED + 1, getImage().getHeight()/2-1, Block.class) != null)
+        if (getOneObjectAtOffset(getImage().getWidth()/2 + SPEED + 1, getImage().getHeight()/-2, Terrain.class) != null ||
+            getOneObjectAtOffset(getImage().getWidth()/2 + SPEED + 1, getImage().getHeight()/2-1, Terrain.class) != null)
             {
                 canMoveR = false;
             }

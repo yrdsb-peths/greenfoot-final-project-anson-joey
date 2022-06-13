@@ -19,7 +19,7 @@ public class SmokingHotBBQ extends Terrain
     {
         if(isTouching(SquatKing.class))
         {
-            endMusic.playLoop();
+            endMusic.play();
         }
     }
 }

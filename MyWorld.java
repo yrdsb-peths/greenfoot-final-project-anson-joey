@@ -18,22 +18,22 @@ public class MyWorld extends World
     GreenfootImage dnGround = new GreenfootImage("images/Dungeon terrain/tile001.png");
     GreenfootImage dnSlopeRL = new GreenfootImage("images/Dungeon terrain/slopeRightLeft.png");
     GreenfootImage dnSlopeLR = new GreenfootImage("images/Dungeon terrain/slopeLeftRight.png");
+    GreenfootImage dnStone = new GreenfootImage("images/Dungeon terrain/tile027.png");
+    GreenfootImage dnStones = new GreenfootImage("images/Dungeon terrain/tile050.png");
     //Stronghold biome images
     GreenfootImage shGround = new GreenfootImage("images/Stronghold terrain/tile002.png");
     GreenfootImage shSlopeRL = new GreenfootImage("images/Stronghold terrain/slopeRightLeft.png");
     GreenfootImage shSlopeLR = new GreenfootImage("images/Stronghold terrain/slopeLeftRight.png");
-    
+    //Grass biome images
     GreenfootImage grass = new GreenfootImage("images/Grass terrain/tile002.png");
+    GreenfootImage grassRL = new GreenfootImage("images/Grass terrain/slopeRightLeft.png");
     GreenfootImage bridge = new GreenfootImage("images/Grass terrain/tile106.png");
-    
-    GreenfootImage dnStone = new GreenfootImage("images/Dungeon terrain/tile027.png");
-    GreenfootImage dnStones = new GreenfootImage("images/Dungeon terrain/tile050.png");
     GreenfootImage dirt = new GreenfootImage("images/Grass terrain/tile013.png");
     GreenfootImage sideTile = new GreenfootImage("images/Grass terrain/tile073.png");
+    //Ice biome images
     GreenfootImage snow = new GreenfootImage("images/Snow terrain/tile002.png");
     
-    GreenfootImage grassRL = new GreenfootImage("images/Grass terrain/slopeRightLeft.png");
-    
+    //Background images
     GreenfootImage dungeonBg1 = new GreenfootImage("images/Dungeon terrain/DungeonBg1.png");
     GreenfootImage dungeonBg2 = new GreenfootImage("images/Dungeon terrain/DungeonBg2.png");
     GreenfootImage strongholdBg1 = new GreenfootImage("images/Stronghold terrain/Strongholdbg1.png");
@@ -41,6 +41,11 @@ public class MyWorld extends World
     GreenfootImage grassBg = new GreenfootImage("images/Grass terrain/GrassBg.png");
     GreenfootImage cloudsBg = new GreenfootImage("images/Grass terrain/CloudsBg.png");
     GreenfootImage snowBg = new GreenfootImage("images/Snow terrain/SnowBg.png");           
+    //Background music
+    GreenfootSound bgmFallenKing = new GreenfootSound("bgmFallenKing.mp3");
+    GreenfootSound bgmSkyBlue = new GreenfootSound("bgmSkyBlue.mp3");
+    
+    SimpleTimer musicTimer = new SimpleTimer();
     
     SquatKing actor;
     SmokingHotBBQ BBQ;
@@ -48,7 +53,7 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1, true); 
-        //addObject(new fade(null), getWidth()/2, getHeight()/2);
+        addObject(new fade(null), getWidth()/2, getHeight()/2);
         
         setPaintOrder(fade.class, SquatKing.class, Terrain.class);
         prepareActor();
@@ -65,6 +70,19 @@ public class MyWorld extends World
         if(touchingbbq == false)
         {
             repaint();
+        }
+        playMusic();
+    }
+    
+    public void playMusic()
+    {
+        if(musicTimer.millisElapsed() >= 10000 && (level >=1 && level <= 1))
+        {
+            bgmFallenKing.playLoop();
+        }
+        if(musicTimer.millisElapsed() >= 10000 && (level >=2 && level <= 2))
+        {
+            bgmSkyBlue.playLoop();
         }
     }
     
@@ -86,7 +104,9 @@ public class MyWorld extends World
     {
         switch(level)
         {
-            case 5:
+            case 1:
+                musicTimer.mark();
+                
                 //sets background
                 dungeonBg1.scale(getWidth(), getHeight());
                 setBackground(dungeonBg1);
@@ -275,10 +295,15 @@ public class MyWorld extends World
                 addObject(block61, 24, 400);
                 break;
             case 4:
+                bgmSkyBlue.stop();
+                
                 strongholdBg2.scale(getWidth(), getHeight());
                 setBackground(strongholdBg2);
                 break;
-            case 1://grass
+            case 5://grass
+                musicTimer.mark();
+                bgmFallenKing.stop();
+                                
                 grassBg.scale(getWidth(), getHeight());
                 setBackground(grassBg);
                 
