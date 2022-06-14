@@ -11,7 +11,7 @@ public class MyWorld extends World
     //GreenfootImage background = new GreenfootImage("background.png");
     private int bgYCoord;
     private int speed = 5;
-    private int level = 1;
+    private int level = 5;
     private boolean touchingbbq = false;
     
     //Dungeon biome images
@@ -24,6 +24,7 @@ public class MyWorld extends World
     GreenfootImage shGround = new GreenfootImage("images/Stronghold terrain/tile002.png");
     GreenfootImage shSlopeRL = new GreenfootImage("images/Stronghold terrain/slopeRightLeft.png");
     GreenfootImage shSlopeLR = new GreenfootImage("images/Stronghold terrain/slopeLeftRight.png");
+    GreenfootImage shStones = new GreenfootImage("images/Stronghold terrain/tile036.png");
     //Grass biome images
     GreenfootImage grass = new GreenfootImage("images/Grass terrain/tile002.png");
     GreenfootImage grassRL = new GreenfootImage("images/Grass terrain/slopeRightLeft.png");
@@ -77,11 +78,11 @@ public class MyWorld extends World
     
     public void playMusic()
     {
-        if(musicTimer.millisElapsed() >= 10000 && (level >=1 && level <= 1))
+        if(musicTimer.millisElapsed() >= 10000 && (level >=1 && level <= 4))
         {
             bgmFallenKing.playLoop();
         }
-        if(musicTimer.millisElapsed() >= 10000 && (level >=2 && level <= 2))
+        if(musicTimer.millisElapsed() >= 10000 && (level >=5 && level <= 8))
         {
             bgmSkyBlue.playLoop();
         }
@@ -108,6 +109,7 @@ public class MyWorld extends World
         {
             case 1://dungeon
                 musicTimer.mark();
+                actor.windyLvl(false);
                 
                 //sets background
                 dungeonBg1.scale(getWidth(), getHeight());
@@ -205,6 +207,7 @@ public class MyWorld extends World
                 addObject(block18, 24, 400);
                 break;
             case 2: //dungeon
+                actor.windyLvl(false);
                 dungeonBg2.scale(getWidth(), getHeight());
                 setBackground(dungeonBg2);
                 //creates bounds
@@ -265,6 +268,7 @@ public class MyWorld extends World
                 addObject(block59, 904, 240);
                 break;
             case 3: //stronghold
+                actor.windyLvl(false);
                 strongholdBg1.scale(getWidth(), getHeight());
                 setBackground(strongholdBg1);
                 
@@ -290,6 +294,28 @@ public class MyWorld extends World
                 addObject(block70, 374, 292);
                 Block block71 = new Block(48, 96, shGround);
                 addObject(block71, 470, 484);
+                Block block72 = new Block(48, 96, shGround);
+                addObject(block72, 540, 100);
+                Block block73 = new Block(48, 96, shGround);
+                addObject(block73, 540, 4);
+                Block block74 = new Block(96, 48, shGround);
+                addObject(block74, 302, 412);
+                Block block75 = new Block(48, 48, shGround);
+                addObject(block75, 72, 412);
+                Block block76 = new Block(48, 48, shGround);
+                addObject(block76, 216, 250);
+                Block block77 = new Block(48, 96, shGround);
+                addObject(block77, 264, 226);
+                Block block78 = new Block(48, 96, shGround);
+                addObject(block78, 264, 130);
+                Block block79 = new Block(48, 96, shGround);
+                addObject(block79, 264, 34);
+                Block block80 = new Block(96, 48, shGround);
+                addObject(block80, 96, 75);
+                Block block81 = new Block(114, 48, shGround);
+                addObject(block81, 345, 24);
+                Block block82 = new Block(114, 48, shGround);
+                addObject(block82, 459, 24);
                 //creates bounds
                 Block block60 = new Block(48, 800, shGround);
                 addObject(block60, 976, 400);
@@ -297,21 +323,95 @@ public class MyWorld extends World
                 addObject(block61, 24, 400);
                 break;
             case 4: //stronghold
+                actor.windyLvl(false);
                 bgmSkyBlue.stop();
                 
                 strongholdBg2.scale(getWidth(), getHeight());
                 setBackground(strongholdBg2);
+                //Blocks top and bottom transition
+                Block block85 = new Block(81, 48, shGround);
+                addObject(block85, 280, 776);
+                slopeRightLeft slopeRL8 = new slopeRightLeft(this, 81, 81, 361, 751, shSlopeRL);
+                addObject(slopeRL8, 361, 751);
+                slopeRightLeft slopeRL9 = new slopeRightLeft(this, 81, 81, 408, 704, shSlopeRL);
+                addObject(slopeRL9, 408, 704);
+                Block block86 = new Block(81, 81, shGround);
+                addObject(block86, 489, 704);
+                Block block87 = new Block(81, 81, shGround);
+                addObject(block87, 530, 704);
+                Block block88 = new Block(81, 81, shStones);
+                addObject(block88, 448, 780);
+                Block block93 = new Block(81, 81, shStones);
+                addObject(block93, 529, 780);
+                
+                Block block89 = new Block(72, 48, shGround);
+                addObject(block89, 916, 600);
+                Block block90 = new Block(72, 48, shGround);
+                addObject(block90, 844, 600);
+                slopeRightLeft slopeRL7 = new slopeRightLeft(this, 96, 96, 840, 450, shSlopeRL);
+                addObject(slopeRL7, 840, 450);
+                Block block91 = new Block(40, 96, shGround);
+                addObject(block91, 890, 450);
+                
+                Block block92 = new Block(96, 48, shGround);
+                addObject(block92, 400, 500);
+                slopeLeftRight slopeLR6 = new slopeLeftRight(this, 96, 96, 220, 476, shSlopeLR);
+                addObject(slopeLR6, 220, 476);
+                slopeLeftRight slopeLR7 = new slopeLeftRight(this, 96, 96, 172, 428, shSlopeLR);
+                addObject(slopeLR7, 172, 428);
+                slopeLeftRight slopeLR8 = new slopeLeftRight(this, 96, 96, 126, 380, shSlopeLR);
+                addObject(slopeLR8, 126, 380);
+                Block block94 = new Block(96, 96, shGround);
+                addObject(block94, 54, 380);
+                Block block95 = new Block(48, 96, shGround);
+                addObject(block95, 550, 200);
+                slopeRightLeft slopeRL10 = new slopeRightLeft(this, 96, 96, 400, 296, shSlopeRL);
+                addObject(slopeRL10, 400, 296);
+                Block block96 = new Block(96, 48, shGround);
+                addObject(block96, 496, 272);
+                Block block97 = new Block(96, 96, shStones);
+                addObject(block97, 90, 476);
+                Block block98 = new Block(96, 96, shStones);
+                addObject(block98, 150, 476);
+                Block block99 = new Block(96, 48, shGround);
+                addObject(block99, 192, 150);
+                Block block100 = new Block(96, 96, shGround);
+                addObject(block100, 96, 126);
+                Block block101 = new Block(96, 96, shGround);
+                addObject(block101, 96, 30);
+                Block block102 = new Block(96, 48, shGround);
+                addObject(block102, 290, 24);
+                Block block103 = new Block(96, 48, shGround);
+                addObject(block103, 386, 24);
+                Block block104 = new Block(96, 48, shGround);
+                addObject(block104, 482, 24);
+                Block block105 = new Block(96, 48, shGround);
+                addObject(block105, 578, 24);
+                Block block106 = new Block(96, 48, shGround);
+                addObject(block106, 674, 24);
+                Block block107 = new Block(96, 48, shGround);
+                addObject(block107, 770, 24);
+                slopeRightLeft slopeRL11 = new slopeRightLeft(this, 96, 96, 952, 100, shSlopeRL);
+                addObject(slopeRL11, 952, 100);
+                slopeRightLeft slopeRL12 = new slopeRightLeft(this, 96, 96, 904, 148, shSlopeRL);
+                addObject(slopeRL12, 904, 148);
+                //creates bounds
+                Block block83 = new Block(48, 800, shGround);
+                addObject(block83, 976, 400);
+                Block block84 = new Block(48, 800, shGround);
+                addObject(block84, 24, 400);
                 break;
             case 5://grass
+                actor.windyLvl(false);
                 musicTimer.mark();
                 bgmFallenKing.stop();
                 
                 grassBg.scale(getWidth(), getHeight());
                 setBackground(grassBg);
                 
-                slopeLeftRight sLR7 = new slopeLeftRight(this, 96, 96, 240, 368);
+                slopeLeftRight sLR7 = new slopeLeftRight(this, 96, 96, 48, 176);
                 addObject(sLR7, 48, 176);
-                slopeLeftRight sLR8 = new slopeLeftRight(this, 96, 96, 288, 416);
+                slopeLeftRight sLR8 = new slopeLeftRight(this, 96, 96, 96, 224);
                 addObject(sLR8, 96, 224);
                 slopeLeftRight sLR4 = new slopeLeftRight(this, 96, 96, 144, 272);
                 addObject(sLR4, 144, 272);
@@ -328,11 +428,11 @@ public class MyWorld extends World
                 addObject(borderL, 0,400);
                 
                 Block b9 = new Block(96, 96, grass);
-                addObject(b9, 96,272);
+                addObject(b9, 96,278);
                 Block bl = new Block(96, 96, dirt);
                 addObject(bl, 96,368);
                 Block bl1 = new Block(96, 96, grass);
-                addObject(bl1, 192,368);
+                addObject(bl1, 192,374);
                 
                 Block b3 = new Block(96, 96, grass);
                 addObject(b3, 96,708);

@@ -371,4 +371,9 @@ public class SquatKing extends BoundDetection
         this.isWindyLvl = isWindyLvl;
         this.windDirection = windDirection;
     }
+    
+    public void windyLvl(boolean isWindyLvl)
+    {
+        this.isWindyLvl = isWindyLvl;
+    }
 }
