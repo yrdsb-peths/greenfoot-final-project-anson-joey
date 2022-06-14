@@ -4,7 +4,7 @@ import greenfoot.World;
 public class SquatKing extends BoundDetection
 {
     private static int GRAVITY = 1;
-    private int SPEED = 5, imageIndex = 0, slideSpeed = 5, windSpeed = 3;
+    private int SPEED = 5, imageIndex = 0, slideSpeed = 5;
     private int velocityY, velocityX, slideVelocity;
     private int chargeTime;
     private String direction = "left", facing = "right",  windDirection;
@@ -78,15 +78,29 @@ public class SquatKing extends BoundDetection
 
     public void wind()
     {
-        if(isWindyLvl == true && onGround() == false && onIceGround() == false)
+        if(isWindyLvl == true)
         {
-            if(windDirection == "right")
+            if(onGround())
             {
-                setLocation(getX() + windSpeed, getY());
+                if(windDirection == "right" && canMoveRight())
+                {
+                    setLocation(getX() + 1, getY());
+                }
+                if(windDirection == "left" && canMoveLeft())
+                {       
+                    setLocation(getX() - 1, getY());
+                }
             }
-            if(windDirection == "left")
-            {       
-                setLocation(getX() - windSpeed, getY());
+            else
+            {
+                if(windDirection == "right" && canMoveRight())
+                {
+                    setLocation(getX() + 3, getY());
+                }
+                if(windDirection == "left" && canMoveLeft())
+                {       
+                    setLocation(getX() - 3, getY());
+                }
             }
         }
     }
@@ -191,12 +205,12 @@ public class SquatKing extends BoundDetection
 
             if(velocityX > 0)
             {
-                slideVelocity = map(velocityX, 1, 9, 8, 15);
+                slideVelocity = map(velocityX, 1, 10, 6, 10);
                 velocityX = 0;
             }
             else if(velocityX < 0)
             {
-                slideVelocity = (map(velocityX * -1, 1, 9, 8, 15)) * -1;
+                slideVelocity = (map(velocityX * -1, 1, 10, 6, 10)) * -1;
                 velocityX = 0;
             }
 
@@ -323,8 +337,8 @@ public class SquatKing extends BoundDetection
     public boolean canJumpLeft()
     {
         boolean canJumpL = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/-2+1, Block.class) != null || //top left
-            getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/2-1, Block.class) != null) //bottom left
+        if (getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/-2+1, Terrain.class) != null || //top left
+            getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/2-1, Terrain.class) != null) //bottom left
             {
                 canJumpL = false;
             }
@@ -334,8 +348,8 @@ public class SquatKing extends BoundDetection
     public boolean canJumpRight()
     {
         boolean canJumpR = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/-2+1, Block.class) != null || //top right
-            getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/2-1, Block.class) != null) //bottom right
+        if (getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/-2+1, Terrain.class) != null || //top right
+            getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/2-1, Terrain.class) != null) //bottom right
             {
                 canJumpR = false;
             }

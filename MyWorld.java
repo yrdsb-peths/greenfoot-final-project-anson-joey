@@ -30,9 +30,10 @@ public class MyWorld extends World
     GreenfootImage bridge = new GreenfootImage("images/Grass terrain/tile106.png");
     GreenfootImage dirt = new GreenfootImage("images/Grass terrain/tile013.png");
     GreenfootImage sideTile = new GreenfootImage("images/Grass terrain/tile073.png");
-    //Ice biome images
+    //Snow biome images
     GreenfootImage snow = new GreenfootImage("images/Snow terrain/tile002.png");
-    
+    GreenfootImage snowSlopeRL = new GreenfootImage("images/Snow terrain/slopeRightLeft.png");
+    GreenfootImage snowSlopeLR = new GreenfootImage("images/Snow terrain/slopeLeftRight.png");
     //Background images
     GreenfootImage dungeonBg1 = new GreenfootImage("images/Dungeon terrain/DungeonBg1.png");
     GreenfootImage dungeonBg2 = new GreenfootImage("images/Dungeon terrain/DungeonBg2.png");
@@ -53,7 +54,7 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1, true); 
-        addObject(new fade(null), getWidth()/2, getHeight()/2);
+        //addObject(new fade(null), getWidth()/2, getHeight()/2);
         
         setPaintOrder(fade.class, SquatKing.class, Terrain.class);
         prepareActor();
@@ -89,7 +90,7 @@ public class MyWorld extends World
     private void prepareActor()
     {
         SquatKing squattyboi = new SquatKing(48,48);
-        addObject(squattyboi,100,600); 
+        addObject(squattyboi,100,0); 
     }
     
     private void changeWorld()
@@ -102,9 +103,10 @@ public class MyWorld extends World
     
     private void prepare()
     {
+        actor = getObjects(SquatKing.class).get(0);
         switch(level)
         {
-            case 1:
+            case 1://dungeon
                 musicTimer.mark();
                 
                 //sets background
@@ -202,7 +204,7 @@ public class MyWorld extends World
                 Block block18 = new Block(48, 800, dnGround);
                 addObject(block18, 24, 400);
                 break;
-            case 2:
+            case 2: //dungeon
                 dungeonBg2.scale(getWidth(), getHeight());
                 setBackground(dungeonBg2);
                 //creates bounds
@@ -262,7 +264,7 @@ public class MyWorld extends World
                 Block block59 = new Block(96, 96, dnStones);
                 addObject(block59, 904, 240);
                 break;
-            case 3:
+            case 3: //stronghold
                 strongholdBg1.scale(getWidth(), getHeight());
                 setBackground(strongholdBg1);
                 
@@ -294,7 +296,7 @@ public class MyWorld extends World
                 Block block61 = new Block(48, 800, shGround);
                 addObject(block61, 24, 400);
                 break;
-            case 4:
+            case 4: //stronghold
                 bgmSkyBlue.stop();
                 
                 strongholdBg2.scale(getWidth(), getHeight());
@@ -303,15 +305,14 @@ public class MyWorld extends World
             case 5://grass
                 musicTimer.mark();
                 bgmFallenKing.stop();
-                                
+                
                 grassBg.scale(getWidth(), getHeight());
                 setBackground(grassBg);
                 
-                Block borderR = new Block(96, 800, sideTile);
-                addObject(borderR, 1000,400);
-                Block borderL = new Block(96, 800, sideTile);
-                addObject(borderL, 0,400);
-                
+                slopeLeftRight sLR7 = new slopeLeftRight(this, 96, 96, 240, 368);
+                addObject(sLR7, 48, 176);
+                slopeLeftRight sLR8 = new slopeLeftRight(this, 96, 96, 288, 416);
+                addObject(sLR8, 96, 224);
                 slopeLeftRight sLR4 = new slopeLeftRight(this, 96, 96, 144, 272);
                 addObject(sLR4, 144, 272);
                 slopeLeftRight sLR3 = new slopeLeftRight(this, 96, 96, 192, 320);
@@ -320,6 +321,11 @@ public class MyWorld extends World
                 addObject(sLR2, 240, 368);
                 slopeLeftRight sLR1 = new slopeLeftRight(this, 96, 96, 288, 416);
                 addObject(sLR1, 288, 416);
+                
+                Block borderR = new Block(96, 800, sideTile);
+                addObject(borderR, 1000,400);
+                Block borderL = new Block(96, 800, sideTile);
+                addObject(borderL, 0,400);
                 
                 Block b9 = new Block(96, 96, grass);
                 addObject(b9, 96,272);
@@ -331,10 +337,15 @@ public class MyWorld extends World
                 Block b3 = new Block(96, 96, grass);
                 addObject(b3, 96,708);
                 Block b4 = new Block(96, 96, grass);
-                addObject(b4, 192,708);
+                addObject(b4, 288,708);
                 Block b5 = new Block(96, 96, grass);
-                addObject(b5, 288,708);
-                
+                addObject(b5, 384,708);
+                Block b28 = new Block(96, 96, grass);
+                addObject(b28, 480,708);
+                Block b29 = new Block(96, 96, grass);
+                addObject(b29, 576,708);
+                Block b30 = new Block(96, 96, grass);
+                addObject(b30, 672,708);
                 
                 Block b6 = new Block(96, 96, dirt);
                 addObject(b6, 96,464);
@@ -342,35 +353,31 @@ public class MyWorld extends World
                 addObject(b7, 192,464);
                 Block b8 = new Block(96, 96, dirt);
                 addObject(b8, 288,464);
-                
-
-                
-                slopeRightLeft sRL2 = new slopeRightLeft(this, 96, 96, 856, 320, grassRL);
-                addObject(sRL2, 856, 320);
-                slopeRightLeft sRL1 = new slopeRightLeft(this, 96, 96, 808, 368, grassRL);
-                addObject(sRL1, 808, 368);
+                 
+                slopeRightLeft sRL2 = new slopeRightLeft(this, 96, 96, 760, 320, grassRL);
+                addObject(sRL2, 760, 320);
+                slopeRightLeft sRL1 = new slopeRightLeft(this, 96, 96, 712, 368, grassRL);
+                addObject(sRL1, 712, 368);
                 Block b13 = new Block(96, 96, grass);
-                addObject(b13, 904,320);
-                
+                addObject(b13, 808,320);
                 Block b10 = new Block(96, 96, dirt);
-                addObject(b10, 904,416);
+                addObject(b10, 808,416);
                 Block b11 = new Block(96, 96, grass);
-                addObject(b11, 808,416);
+                addObject(b11, 712,416);
                 Block b12 = new Block(96, 48, grass);
-                addObject(b12, 712,440);
+                addObject(b12, 616,440);
                 
-                slopeRightLeft sRL3 = new slopeRightLeft(this, 96, 96, 432, 181, grassRL);
-                addObject(sRL3, 432, 181);
-                slopeLeftRight sLR5 = new slopeLeftRight(this, 96, 96, 528, 181);
-                addObject(sLR5, 528, 181);
                 Block bl2 = new Block(96, 96, grass);
                 addObject(bl2, 480,176);
+                
                 
                 break;
                 
             case 6://grass
                 cloudsBg.scale(getWidth(), getHeight());
                 setBackground(cloudsBg);
+                
+                actor.windyLvl(true, "right");
                 
                 slopeRightLeft sRL4 = new slopeRightLeft(this, 96, 96, 952, 752, grassRL);
                 addObject(sRL4, 952, 752);
@@ -382,15 +389,16 @@ public class MyWorld extends World
                 Block borderL1 = new Block(96, 800, sideTile);
                 addObject(borderL1, 0,400);
                 
-
-                Block b15 = new Block(96, 96, grass);
-                addObject(b15, 96,704);
+                Block b15 = new Block(96, 96, grass); //bottom left
+                addObject(b15, 96,704);                
+                Block b31 = new Block(96, 96, grass); 
+                addObject(b31, 192,704);  
                 
-                Block b14 = new Block(48, 96, grass);
-                addObject(b14, 480,608);
+                Block b26 = new Block(96, 96, grass);
+                addObject(b26, 432,608);
                 
-                Block b16 = new Block(48, 96, grass);
-                addObject(b16, 624,608);
+                Block b27 = new Block(96, 96, grass);
+                addObject(b27, 624,608);
                 
                 Block b17 = new Block(96, 96, grass);
                 addObject(b17, 816,608);
@@ -398,25 +406,62 @@ public class MyWorld extends World
                 Block b18 = new Block(96, 96, grass);
                 addObject(b18, 768,344);
                 
-                
                 Block b21 = new Block(96, 96, bridge);
-                addObject(b21, 528,200);
+                addObject(b21, 576,200);
                 Block b23 = new Block(96, 96, bridge);
-                addObject(b23, 432,200);
+                addObject(b23, 480,200);
                 Block b24 = new Block(96, 96, bridge);
-                addObject(b24, 336,200);
-                Block b25 = new Block(96, 96, bridge);
-                addObject(b25, 240,200);
+                addObject(b24, 384,200);
                 
                 break;
+            case 7://snow
+                snowBg.scale(getWidth(), getHeight());
+                setBackground(snowBg);
                 
-            case 7://ice
+                Block borderR2 = new Block(96, 800, sideTile);
+                addObject(borderR2, 1000,400);
+                Block borderL2 = new Block(96, 800, sideTile);
+                addObject(borderL2, 0,400);
+                
+                iceBlock ib1 = new iceBlock(96, 96, snow);
+                addObject(ib1, 96,704);
+                iceBlock ib2 = new iceBlock(96, 96, snow);
+                addObject(ib2, 192,704);
+                
+                iceBlock ib3 = new iceBlock(96, 96, snow);
+                addObject(ib3, 432,608);
+                iceBlock ib4 = new iceBlock(96, 96, snow);
+                addObject(ib4, 624,512);
+                iceBlock ib5 = new iceBlock(96, 96, snow);
+                addObject(ib5, 904,512);
+                /*
+                slopeRightLeft sRL12 = new slopeRightLeft(this, 96, 96, 432, 416, snowSlopeRL);
+                addObject(sRL12, 432, 416);
+                */
+                slopeRightLeft sRL11 = new slopeRightLeft(this, 96, 96, 480, 176, snowSlopeRL);
+                addObject(sRL11, 480, 176); 
+                slopeRightLeft sRL10 = new slopeRightLeft(this, 96, 96, 432, 224, snowSlopeRL);
+                addObject(sRL10, 432, 224); 
+                slopeRightLeft sRL9 = new slopeRightLeft(this, 96, 96, 384, 272, snowSlopeRL);
+                addObject(sRL9, 384, 272);
                 
                 
+                iceBlock ib6 = new iceBlock(96, 96, snow);
+                addObject(ib6, 528,176);
                 
+                iceBlock ib7 = new iceBlock(96, 96, snow);
+                addObject(ib7, 764,272);
                 
-            case 8://ice
+            case 8://snow
+                snowBg.scale(getWidth(), getHeight());
+                setBackground(snowBg);
                 
+                iceBlock ib8 = new iceBlock(96, 96, snow);
+                addObject(ib8, 0,500);
+                iceBlock ib9 = new iceBlock(96, 96, snow);
+                addObject(ib9, 0,500);
+                iceBlock ib10 = new iceBlock(96, 96, snow);
+                addObject(ib10, 0,500);
                 
                 
         }

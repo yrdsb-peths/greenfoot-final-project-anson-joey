@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class SmokingHotBBQ extends Terrain
+public class SmokingHotBBQ extends Actor
 {
     public GreenfootSound endMusic = new GreenfootSound("endMusic.mp3");
     public SmokingHotBBQ(int x, int y)
