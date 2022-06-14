@@ -57,7 +57,7 @@ public class MyWorld extends World
         super(1000, 800, 1, true); 
         //addObject(new fade(null), getWidth()/2, getHeight()/2);
         
-        setPaintOrder(fade.class, SquatKing.class, Terrain.class);
+        setPaintOrder(fade.class, SquatKing.class, Slopes.class,Terrain.class);
         prepareActor();
         prepare();
     }
@@ -572,6 +572,7 @@ public class MyWorld extends World
     public void nextLevel()
     {
         removeObjects(getObjects(Terrain.class)); //Removes all objects
+        removeObjects(getObjects(Slopes.class));
         
         level++;
         prepare();
@@ -579,6 +580,7 @@ public class MyWorld extends World
     public void previousLevel()
     {
         removeObjects(getObjects(Terrain.class)); //Removes all objects 
+        removeObjects(getObjects(Slopes.class));
         
         level--;
         prepare();

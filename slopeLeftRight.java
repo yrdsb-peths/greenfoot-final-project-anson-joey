@@ -5,7 +5,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class slopeLeftRight extends Terrain
+public class slopeLeftRight extends Slopes
 {
     /**
      * Act - do whatever the diagonal_block wants to do. This method is called whenever
