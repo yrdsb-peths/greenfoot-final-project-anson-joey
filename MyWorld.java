@@ -11,7 +11,7 @@ public class MyWorld extends World
     //GreenfootImage background = new GreenfootImage("background.png");
     private int bgYCoord;
     private int speed = 5;
-    private int level = 5;
+    private int level = 4;
     private boolean touchingbbq = false;
     
     //Dungeon biome images
@@ -91,7 +91,7 @@ public class MyWorld extends World
     private void prepareActor()
     {
         SquatKing squattyboi = new SquatKing(48,48);
-        addObject(squattyboi,100,0); 
+        addObject(squattyboi,500, 500); 
     }
     
     private void changeWorld()
@@ -324,7 +324,7 @@ public class MyWorld extends World
                 break;
             case 4: //stronghold
                 actor.windyLvl(false);
-                bgmSkyBlue.stop();
+                //bgmSkyBlue.stop();
                 
                 strongholdBg2.scale(getWidth(), getHeight());
                 setBackground(strongholdBg2);
@@ -354,25 +354,25 @@ public class MyWorld extends World
                 addObject(block91, 890, 450);
                 
                 Block block92 = new Block(96, 48, shGround);
-                addObject(block92, 400, 500);
-                slopeLeftRight slopeLR6 = new slopeLeftRight(this, 96, 96, 220, 476, shSlopeLR);
-                addObject(slopeLR6, 220, 476);
-                slopeLeftRight slopeLR7 = new slopeLeftRight(this, 96, 96, 172, 428, shSlopeLR);
-                addObject(slopeLR7, 172, 428);
-                slopeLeftRight slopeLR8 = new slopeLeftRight(this, 96, 96, 126, 380, shSlopeLR);
-                addObject(slopeLR8, 126, 380);
-                Block block94 = new Block(96, 96, shGround);
-                addObject(block94, 54, 380);
+                addObject(block92, 400, 510);
+                
+                slopeLeftRight slopeLR6 = new slopeLeftRight(this, 96, 96, 220, 486, shSlopeLR);
+                addObject(slopeLR6, 220, 486);
+                slopeLeftRight slopeLR7 = new slopeLeftRight(this, 96, 96, 172, 438, shSlopeLR);
+                addObject(slopeLR7, 172, 438);
+                Block block94 = new Block(96, 48, shGround);
+                addObject(block94, 96, 414);
                 Block block95 = new Block(48, 96, shGround);
-                addObject(block95, 550, 200);
+                addObject(block95, 550, 210);
+                
                 slopeRightLeft slopeRL10 = new slopeRightLeft(this, 96, 96, 400, 296, shSlopeRL);
                 addObject(slopeRL10, 400, 296);
                 Block block96 = new Block(96, 48, shGround);
                 addObject(block96, 496, 272);
                 Block block97 = new Block(96, 96, shStones);
-                addObject(block97, 90, 476);
+                addObject(block97, 90, 486);
                 Block block98 = new Block(96, 96, shStones);
-                addObject(block98, 150, 476);
+                addObject(block98, 150, 486);
                 Block block99 = new Block(96, 48, shGround);
                 addObject(block99, 192, 150);
                 Block block100 = new Block(96, 96, shGround);
@@ -395,6 +395,8 @@ public class MyWorld extends World
                 addObject(slopeRL11, 952, 100);
                 slopeRightLeft slopeRL12 = new slopeRightLeft(this, 96, 96, 904, 148, shSlopeRL);
                 addObject(slopeRL12, 904, 148);
+                Block block108 = new Block(48, 48, shGround);
+                addObject(block108, 280, 270);
                 //creates bounds
                 Block block83 = new Block(48, 800, shGround);
                 addObject(block83, 976, 400);
