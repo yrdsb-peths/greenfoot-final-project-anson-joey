@@ -44,7 +44,8 @@ public class MyWorld extends World
     GreenfootImage strongholdBg2 = new GreenfootImage("images/Stronghold terrain/Strongholdbg2.png");
     GreenfootImage grassBg = new GreenfootImage("images/Grass terrain/GrassBg.png");
     GreenfootImage cloudsBg = new GreenfootImage("images/Grass terrain/CloudsBg.png");
-    GreenfootImage snowBg = new GreenfootImage("images/Snow terrain/SnowBg.png");           
+    GreenfootImage snowBg = new GreenfootImage("images/Snow terrain/SnowBg.png");     
+    GreenfootImage wind = new GreenfootImage("wind.png");     
     //Background music
     GreenfootSound bgmFallenKing = new GreenfootSound("bgmFallenKing.mp3");
     GreenfootSound bgmSkyBlue = new GreenfootSound("bgmSkyBlue.mp3");
@@ -59,14 +60,14 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1000, 800, 1, true); 
+        super(1000, 800, 1, false); 
         //addObject(new fade(null), getWidth()/2, getHeight()/2);
         for(int i = 0; i < progressBarImg.length; i++)
         {
             progressBarImg[i] = new GreenfootImage("images/Progress Bar/lvl" + i + ".png");
         }
         
-        setPaintOrder(fade.class, progressBar.class, SquatKing.class, Slopes.class,Terrain.class);
+        setPaintOrder(fade.class, progressBar.class, SquatKing.class, wind.class, Slopes.class,Terrain.class);
         prepareActor();
         prepare();
     }
@@ -515,6 +516,8 @@ public class MyWorld extends World
                 addObject(bar6, 980, 700);
                 
                 actor.windyLvl(true, "right");
+                windImage1 wind1 = new windImage1(this, "right");
+                addObject(wind1, getWidth() / 2, getHeight() / 2);
                 
                 slopeRightLeft sRL4 = new slopeRightLeft(this, 96, 96, 952, 752, grassRL);
                 addObject(sRL4, 952, 752);
@@ -643,7 +646,6 @@ public class MyWorld extends World
                 
                 break;
             case 9:
-                
                 //progress bar image
                 progressBar bar9 = new progressBar(30, 198, progressBarImg[9]);
                 addObject(bar9, 980, 700);
@@ -684,7 +686,7 @@ public class MyWorld extends World
                 addObject(b64, 808,864);
                 
         }
-        }
+    }
 
     public void nextLevel()
     {
@@ -692,6 +694,7 @@ public class MyWorld extends World
         removeObjects(getObjects(Slopes.class));
         removeObjects(getObjects(SmokingHotBBQ.class));
         removeObjects(getObjects(progressBar.class));
+        removeObjects(getObjects(wind.class));
         
         level++;
         prepare();
@@ -702,11 +705,11 @@ public class MyWorld extends World
         removeObjects(getObjects(Slopes.class));
         removeObjects(getObjects(SmokingHotBBQ.class));
         removeObjects(getObjects(progressBar.class));
+        removeObjects(getObjects(wind.class));
         
         level--;
         prepare();
     }
-
     //Getter method for global speed variable
     public int getSpeed()
     {

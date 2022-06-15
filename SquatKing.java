@@ -1,10 +1,10 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import greenfoot.World;
 
 public class SquatKing extends BoundDetection
 {
     private static int GRAVITY = 1;
-    private int SPEED = 3, imageIndex = 0, slideSpeed = 5, frames = 0;
+    private int SPEED = 3, imageIndex = 0, slideSpeed = 5, frames = 0, jumpFrames = 0;
     private int velocityY, velocityX, slideVelocity;
     private int chargeTime;
     private String direction = "left", facing = "right",  windDirection;
@@ -22,6 +22,9 @@ public class SquatKing extends BoundDetection
     GreenfootImage jump[] = new GreenfootImage[3];
     GreenfootImage leftJump[] = new GreenfootImage[3];
     GreenfootImage rightSlopeImage, leftSlopeImage;
+    
+    windImage1 wind1Actor;
+    windImage2 wind2Actor;
 
     public SquatKing(int x, int y)
     {
@@ -109,12 +112,12 @@ public class SquatKing extends BoundDetection
 
     public void changeArea()
     {
-        if(getY() == 0)//going up
+        if(getY() < 0)//going up
         {
             ((MyWorld)getWorld()).nextLevel();
             setLocation(getX(), 795);
         }
-        if(getY() == 799) //going down
+        if(getY() > 800) //going down
         {
             ((MyWorld)getWorld()).previousLevel();
             setLocation(getX(), 0);
@@ -291,9 +294,19 @@ public class SquatKing extends BoundDetection
     {
         setImage(jump[0]);
         timer.mark();
+        
         while(Greenfoot.isKeyDown("up") && (onGround() || onIceGround()))
         {
             getWorld().repaint();
+            jumpFrames++;
+            if(isWindyLvl && jumpFrames % 2 == 0)
+            {
+                wind1Actor = ((MyWorld)getWorld()).getObjects(windImage1.class).get(0);
+                wind2Actor = ((MyWorld)getWorld()).getObjects(windImage2.class).get(0);
+                wind1Actor.shiftX(windDirection);
+                wind2Actor.shiftX(windDirection);
+            }
+            
             chargeTime = timer.millisElapsed();
             if(!Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("right"))
             {

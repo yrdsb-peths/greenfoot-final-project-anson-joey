@@ -15,9 +15,15 @@ public class fade extends Actor
     public fade(World inWorld)
     {
         nextWorld = inWorld;
-        if (nextWorld == null) direction = -4;  else direction = 4;
+        if (nextWorld == null) 
+        {
+            direction = -4;  
+        }
+        else 
+        {
+            direction = 4;
+        }
     }
- 
     public void addedToWorld(World world)
     {
         setImage(new GreenfootImage(world.getWidth(), world.getHeight()));
