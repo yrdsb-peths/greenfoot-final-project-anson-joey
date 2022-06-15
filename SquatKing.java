@@ -72,6 +72,7 @@ public class SquatKing extends BoundDetection
         wind();
         if(Greenfoot.isKeyDown("up") && (onGround() || onIceGround()))
         {
+            Utils.setJumps();
             jumpTimer(); 
         }
         walkMovement();
@@ -117,6 +118,7 @@ public class SquatKing extends BoundDetection
         {
             ((MyWorld)getWorld()).previousLevel();
             setLocation(getX(), 0);
+            Utils.setlvlsFall();
         }
     }
 

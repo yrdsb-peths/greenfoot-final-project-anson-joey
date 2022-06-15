@@ -50,6 +50,7 @@ public class MyWorld extends World
     GreenfootSound bgmSkyBlue = new GreenfootSound("bgmSkyBlue.mp3");
     
     SimpleTimer musicTimer = new SimpleTimer();
+    SimpleTimer gameTimer = new SimpleTimer();
     
     SquatKing actor;
     SmokingHotBBQ BBQ;
@@ -94,10 +95,14 @@ public class MyWorld extends World
     {
         SquatKing squattyboi = new SquatKing(48,48);
         addObject(squattyboi,100, 500); 
+        Utils utils = new Utils();
+        addObject(utils, 0, 0);
+        gameTimer.mark();
     }
     
     private void changeWorld()
     {
+        Utils.setTime(gameTimer.millisElapsed());
         touchingbbq = true;
         BBQScene world1 = new BBQScene();
         fade fadeout1 = new fade(world1);

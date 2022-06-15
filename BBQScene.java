@@ -16,4 +16,14 @@ public class BBQScene extends World
         setBackground(image);
         addObject(new fade(null), getWidth()/2, getHeight()/2);
     }
+    
+    public void act()
+    {
+        if(Greenfoot.isKeyDown("space"))
+        {
+            statsScreen stats = new statsScreen(Utils.getStats());
+            fade fadeout = new fade(stats);
+            addObject(fadeout, getWidth() / 2, getHeight() / 2);
+        }
+    }
 }
