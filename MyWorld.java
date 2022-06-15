@@ -11,7 +11,7 @@ public class MyWorld extends World
     //GreenfootImage background = new GreenfootImage("background.png");
     private int bgYCoord;
     private int speed = 5;
-    private int level = 4;
+    private int level = 8;
     private boolean touchingbbq = false;
     
     //Dungeon biome images
@@ -35,6 +35,8 @@ public class MyWorld extends World
     GreenfootImage snow = new GreenfootImage("images/Snow terrain/tile002.png");
     GreenfootImage snowSlopeRL = new GreenfootImage("images/Snow terrain/slopeRightLeft.png");
     GreenfootImage snowSlopeLR = new GreenfootImage("images/Snow terrain/slopeLeftRight.png");
+    GreenfootImage snowStonesL = new GreenfootImage("images/Snow terrain/tile106.png");
+    GreenfootImage snowStonesR = new GreenfootImage("images/Snow terrain/tile107.png");
     //Background images
     GreenfootImage dungeonBg1 = new GreenfootImage("images/Dungeon terrain/DungeonBg1.png");
     GreenfootImage dungeonBg2 = new GreenfootImage("images/Dungeon terrain/DungeonBg2.png");
@@ -91,7 +93,7 @@ public class MyWorld extends World
     private void prepareActor()
     {
         SquatKing squattyboi = new SquatKing(48,48);
-        addObject(squattyboi,500, 500); 
+        addObject(squattyboi,100, 500); 
     }
     
     private void changeWorld()
@@ -509,16 +511,18 @@ public class MyWorld extends World
                 addObject(b18, 768,344);
                 
                 Block b21 = new Block(96, 96, bridge);
-                addObject(b21, 576,200);
+                addObject(b21, 596,200);
                 Block b23 = new Block(96, 96, bridge);
-                addObject(b23, 480,200);
+                addObject(b23, 500,200);
                 Block b24 = new Block(96, 96, bridge);
-                addObject(b24, 384,200);
+                addObject(b24, 404,200);
                 
                 break;
             case 7://snow
                 snowBg.scale(getWidth(), getHeight());
                 setBackground(snowBg);
+                
+                actor.windyLvl(false);
                 
                 Block borderR2 = new Block(96, 800, sideTile);
                 addObject(borderR2, 1000,400);
@@ -536,10 +540,7 @@ public class MyWorld extends World
                 addObject(ib4, 624,512);
                 iceBlock ib5 = new iceBlock(96, 96, snow);
                 addObject(ib5, 904,512);
-                /*
-                slopeRightLeft sRL12 = new slopeRightLeft(this, 96, 96, 432, 416, snowSlopeRL);
-                addObject(sRL12, 432, 416);
-                */
+
                 slopeRightLeft sRL11 = new slopeRightLeft(this, 96, 96, 480, 176, snowSlopeRL);
                 addObject(sRL11, 480, 176); 
                 slopeRightLeft sRL10 = new slopeRightLeft(this, 96, 96, 432, 224, snowSlopeRL);
@@ -547,24 +548,94 @@ public class MyWorld extends World
                 slopeRightLeft sRL9 = new slopeRightLeft(this, 96, 96, 384, 272, snowSlopeRL);
                 addObject(sRL9, 384, 272);
                 
-                
                 iceBlock ib6 = new iceBlock(96, 96, snow);
                 addObject(ib6, 528,176);
                 
                 iceBlock ib7 = new iceBlock(96, 96, snow);
                 addObject(ib7, 764,272);
                 
+                break;
             case 8://snow
                 snowBg.scale(getWidth(), getHeight());
                 setBackground(snowBg);
                 
+                slopeRightLeft sRL12 = new slopeRightLeft(this, 96, 96, 432, 416, snowSlopeRL);
+                addObject(sRL12, 432, 416);
+                
                 iceBlock ib8 = new iceBlock(96, 96, snow);
-                addObject(ib8, 0,500);
+                addObject(ib8, 96,600);
                 iceBlock ib9 = new iceBlock(96, 96, snow);
                 addObject(ib9, 0,500);
                 iceBlock ib10 = new iceBlock(96, 96, snow);
                 addObject(ib10, 0,500);
                 
+                Block b40 = new Block(96, 96, snowStonesL);
+                addObject(b40, 192,0);
+                Block b32 = new Block(96, 96, snowStonesL);
+                addObject(b32, 192,96);
+                Block b33 = new Block(96, 96, snowStonesL);
+                addObject(b33, 192,192);
+                Block b34 = new Block(96, 96, snowStonesL);
+                addObject(b34, 192,288);
+                Block b35 = new Block(96, 96, snowStonesL);
+                addObject(b35, 192,384);
+                Block b36 = new Block(96, 96, snowStonesL);
+                addObject(b36, 192,480);
+                Block b37 = new Block(96, 96, snowStonesL);
+                addObject(b37, 192,576);
+                
+                
+                Block b48 = new Block(96, 96, snowStonesR);
+                addObject(b48, 808,0);
+                Block b41 = new Block(96, 96, snowStonesR);
+                addObject(b41, 808,96);
+                Block b42 = new Block(96, 96, snowStonesR);
+                addObject(b42, 808,192);
+                Block b43 = new Block(96, 96, snowStonesR);
+                addObject(b43, 808,288);
+                Block b44 = new Block(96, 96, snowStonesR);
+                addObject(b44, 808,384);
+                Block b45 = new Block(96, 96, snowStonesR);
+                addObject(b45, 808,480);
+                Block b46 = new Block(96, 96, snowStonesR);
+                addObject(b46, 808,576);
+                
+                break;
+            case 9:
+                Block b49 = new Block(96, 96, snowStonesL);
+                addObject(b49, 192,0);
+                Block b50 = new Block(96, 96, snowStonesL);
+                addObject(b50, 192,96);
+                Block b51 = new Block(96, 96, snowStonesL);
+                addObject(b51, 192,192);
+                Block b52 = new Block(96, 96, snowStonesL);
+                addObject(b52, 192,288);
+                Block b53 = new Block(96, 96, snowStonesL);
+                addObject(b53, 192,384);
+                Block b54 = new Block(96, 96, snowStonesL);
+                addObject(b54, 192,480);
+                Block b55 = new Block(96, 96, snowStonesL);
+                addObject(b55, 192,576);
+
+                                
+                Block b56 = new Block(96, 96, snowStonesR);
+                addObject(b56, 808,0);
+                Block b57 = new Block(96, 96, snowStonesR);
+                addObject(b57, 808,96);
+                Block b58 = new Block(96, 96, snowStonesR);
+                addObject(b58, 808,192);
+                Block b59 = new Block(96, 96, snowStonesR);
+                addObject(b59, 808,288);
+                Block b60 = new Block(96, 96, snowStonesR);
+                addObject(b60, 808,384);
+                Block b61 = new Block(96, 96, snowStonesR);
+                addObject(b61, 808,576);
+                Block b62 = new Block(96, 96, snowStonesR);
+                addObject(b62, 808,672);
+                Block b63 = new Block(96, 96, snowStonesR);
+                addObject(b63, 808,768);
+                Block b64 = new Block(96, 96, snowStonesR);
+                addObject(b64, 808,864);
                 
         }
         }
