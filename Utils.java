@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Utils here.
+ * Creates a class to keep track of statistics using class variables
  * 
  * @author (your name) 
  * @version (a version number or a date)

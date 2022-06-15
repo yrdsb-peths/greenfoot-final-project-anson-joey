@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     private int speed = 5;
-    private int level = 1;
+    private int level = 3;
     private boolean touchingbbq = false;
     //Dungeon biome images
     GreenfootImage dnGround = new GreenfootImage("images/Dungeon terrain/tile001.png");
@@ -333,8 +333,8 @@ public class MyWorld extends World
                 addObject(block73, 540, 4);
                 Block block74 = new Block(96, 48, shGround);
                 addObject(block74, 302, 412);
-                Block block75 = new Block(48, 48, shGround);
-                addObject(block75, 72, 412);
+                Block block75 = new Block(96, 48, shGround);
+                addObject(block75, 96, 412);
                 Block block76 = new Block(48, 48, shGround);
                 addObject(block76, 216, 250);
                 Block block77 = new Block(48, 96, shGround);
@@ -349,6 +349,12 @@ public class MyWorld extends World
                 addObject(block81, 345, 24);
                 Block block82 = new Block(114, 48, shGround);
                 addObject(block82, 459, 24);
+                slopeRightLeft slopeRL13 = new slopeRightLeft(this, 96, 96, 248, 485, shSlopeRL);
+                addObject(slopeRL13, 254, 484);
+                Block block110 = new Block(72, 96, shStones);
+                addObject(block110, 338, 484);
+                Block block111 = new Block(72, 96, shStones);
+                addObject(block111, 410, 484);
                 //creates bounds
                 Block block60 = new Block(48, 800, shGround);
                 addObject(block60, 976, 400);

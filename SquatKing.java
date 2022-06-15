@@ -69,7 +69,8 @@ public class SquatKing extends BoundDetection
     {
         frames++;
         animate();
-        fallPhysics();
+        verticlePhysics();
+        horizontalPhysics();
         wind();
         if(Greenfoot.isKeyDown("up") && (onGround() || onIceGround()))
         {
@@ -155,8 +156,8 @@ public class SquatKing extends BoundDetection
             setImage(leftJump[2]);
         }
     }
-
-    public void fallPhysics()
+    //Creates and controls all movements involving the Y axis
+    public void verticlePhysics()
     {   
         //Creates slope movement logic
         if(onSlopeLeft)
@@ -179,8 +180,47 @@ public class SquatKing extends BoundDetection
             Greenfoot.playSound("jumpSound.mp3");
             landed = false;
         }
-
-        setLocation(getX(), getY() + velocityY); //Updates actor y coordinate
+        //Updates actor Y coordinate
+        setLocation(getX(), getY() + velocityY); 
+        //Creates movement logic for when on ground block        
+        if(onGround())
+        {
+            velocityY = 0;
+            velocityX = 0;
+            slideVelocity = 0;
+            // plays sound when landing
+            if(landed == false) 
+            {
+                Greenfoot.playSound("landSound.mp3");
+                landed = true;
+            }
+            while(onGround())
+            {
+                setLocation(getX(), getY()-1);
+            }
+            setLocation(getX(), getY()+1);
+        }
+        else
+        {
+            velocityY += GRAVITY; 
+        }
+        //Creates movement logic to bounce off ceilings
+        if(bumpedHead())
+        {
+            velocityY = 0;
+            while(bumpedHead())
+            {
+                setLocation(getX(), getY()+1);
+            }
+            Greenfoot.playSound("bumpSound.mp3"); 
+        }
+        
+        onSlopeLeft = false;
+        onSlopeRight = false;
+    }
+    //Creates and controls all movement that involves the X axis
+    public void horizontalPhysics()
+    {
         //Creates movement logic for when on ice block
         if(onIceGround())
         {
@@ -223,38 +263,6 @@ public class SquatKing extends BoundDetection
                 }
             }
         }
-        //Creates movement logic for when on ground block        
-        else if(onGround())
-        {
-            velocityY = 0;
-            velocityX = 0;
-            slideVelocity = 0;
-            // plays sound when landing
-            if(landed == false) 
-            {
-                Greenfoot.playSound("landSound.mp3");
-                landed = true;
-            }
-            while(onGround())
-            {
-                setLocation(getX(), getY()-1);
-            }
-            setLocation(getX(), getY()+1);
-        }
-        else
-        {
-            velocityY += GRAVITY; 
-        }
-        //Creates movement logic to bounce off ceilings
-        if(bumpedHead())
-        {
-            velocityY = 0;
-            while(bumpedHead())
-            {
-                setLocation(getX(), getY()+1);
-            }
-            Greenfoot.playSound("bumpSound.mp3"); 
-        }
         //Creates movement logic to bounce off walls
         if(!canJumpRight() || !canJumpLeft())
         {
@@ -277,8 +285,6 @@ public class SquatKing extends BoundDetection
             setLocation(getX() + slideVelocity, getY());
         }
         
-        onSlopeLeft = false;
-        onSlopeRight = false;
     }
     //Creates all logic for jump mechanic
     public void jumpTimer()

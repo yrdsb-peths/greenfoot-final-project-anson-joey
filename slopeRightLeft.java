@@ -12,6 +12,7 @@ public class slopeRightLeft extends Slopes
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private boolean isOnSlope;
+    //Creates construtor with custom or default image using overlooading
     public slopeRightLeft (World world, int x, int y, int xCoord,int yCoord)
     {
         GreenfootImage image = new GreenfootImage("images/Grass terrain/slopeLeftRight.png");
@@ -31,7 +32,7 @@ public class slopeRightLeft extends Slopes
         Block blockLeft = new Block(x / 2 - 10, y);
         world.addObject(blockLeft, xCoord + getImage().getWidth() / 4 + 5, yCoord);
     }
-    
+    //Creates and sets detection system
     public void act()
     {
         if(onSlopeRight() == true)

@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class slopeLeftRight extends Slopes
 {   
     private boolean isOnSlope;
+    //Creates construtor with custom or default image using overlooading
     public slopeLeftRight (World world, int x, int y, int xCoord,int yCoord)
     {
         GreenfootImage image = new GreenfootImage("images/Grass terrain/slopeLeftRight.png");
@@ -27,7 +28,7 @@ public class slopeLeftRight extends Slopes
         Block blockRight = new Block(x / 2 - 10, y);
         world.addObject(blockRight, xCoord - getImage().getWidth() / 4 - 5, yCoord);
     }
-    
+    //Creates and sets detection system
     public void act()
     {
         if(onSlopeLeft() == true)
