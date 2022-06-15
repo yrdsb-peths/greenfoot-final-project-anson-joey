@@ -202,7 +202,10 @@ public class SquatKing extends BoundDetection
         }
         else
         {
-            velocityY += GRAVITY; 
+            if(velocityY < 15)
+            {
+                velocityY += GRAVITY; 
+            }
         }
         //Creates movement logic to bounce off ceilings
         if(bumpedHead())
@@ -239,25 +242,25 @@ public class SquatKing extends BoundDetection
 
             if(velocityX > 0)
             {
-                slideVelocity = map(velocityX, 1, 10, 2, 5);
+                slideVelocity = map(velocityX, 5, 10, 2, 5);
                 velocityX = 0;
             }
             else if(velocityX < 0)
             {
-                slideVelocity = (map(velocityX * -1, 1, 10, 2, 5)) * -1;
+                slideVelocity = (map(velocityX * -1, 5, 10, 2, 5)) * -1;
                 velocityX = 0;
             }
 
             if(slideVelocity > 0)
             {
-                if(frames%5 == 0)
+                if(frames%7 == 0)
                 {
                     slideVelocity--;
                 }
             }
             else if(slideVelocity < 0)
             {
-                if(frames%5 == 0)
+                if(frames%7 == 0)
                 {
                     slideVelocity++;    
                 }
@@ -363,12 +366,12 @@ public class SquatKing extends BoundDetection
             if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
                 setLocation(getX() - SPEED, getY());
                 facing = "left";
-                slideVelocity = -SPEED-1;
+                slideVelocity = -SPEED;
             }
             if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight() && canMoveRightSlope()){
                 setLocation(getX() + SPEED, getY());
                 facing = "right";
-                slideVelocity = SPEED-1;
+                slideVelocity = SPEED;
             }
         }
     }

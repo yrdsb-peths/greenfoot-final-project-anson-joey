@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     private int speed = 5;
-    private int level = 3;
+    private int level = 5;
     private boolean touchingbbq = false;
     //Dungeon biome images
     GreenfootImage dnGround = new GreenfootImage("images/Dungeon terrain/tile001.png");
@@ -47,7 +47,7 @@ public class MyWorld extends World
     GreenfootSound bgmFallenKing = new GreenfootSound("bgmFallenKing.mp3");
     GreenfootSound bgmSkyBlue = new GreenfootSound("bgmSkyBlue.mp3");
     //Progress bar images
-    GreenfootImage progressBarImg[] = new GreenfootImage[8];
+    GreenfootImage progressBarImg[] = new GreenfootImage[9];
     
     SimpleTimer musicTimer = new SimpleTimer();
     SimpleTimer gameTimer = new SimpleTimer();
@@ -109,7 +109,7 @@ public class MyWorld extends World
     private void prepareActor()
     {
         SquatKing squattyboi = new SquatKing(48,48);
-        addObject(squattyboi,100, 500); 
+        addObject(squattyboi,300, 500); 
         Utils utils = new Utils();
         addObject(utils, 0, 0);
         gameTimer.mark();
@@ -433,7 +433,7 @@ public class MyWorld extends World
                 Block block106 = new Block(96, 48, shGround);
                 addObject(block106, 674, 24);
                 Block block107 = new Block(96, 48, shGround);
-                addObject(block107, 770, 24);
+                //addObject(block107, 770, 24);
                 slopeRightLeft slopeRL11 = new slopeRightLeft(this, 96, 96, 952, 100, shSlopeRL);
                 addObject(slopeRL11, 952, 100);
                 slopeRightLeft slopeRL12 = new slopeRightLeft(this, 96, 96, 904, 148, shSlopeRL);
@@ -484,17 +484,17 @@ public class MyWorld extends World
                 addObject(bl1, 192,374);
                 
                 Block b3 = new Block(96, 96, grass);
-                addObject(b3, 96,708);
+                addObject(b3, 96,800);
                 Block b4 = new Block(96, 96, grass);
-                addObject(b4, 288,708);
+                addObject(b4, 288,800);
                 Block b5 = new Block(96, 96, grass);
-                addObject(b5, 384,708);
+                addObject(b5, 384,800);
                 Block b28 = new Block(96, 96, grass);
-                addObject(b28, 480,708);
+                addObject(b28, 480,800);
                 Block b29 = new Block(96, 96, grass);
-                addObject(b29, 576,708);
+                addObject(b29, 576,800);
                 Block b30 = new Block(96, 96, grass);
-                addObject(b30, 672,708);
+                addObject(b30, 672,800);
                 
                 Block b6 = new Block(96, 96, dirt);
                 addObject(b6, 96,464);
@@ -503,18 +503,18 @@ public class MyWorld extends World
                 Block b8 = new Block(96, 96, dirt);
                 addObject(b8, 288,464);
                  
-                slopeRightLeft sRL2 = new slopeRightLeft(this, 96, 96, 760, 320, grassRL);
-                addObject(sRL2, 760, 320);
-                slopeRightLeft sRL1 = new slopeRightLeft(this, 96, 96, 712, 368, grassRL);
-                addObject(sRL1, 712, 368);
+                slopeRightLeft sRL2 = new slopeRightLeft(this, 96, 96, 760, 464, grassRL);
+                addObject(sRL2, 760, 368);
+                slopeRightLeft sRL1 = new slopeRightLeft(this, 96, 96, 712, 416, grassRL);
+                addObject(sRL1, 712, 416);
                 Block b13 = new Block(96, 96, grass);
-                addObject(b13, 808,320);
+                addObject(b13, 808,368);
                 Block b10 = new Block(96, 96, dirt);
-                addObject(b10, 808,416);
+                addObject(b10, 808,464);
                 Block b11 = new Block(96, 96, grass);
-                addObject(b11, 712,416);
+                addObject(b11, 712,464);
                 Block b12 = new Block(96, 48, grass);
-                addObject(b12, 616,440);
+                addObject(b12, 616,488);
                 
                 Block bl2 = new Block(96, 96, grass);
                 addObject(bl2, 480,176);
@@ -536,7 +536,7 @@ public class MyWorld extends World
                 
                 slopeRightLeft sRL4 = new slopeRightLeft(this, 96, 96, 952, 752, grassRL);
                 addObject(sRL4, 952, 752);
-                slopeRightLeft sRL5 = new slopeRightLeft(this, 96, 96, 952, 800, grassRL);
+                slopeRightLeft sRL5 = new slopeRightLeft(this, 96, 96, 904, 800, grassRL);
                 addObject(sRL5, 904, 800);
                 
                 Block borderR1 = new Block(96, 800, sideTile);
@@ -618,22 +618,13 @@ public class MyWorld extends World
                 progressBar bar8 = new progressBar(30, 198, progressBarImg[7]);
                 addObject(bar8, 980, 700);
                 
-                slopeRightLeft sRL12 = new slopeRightLeft(this, 96, 96, 432, 416, snowSlopeRL);
-                addObject(sRL12, 432, 416);
-                
-                iceBlock ib8 = new iceBlock(96, 96, snow);
-                addObject(ib8, 96,600);
-                iceBlock ib9 = new iceBlock(96, 96, snow);
-                addObject(ib9, 0,500);
-                iceBlock ib10 = new iceBlock(96, 96, snow);
-                addObject(ib10, 0,500);
+                Block edge1 = new Block(96, 800);
+                addObject(edge1, 0, 400);
+                Block edge2 = new Block(96, 800);
+                addObject(edge2, 1000, 400);
                 
                 Block b40 = new Block(96, 96, snowStonesL);
                 addObject(b40, 192,0);
-                Block b32 = new Block(96, 96, snowStonesL);
-                addObject(b32, 192,96);
-                Block b33 = new Block(96, 96, snowStonesL);
-                addObject(b33, 192,192);
                 Block b34 = new Block(96, 96, snowStonesL);
                 addObject(b34, 192,288);
                 Block b35 = new Block(96, 96, snowStonesL);
@@ -642,7 +633,8 @@ public class MyWorld extends World
                 addObject(b36, 192,480);
                 Block b37 = new Block(96, 96, snowStonesL);
                 addObject(b37, 192,576);
-                
+                Block b65 = new Block(96, 96, snowStonesL);
+                addObject(b65, 192,672);
                 
                 Block b48 = new Block(96, 96, snowStonesR);
                 addObject(b48, 808,0);
@@ -650,27 +642,42 @@ public class MyWorld extends World
                 addObject(b41, 808,96);
                 Block b42 = new Block(96, 96, snowStonesR);
                 addObject(b42, 808,192);
-                Block b43 = new Block(96, 96, snowStonesR);
-                addObject(b43, 808,288);
-                Block b44 = new Block(96, 96, snowStonesR);
-                addObject(b44, 808,384);
+                
                 Block b45 = new Block(96, 96, snowStonesR);
                 addObject(b45, 808,480);
                 Block b46 = new Block(96, 96, snowStonesR);
                 addObject(b46, 808,576);
+                Block b66 = new Block(96, 96, snowStonesR);
+                addObject(b66, 808,672);
+
+                iceBlock ib8 = new iceBlock(96, 96, snow);
+                addObject(ib8, 528,540);
+                iceBlock ib9 = new iceBlock(96, 48, snow);
+                addObject(ib9, 288,696);
+                iceBlock ib10 = new iceBlock(96, 48, snow);
+                addObject(ib10, 528, 312);
+                iceBlock ib11 = new iceBlock(96, 48, snow);
+                addObject(ib11, 528, 168);
                 
                 break;
             case 9:
+                snowBg.scale(getWidth(), getHeight());
+                setBackground(snowBg);
+                
                 //progress bar image
-                progressBar bar9 = new progressBar(30, 198, progressBarImg[9]);
+                progressBar bar9 = new progressBar(30, 198, progressBarImg[8]);
                 addObject(bar9, 980, 700);
                 
-                Block b49 = new Block(96, 96, snowStonesL);
-                addObject(b49, 192,0);
+                Block edge3 = new Block(96, 800);
+                addObject(edge3, 0, 400);
+                Block edge4 = new Block(96, 800);
+                addObject(edge4, 1000, 400);
+                
+                
                 Block b50 = new Block(96, 96, snowStonesL);
-                addObject(b50, 192,96);
+                //addObject(b50, 192,96);
                 Block b51 = new Block(96, 96, snowStonesL);
-                addObject(b51, 192,192);
+                //addObject(b51, 192,192);
                 Block b52 = new Block(96, 96, snowStonesL);
                 addObject(b52, 192,288);
                 Block b53 = new Block(96, 96, snowStonesL);
@@ -679,27 +686,38 @@ public class MyWorld extends World
                 addObject(b54, 192,480);
                 Block b55 = new Block(96, 96, snowStonesL);
                 addObject(b55, 192,576);
-
-                                
+                Block b32 = new Block(96, 96, snowStonesL);
+                addObject(b32, 192,672);
+                Block b33 = new Block(96, 96, snowStonesL);
+                addObject(b33, 192,768);
+                Block b49 = new Block(96, 96, snowStonesL);
+                addObject(b49, 192,866);
+                
                 Block b56 = new Block(96, 96, snowStonesR);
-                addObject(b56, 808,0);
+                //addObject(b56, 808,0);
                 Block b57 = new Block(96, 96, snowStonesR);
-                addObject(b57, 808,96);
+                //addObject(b57, 808,96);
                 Block b58 = new Block(96, 96, snowStonesR);
-                addObject(b58, 808,192);
+                addObject(b58, 904,288);
                 Block b59 = new Block(96, 96, snowStonesR);
                 addObject(b59, 808,288);
                 Block b60 = new Block(96, 96, snowStonesR);
                 addObject(b60, 808,384);
+                Block b64 = new Block(96, 96, snowStonesR);
+                addObject(b64, 808,480);
                 Block b61 = new Block(96, 96, snowStonesR);
                 addObject(b61, 808,576);
                 Block b62 = new Block(96, 96, snowStonesR);
                 addObject(b62, 808,672);
                 Block b63 = new Block(96, 96, snowStonesR);
                 addObject(b63, 808,768);
-                Block b64 = new Block(96, 96, snowStonesR);
-                addObject(b64, 808,864);
+                Block b67 = new Block(96, 96, snowStonesR);
+                addObject(b67, 808,864);
                 
+                SmokingHotBBQ bbq = new SmokingHotBBQ(50, 100);
+                addObject(bbq, 904, 192);
+                
+            break;
         }
     }
     //Clears current screen and sets to next level 
