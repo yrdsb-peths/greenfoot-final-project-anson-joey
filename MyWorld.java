@@ -11,7 +11,7 @@ public class MyWorld extends World
     //GreenfootImage background = new GreenfootImage("background.png");
     private int bgYCoord;
     private int speed = 5;
-    private int level = 8;
+    private int level = 1;
     private boolean touchingbbq = false;
     
     //Dungeon biome images
@@ -48,6 +48,8 @@ public class MyWorld extends World
     //Background music
     GreenfootSound bgmFallenKing = new GreenfootSound("bgmFallenKing.mp3");
     GreenfootSound bgmSkyBlue = new GreenfootSound("bgmSkyBlue.mp3");
+    //Progress bar images
+    GreenfootImage progressBarImg[] = new GreenfootImage[8];
     
     SimpleTimer musicTimer = new SimpleTimer();
     SimpleTimer gameTimer = new SimpleTimer();
@@ -59,8 +61,12 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1, true); 
         //addObject(new fade(null), getWidth()/2, getHeight()/2);
+        for(int i = 0; i < progressBarImg.length; i++)
+        {
+            progressBarImg[i] = new GreenfootImage("images/Progress Bar/lvl" + i + ".png");
+        }
         
-        setPaintOrder(fade.class, SquatKing.class, Slopes.class,Terrain.class);
+        setPaintOrder(fade.class, progressBar.class, SquatKing.class, Slopes.class,Terrain.class);
         prepareActor();
         prepare();
     }
@@ -121,6 +127,9 @@ public class MyWorld extends World
                 //sets background
                 dungeonBg1.scale(getWidth(), getHeight());
                 setBackground(dungeonBg1);
+                //progress bar image
+                progressBar bar1 = new progressBar(30, 198, progressBarImg[0]);
+                addObject(bar1, 980, 700);
                 //creates middle platforms
                 Block block1 = new Block(96, 96, dnGround);
                 addObject(block1, 500, 752);
@@ -217,6 +226,9 @@ public class MyWorld extends World
                 actor.windyLvl(false);
                 dungeonBg2.scale(getWidth(), getHeight());
                 setBackground(dungeonBg2);
+                //progress bar image
+                progressBar bar2 = new progressBar(30, 198, progressBarImg[1]);
+                addObject(bar2, 980, 700);
                 //creates bounds
                 Block block19 = new Block(48, 800, dnGround);
                 addObject(block19, 976, 400);
@@ -279,6 +291,10 @@ public class MyWorld extends World
                 strongholdBg1.scale(getWidth(), getHeight());
                 setBackground(strongholdBg1);
                 
+                //progress bar image
+                progressBar bar3 = new progressBar(30, 198, progressBarImg[2]);
+                addObject(bar3, 980, 700);
+                
                 Block block62 = new Block(48, 96, shGround);
                 addObject(block62, 928, 752);
                 Block block63 = new Block(48, 96, shGround);
@@ -332,6 +348,10 @@ public class MyWorld extends World
             case 4: //stronghold
                 actor.windyLvl(false);
                 //bgmSkyBlue.stop();
+                
+                //progress bar image
+                progressBar bar4 = new progressBar(30, 198, progressBarImg[3]);
+                addObject(bar4, 980, 700);
                 
                 strongholdBg2.scale(getWidth(), getHeight());
                 setBackground(strongholdBg2);
@@ -415,6 +435,10 @@ public class MyWorld extends World
                 musicTimer.mark();
                 bgmFallenKing.stop();
                 
+                //progress bar image
+                progressBar bar5 = new progressBar(30, 198, progressBarImg[4]);
+                addObject(bar5, 980, 700);
+                
                 grassBg.scale(getWidth(), getHeight());
                 setBackground(grassBg);
                 
@@ -486,6 +510,10 @@ public class MyWorld extends World
                 cloudsBg.scale(getWidth(), getHeight());
                 setBackground(cloudsBg);
                 
+                //progress bar image
+                progressBar bar6 = new progressBar(30, 198, progressBarImg[5]);
+                addObject(bar6, 980, 700);
+                
                 actor.windyLvl(true, "right");
                 
                 slopeRightLeft sRL4 = new slopeRightLeft(this, 96, 96, 952, 752, grassRL);
@@ -527,6 +555,10 @@ public class MyWorld extends World
                 snowBg.scale(getWidth(), getHeight());
                 setBackground(snowBg);
                 
+                //progress bar image
+                progressBar bar7 = new progressBar(30, 198, progressBarImg[6]);
+                addObject(bar7, 980, 700);
+                
                 actor.windyLvl(false);
                 
                 Block borderR2 = new Block(96, 800, sideTile);
@@ -563,6 +595,10 @@ public class MyWorld extends World
             case 8://snow
                 snowBg.scale(getWidth(), getHeight());
                 setBackground(snowBg);
+                
+                //progress bar image
+                progressBar bar8 = new progressBar(30, 198, progressBarImg[7]);
+                addObject(bar8, 980, 700);
                 
                 slopeRightLeft sRL12 = new slopeRightLeft(this, 96, 96, 432, 416, snowSlopeRL);
                 addObject(sRL12, 432, 416);
@@ -607,6 +643,11 @@ public class MyWorld extends World
                 
                 break;
             case 9:
+                
+                //progress bar image
+                progressBar bar9 = new progressBar(30, 198, progressBarImg[9]);
+                addObject(bar9, 980, 700);
+                
                 Block b49 = new Block(96, 96, snowStonesL);
                 addObject(b49, 192,0);
                 Block b50 = new Block(96, 96, snowStonesL);
@@ -649,6 +690,8 @@ public class MyWorld extends World
     {
         removeObjects(getObjects(Terrain.class)); //Removes all objects
         removeObjects(getObjects(Slopes.class));
+        removeObjects(getObjects(SmokingHotBBQ.class));
+        removeObjects(getObjects(progressBar.class));
         
         level++;
         prepare();
@@ -657,6 +700,8 @@ public class MyWorld extends World
     {
         removeObjects(getObjects(Terrain.class)); //Removes all objects 
         removeObjects(getObjects(Slopes.class));
+        removeObjects(getObjects(SmokingHotBBQ.class));
+        removeObjects(getObjects(progressBar.class));
         
         level--;
         prepare();
