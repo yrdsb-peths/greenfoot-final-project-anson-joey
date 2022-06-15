@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class fade extends Actor
+public class fade extends gameAssets
 {
     private int transVal;
     private int direction;
@@ -24,6 +24,7 @@ public class fade extends Actor
             direction = 4;
         }
     }
+    
     public void addedToWorld(World world)
     {
         setImage(new GreenfootImage(world.getWidth(), world.getHeight()));

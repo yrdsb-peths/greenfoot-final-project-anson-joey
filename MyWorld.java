@@ -8,12 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    //GreenfootImage background = new GreenfootImage("background.png");
-    private int bgYCoord;
     private int speed = 5;
     private int level = 1;
     private boolean touchingbbq = false;
-    
     //Dungeon biome images
     GreenfootImage dnGround = new GreenfootImage("images/Dungeon terrain/tile001.png");
     GreenfootImage dnSlopeRL = new GreenfootImage("images/Dungeon terrain/slopeRightLeft.png");
@@ -75,6 +72,17 @@ public class MyWorld extends World
     public void act()
     {
         actor = getObjects(SquatKing.class).get(0);
+        if(actor.getY() < 0)//going up
+        {
+            nextLevel();
+            actor.setLocation(actor.getX(), 795);
+        }
+        if(actor.getY() > 800) //going down
+        {
+            previousLevel();
+            actor.setLocation(actor.getX(), 0);
+            Utils.setlvlsFall();
+        }
         if(actor.isTouchingBBQ() == true && touchingbbq == false)
         {
             changeWorld();
@@ -128,6 +136,7 @@ public class MyWorld extends World
                 //sets background
                 dungeonBg1.scale(getWidth(), getHeight());
                 setBackground(dungeonBg1);
+ 
                 //progress bar image
                 progressBar bar1 = new progressBar(30, 198, progressBarImg[0]);
                 addObject(bar1, 980, 700);
@@ -687,33 +696,26 @@ public class MyWorld extends World
                 
         }
     }
-
+    //Clears current screen and sets to next level 
     public void nextLevel()
     {
         removeObjects(getObjects(Terrain.class)); //Removes all objects
         removeObjects(getObjects(Slopes.class));
         removeObjects(getObjects(SmokingHotBBQ.class));
-        removeObjects(getObjects(progressBar.class));
-        removeObjects(getObjects(wind.class));
+        removeObjects(getObjects(gameAssets.class));
         
         level++;
         prepare();
     }
+    //Clears current screen and set to previous level
     public void previousLevel()
     {
         removeObjects(getObjects(Terrain.class)); //Removes all objects 
         removeObjects(getObjects(Slopes.class));
         removeObjects(getObjects(SmokingHotBBQ.class));
-        removeObjects(getObjects(progressBar.class));
-        removeObjects(getObjects(wind.class));
+        removeObjects(getObjects(gameAssets.class));
         
         level--;
         prepare();
     }
-    //Getter method for global speed variable
-    public int getSpeed()
-    {
-        return speed;
-    }
-
 }

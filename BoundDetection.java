@@ -10,7 +10,7 @@ public abstract class BoundDetection extends Actor
 {
     private boolean onSlopeLeft, onSlopeRight;
     private int SPEED = 5;
-    
+    //Checks if actor is on ground
     public boolean onGround()
     {
         boolean isOnGround = false;
@@ -21,7 +21,7 @@ public abstract class BoundDetection extends Actor
         }
         return isOnGround;
     }
-    
+    //Check if actor is on ice ground
     public boolean onIceGround()
     {
         boolean isOnIceGround = false;
@@ -32,7 +32,7 @@ public abstract class BoundDetection extends Actor
         }
         return isOnIceGround;
     }
-    
+    //Check if actor hit their head
     public boolean bumpedHead()
     {
         boolean didBumpHead = false;
@@ -43,7 +43,7 @@ public abstract class BoundDetection extends Actor
         }
         return didBumpHead;
     }
-    
+    //Checks if actor can move left (checks for slopesLeftRight class only)
     public boolean canMoveLeftSlope()
     {
         boolean canMoveLS = true;
@@ -54,7 +54,7 @@ public abstract class BoundDetection extends Actor
             }
         return canMoveLS;
     }
-    
+    //Checks if actor can move right (checks for slopeRightLeft class only)
     public boolean canMoveRightSlope()
     {
         boolean canMoveRS = true;
@@ -65,7 +65,7 @@ public abstract class BoundDetection extends Actor
             }
         return canMoveRS;
     }
-    
+    //Check if actor can move left (checks for terrain class only)
     public boolean canMoveLeft()
     {
         boolean canMoveL = true;
@@ -76,7 +76,7 @@ public abstract class BoundDetection extends Actor
             }
         return canMoveL;
     }
-    
+    //Check if actor can move right (checks for terrain class only)
     public boolean canMoveRight()
     {
         boolean canMoveR = true;
@@ -87,7 +87,7 @@ public abstract class BoundDetection extends Actor
             }
         return canMoveR;
     }
-    
+    //Check if actor is tounching a BBQ actor
     public boolean isTouchingBBQ()
     {
         boolean touchingBBQ = false;
@@ -97,7 +97,7 @@ public abstract class BoundDetection extends Actor
         }
         return touchingBBQ;
     }
-    
+    //Re-maps a number from one range to another
     public int map(int number, int givenSmallNum, int givenBigNum, int desiredSmallNum, int desiredBigNum)
     {
         return (number - givenSmallNum) * (desiredBigNum - desiredSmallNum) / (givenBigNum - givenSmallNum) + desiredSmallNum;

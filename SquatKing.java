@@ -1,25 +1,23 @@
- import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import greenfoot.World;
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class SquatKing extends BoundDetection
 {
+    //Declares all variables needed for game mechanics and logic
     private static int GRAVITY = 1;
-    private int SPEED = 3, imageIndex = 0, slideSpeed = 5, frames = 0, jumpFrames = 0;
+    private int SPEED = 3, imageIndex = 0,slideSpeed = 5, frames = 0, jumpFrames = 0;
     private int velocityY, velocityX, slideVelocity;
     private int chargeTime;
     private String direction = "left", facing = "right",  windDirection;
-    private boolean onSlopeLeft, onSlopeRight, isWindyLvl;
-    
-    private boolean landed = true; //keeps track of when landing sfx should be played
-
+    private boolean onSlopeLeft, onSlopeRight, isWindyLvl, landed = true;
+    //Declares timers
     private SimpleTimer timer = new SimpleTimer();
     private SimpleTimer animationTimer = new SimpleTimer();
-
-    GreenfootImage walk[] = new GreenfootImage[4];
+    //Declares arrays for animations
+    GreenfootImage rightWalk[] = new GreenfootImage[4];
     GreenfootImage leftWalk[] = new GreenfootImage[4];
-    GreenfootImage idle[] = new GreenfootImage[3];
+    GreenfootImage rightIdle[] = new GreenfootImage[3];
     GreenfootImage leftIdle[] = new GreenfootImage[3];
-    GreenfootImage jump[] = new GreenfootImage[3];
+    GreenfootImage rightJump[] = new GreenfootImage[3];
     GreenfootImage leftJump[] = new GreenfootImage[3];
     GreenfootImage rightSlopeImage, leftSlopeImage;
     
@@ -28,28 +26,29 @@ public class SquatKing extends BoundDetection
 
     public SquatKing(int x, int y)
     {
-        for(int i = 0; i < walk.length; i++)
+        //Appeneds to lists and/or assigns variables with images
+        for(int i = 0; i < rightWalk.length; i++)
         {
-            walk[i] = new GreenfootImage("walk" + i + ".png");
-            walk[i].scale(x, y);
+            rightWalk[i] = new GreenfootImage("walk" + i + ".png");
+            rightWalk[i].scale(x, y);
 
             leftWalk[i] = new GreenfootImage("walk" + i + ".png");
             leftWalk[i].scale(x, y);
             leftWalk[i].mirrorHorizontally();
         }
-        for(int i = 0; i < idle.length; i++)
+        for(int i = 0; i < rightIdle.length; i++)
         {
-            idle[i] = new GreenfootImage("idle" + i + ".png");
-            idle[i].scale(x, y);
+            rightIdle[i] = new GreenfootImage("idle" + i + ".png");
+            rightIdle[i].scale(x, y);
 
             leftIdle[i] = new GreenfootImage("idle" + i + ".png");
             leftIdle[i].scale(x, y);
             leftIdle[i].mirrorHorizontally();
         }
-        for(int i = 0; i < jump.length; i++)
+        for(int i = 0; i < rightJump.length; i++)
         {
-            jump[i] = new GreenfootImage("jump" + i + ".png");
-            jump[i].scale(x, y);
+            rightJump[i] = new GreenfootImage("jump" + i + ".png");
+            rightJump[i].scale(x, y);
 
             leftJump[i] = new GreenfootImage("jump" + i + ".png");
             leftJump[i].scale(x, y);
@@ -63,13 +62,12 @@ public class SquatKing extends BoundDetection
         leftSlopeImage.scale(x, y);
         leftSlopeImage.mirrorHorizontally();
 
-        setImage(idle[0]);
+        setImage(rightIdle[0]);
     }
 
     public void act()
     {
         frames++;
-        changeArea();
         animate();
         fallPhysics();
         wind();
@@ -83,6 +81,7 @@ public class SquatKing extends BoundDetection
 
     public void wind()
     {
+        //Creates logic when at windy level
         if(isWindyLvl == true)
         {
             if(onGround())
@@ -110,42 +109,29 @@ public class SquatKing extends BoundDetection
         }
     }
 
-    public void changeArea()
-    {
-        if(getY() < 0)//going up
-        {
-            ((MyWorld)getWorld()).nextLevel();
-            setLocation(getX(), 795);
-        }
-        if(getY() > 800) //going down
-        {
-            ((MyWorld)getWorld()).previousLevel();
-            setLocation(getX(), 0);
-            Utils.setlvlsFall();
-        }
-    }
-
     public void animate()
     {
+        //Sets animation timer
         if(animationTimer.millisElapsed() < 100)
         {
             return;
         }
         animationTimer.mark();
+        //Changes actor's image depending on conditions to create animation
         if(facing.equals("left") && !Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("right"))
         {
-            imageIndex = (imageIndex + 1) % idle.length;
+            imageIndex = (imageIndex + 1) % rightIdle.length;
             setImage(leftIdle[imageIndex]);
         }
         if(facing.equals("right") && !Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("right"))
         {
             imageIndex = (imageIndex + 1) % leftIdle.length;
-            setImage(idle[imageIndex]);
+            setImage(rightIdle[imageIndex]);
         }
         if(Greenfoot.isKeyDown("right"))
         {
-            setImage(walk[imageIndex]);
-            imageIndex = (imageIndex + 1) % walk.length;
+            setImage(rightWalk[imageIndex]);
+            imageIndex = (imageIndex + 1) % rightWalk.length;
         }
         if(Greenfoot.isKeyDown("left")) 
         {
@@ -154,7 +140,7 @@ public class SquatKing extends BoundDetection
         }
         if(velocityY < 0 && facing.equals("right"))
         {
-            setImage(jump[1]);
+            setImage(rightJump[1]);
         }
         if(velocityY < 0 && facing.equals("left"))
         {
@@ -162,7 +148,7 @@ public class SquatKing extends BoundDetection
         }
         if(velocityY > 0 && facing.equals("right"))
         {
-            setImage(jump[2]);
+            setImage(rightJump[2]);
         }
         if(velocityY > 0 && facing.equals("left"))
         {
@@ -172,6 +158,7 @@ public class SquatKing extends BoundDetection
 
     public void fallPhysics()
     {   
+        //Creates slope movement logic
         if(onSlopeLeft)
         {   
             setImage(rightSlopeImage);
@@ -186,14 +173,15 @@ public class SquatKing extends BoundDetection
             velocityY = 0;
             velocityX = 0;
         }
-
-        if(velocityY == map(chargeTime, 0, 1000, 5, 25) * -1) // plays sound when jumping
+        //Plays sound when jumping
+        if(velocityY == map(chargeTime, 0, 1000, 5, 25) * -1) 
         {
             Greenfoot.playSound("jumpSound.mp3");
             landed = false;
         }
 
-        setLocation(getX(), getY() + velocityY);
+        setLocation(getX(), getY() + velocityY); //Updates actor y coordinate
+        //Creates movement logic for when on ice block
         if(onIceGround())
         {
             while(onIceGround())
@@ -234,14 +222,15 @@ public class SquatKing extends BoundDetection
                     slideVelocity++;    
                 }
             }
-
         }
+        //Creates movement logic for when on ground block        
         else if(onGround())
         {
             velocityY = 0;
             velocityX = 0;
             slideVelocity = 0;
-            if(landed == false) // plays sound when landing
+            // plays sound when landing
+            if(landed == false) 
             {
                 Greenfoot.playSound("landSound.mp3");
                 landed = true;
@@ -256,8 +245,8 @@ public class SquatKing extends BoundDetection
         {
             velocityY += GRAVITY; 
         }
-        
-        if(bumpedHead()) // bouncing off ceilings
+        //Creates movement logic to bounce off ceilings
+        if(bumpedHead())
         {
             velocityY = 0;
             while(bumpedHead())
@@ -266,15 +255,17 @@ public class SquatKing extends BoundDetection
             }
             Greenfoot.playSound("bumpSound.mp3"); 
         }
-        if(!canJumpRight() || !canJumpLeft()) // bouncing off walls
+        //Creates movement logic to bounce off walls
+        if(!canJumpRight() || !canJumpLeft())
         {
             velocityX = velocityX * -1;
-            if(velocityX != 0) //so that it doesn't play when standing next to wall
+            //Plays sound when bouncing off wall
+            if(velocityX != 0) 
             {
                 Greenfoot.playSound("bumpSound.mp3");   
             }
         }
-        
+        //Creates logic for carrying current x velocity or sliding velocity
         if(velocityX > 0 && canJumpRight() || (slideVelocity > 0 && canJumpRight()))
         {
             setLocation(getX() + velocityX, getY());
@@ -289,16 +280,17 @@ public class SquatKing extends BoundDetection
         onSlopeLeft = false;
         onSlopeRight = false;
     }
-
+    //Creates all logic for jump mechanic
     public void jumpTimer()
     {
-        setImage(jump[0]);
+        setImage(rightJump[0]);
         timer.mark();
-        
+        //Creates function to check how long player has pressed jump button
         while(Greenfoot.isKeyDown("up") && (onGround() || onIceGround()))
         {
             getWorld().repaint();
             jumpFrames++;
+            //Allows the world to repaint wind while in "while" loop
             if(isWindyLvl && jumpFrames % 2 == 0)
             {
                 wind1Actor = ((MyWorld)getWorld()).getObjects(windImage1.class).get(0);
@@ -308,6 +300,7 @@ public class SquatKing extends BoundDetection
             }
             
             chargeTime = timer.millisElapsed();
+            //Sets jump direction
             if(!Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("right"))
             {
                 direction = "null";
@@ -321,12 +314,15 @@ public class SquatKing extends BoundDetection
                 direction = "right";
             }
         }
+        //Creates max jump height
         if(chargeTime > 1000)
         {
             chargeTime = 1000;
         }
+        //Remaps the chargetime to other values for y velocity and x velocity
         velocityY = map(chargeTime, 0, 1000, 5, 25) * -1;
         velocityX = map(chargeTime, 0, 1000, 5, 10);
+        //Checks which direction to set x velocity
         if(direction.equals("null"))
         {
             velocityX = 0;
@@ -340,9 +336,10 @@ public class SquatKing extends BoundDetection
             velocityX = Math.abs(velocityX);
         }   
     }
-
+    //Creates all walk movement logic
     public void walkMovement()
     {
+        //Creates walk movement for when on ground block
         if(onGround())
         {
             if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
@@ -354,6 +351,7 @@ public class SquatKing extends BoundDetection
                 facing = "right";
             }
         }
+        //Creates walk movement for when on ice block
         if(onIceGround())
         {
             if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
@@ -368,7 +366,7 @@ public class SquatKing extends BoundDetection
             }
         }
     }
-
+    //Checks if actor can jump left (checks for terrain class only)
     public boolean canJumpLeft()
     {
         boolean canJumpL = true;
@@ -379,7 +377,7 @@ public class SquatKing extends BoundDetection
             }
         return canJumpL;
     }
-
+    //Checks if actor can jump right (checks for terrain class only)
     public boolean canJumpRight()
     {
         boolean canJumpR = true;
@@ -390,7 +388,7 @@ public class SquatKing extends BoundDetection
             }
         return canJumpR;
     }
-    
+    //Setter methods for slope detection and windy level 
     public void onSlopeLeft(boolean onSlopeLeft)
     {
         this.onSlopeLeft = onSlopeLeft;

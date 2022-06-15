@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class wind extends Actor
+public abstract class wind extends gameAssets
 {
     private int scrollSpeed = 7;
     public void shiftX(String direction)

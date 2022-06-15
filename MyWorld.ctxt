@@ -17,6 +17,4 @@ comment7.params=
 comment7.target=void\ nextLevel()
 comment8.params=
 comment8.target=void\ previousLevel()
-comment9.params=
-comment9.target=int\ getSpeed()
-numComments=10
+numComments=9
