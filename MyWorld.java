@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     private int speed = 5;
-    private int level = 9;
+    public int level = 4;
     private boolean touchingbbq = false;
     //Dungeon biome images
     GreenfootImage dnGround = new GreenfootImage("images/Dungeon terrain/tile001.png");
@@ -49,6 +49,8 @@ public class MyWorld extends World
     GreenfootSound bgmSkyBlue = new GreenfootSound("bgmSkyBlue.mp3");
     //Progress bar images
     GreenfootImage progressBarImg[] = new GreenfootImage[9];
+    //Button images
+    GreenfootImage buttonImgs[] = new GreenfootImage[18];
     
     SimpleTimer musicTimer = new SimpleTimer();
     SimpleTimer gameTimer = new SimpleTimer();
@@ -64,8 +66,12 @@ public class MyWorld extends World
         {
             progressBarImg[i] = new GreenfootImage("images/Progress Bar/lvl" + i + ".png");
         }
+        for(int i = 0; i < buttonImgs.length; i++)
+        {
+            buttonImgs[i] = new GreenfootImage("images/Button Images/button" + i + ".png");
+        }
         
-        setPaintOrder(fade.class, progressBar.class, SquatKing.class, wind.class, Slopes.class,Terrain.class);
+        setPaintOrder(fade.class, progressBar.class, dummyBlock.class, SquatKing.class, wind.class, Slopes.class,Terrain.class);
         prepareActor();
         prepare();
     }
@@ -73,6 +79,7 @@ public class MyWorld extends World
     public void act()
     {
         actor = getObjects(SquatKing.class).get(0);
+        hiddenWorld();
         if(actor.getY() < 0)//going up
         {
             nextLevel();
@@ -138,322 +145,163 @@ public class MyWorld extends World
         actor = getObjects(SquatKing.class).get(0);
         switch(level)
         {
-            case 1://dungeon
+            case 1://dungeon                
+                int terrainSizeXSizeYCoordsXCoordsY1[][]=
+                {
+                    {96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,48,48},
+                    {96,96,96,48,48,48,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,800,600},
+                    {500,404,596,500,596,404,692,692,836,932,692,788,884,788,788,884,884,980,980,980,308,164,68,116,212,308,20,20,116,212,164,68,976,24},
+                    {752,752,752,325,325,325,656,560,464,464,752,752,752,656,560,656,560,560,656,752,560,464,464,752,752,752,752,560,560,560,150,150,400,300}
+                };
+                
+                GreenfootImage terrainImgs1[] = new GreenfootImage[]{dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,
+                                                                    dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,
+                                                                    dnGround,dnGround,dnGround,
+                                                                    dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,
+                                                                    dnGround,dnGround,dnGround,dnGround};
+                //Creates all terrain blocks (specifically block.class)                                             
+                for(int i = 0; i < 34; i++)
+                {
+                    Block block = new Block(terrainSizeXSizeYCoordsXCoordsY1[0][i],terrainSizeXSizeYCoordsXCoordsY1[1][i],terrainImgs1[i]);
+                    addObject(block, terrainSizeXSizeYCoordsXCoordsY1[2][i], terrainSizeXSizeYCoordsXCoordsY1[3][i]);
+                }
+                
                 musicTimer.mark();
                 actor.windyLvl(false);
-                
                 //sets background
                 dungeonBg1.scale(getWidth(), getHeight());
                 setBackground(dungeonBg1);
- 
                 //progress bar image
                 progressBar bar1 = new progressBar(30, 198, progressBarImg[0]);
                 addObject(bar1, 980, 700);
-                //creates middle platforms
-                Block block1 = new Block(96, 96, dnGround);
-                addObject(block1, 500, 752);
-                Block block2 = new Block(96, 96, dnGround);
-                addObject(block2, 404, 752);
-                Block block3 = new Block(96, 96, dnGround);
-                addObject(block3, 596, 752);
-                Block block12 = new Block(96, 48, dnGround);
-                addObject(block12, 500, 325);
-                Block block14 = new Block(96, 48, dnGround);
-                addObject(block14, 596, 325);
-                Block block35 = new Block(96, 48, dnGround);
-                addObject(block35, 404, 325);
-                //creates wall and slope on the right
-                Block block4 = new Block(96, 96, dnGround);
-                addObject(block4, 692, 656);
-                Block block5 = new Block(96, 96, dnGround);
-                addObject(block5, 692, 560);
+                //Creates all slopes
                 slopeRightLeft slopeRL1 = new slopeRightLeft(this, 96, 96, 692, 512, dnSlopeRL);
                 addObject(slopeRL1, 692, 512);
                 slopeRightLeft slopeRL2 = new slopeRightLeft(this, 96, 96, 740, 464, dnSlopeRL);
                 addObject(slopeRL2, 740, 464);
-                Block block10 = new Block(96, 96, dnGround);
-                addObject(block10, 836, 464);
-                Block block11 = new Block(96, 96, dnGround);
-                addObject(block11, 932, 464);
-                //fill empty gap
-                Block block36 = new Block(96, 96, dnStone);
-                addObject(block36, 692, 752);
-                Block block37 = new Block(96, 96, dnStone);
-                addObject(block37, 788, 752);
-                Block block38 = new Block(96, 96, dnStone);
-                addObject(block38, 884, 752);
-                Block block39 = new Block(96, 96, dnStone);
-                addObject(block39, 788, 656);
-                Block block40 = new Block(96, 96, dnStone);
-                addObject(block40, 788, 560);
-                Block block41 = new Block(96, 96, dnStone);
-                addObject(block41, 884, 656);
-                Block block42 = new Block(96, 96, dnStone);
-                addObject(block42, 884, 560);
-                Block block43 = new Block(96, 96, dnStone);
-                addObject(block43, 980, 560);
-                Block block44 = new Block(96, 96, dnStone);
-                addObject(block44, 980, 656);
-                Block block45 = new Block(96, 96, dnStone);
-                addObject(block45, 980, 752);
-                //creates wall and slope on the left
-                Block block6 = new Block(96, 96, dnGround);
-                addObject(block6, 308, 656);
-                Block block7 = new Block(96, 96, dnGround);
-                addObject(block7, 308, 560);
                 slopeLeftRight slopeLR1 = new slopeLeftRight(this, 96, 96, 308, 512, dnSlopeLR);
                 addObject(slopeLR1, 308, 512);
                 slopeLeftRight slopeLR2 = new slopeLeftRight(this, 96, 96, 260, 464, dnSlopeLR);
                 addObject(slopeLR2, 260, 464);
-                Block block8 = new Block(96, 96, dnGround);
-                addObject(block8, 164, 464);
-                Block block9 = new Block(96, 96, dnGround);
-                addObject(block9, 68, 464);
-                //fill empty gap
-                Block block46 = new Block(96, 96, dnStone);
-                addObject(block46, 116, 752);
-                Block block47 = new Block(96, 96, dnStone);
-                addObject(block47, 212, 752);
-                Block block48 = new Block(96, 96, dnStone);
-                addObject(block48, 308, 752);
-                Block block49 = new Block(96, 96, dnStone);
-                addObject(block49, 20, 752);
-                Block block50 = new Block(96, 96, dnStone);
-                addObject(block50, 20, 560);
-                Block block51 = new Block(96, 96, dnStone);
-                addObject(block51, 116, 560);
-                Block block52 = new Block(96, 96, dnStone);
-                addObject(block52, 212, 560);
-                Block block53 = new Block(96, 96, dnStone);
+                //Creates all dummyblocks
+                dummyBlock block6 = new dummyBlock(96, 96, dnGround);
+                addObject(block6, 308, 656);
+                dummyBlock block53 = new dummyBlock(96, 96, dnStone);
                 addObject(block53, 20, 656);
-                Block block54 = new Block(96, 96, dnStone);
+                dummyBlock block54 = new dummyBlock(96, 96, dnStone);
                 addObject(block54, 116, 656);
-                Block block55 = new Block(96, 96, dnStone);
+                dummyBlock block55 = new dummyBlock(96, 96, dnStone);
                 addObject(block55, 212, 656);
-                //creates platform
-                Block block15 = new Block(96, 96, dnGround);
-                addObject(block15, 164, 150);
-                Block block16 = new Block(96, 96, dnGround);
-                addObject(block16, 68, 150);
-                //creates bounds
-                Block block17 = new Block(48, 800, dnGround);
-                addObject(block17, 976, 400);
-                Block block18 = new Block(48, 800, dnGround);
-                addObject(block18, 24, 400);
                 break;
             case 2: //dungeon
+                int terrainSizeXSizeYCoordsXCoordsY2[][]=
+                {
+                    {96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,48,48},
+                    {96,96,48,48,48,48,48,96,96,48,96,96,96,96,96,96,96,96,800,800},
+                    {592,496,904,475,285,96,210,306,306,571,542,542,494,494,856,856,904,904,24,976},
+                    {675,675,600,450,402,354,170,48,144,450,192,242,144,240,192,240,144,240,400,400}
+                };
+                GreenfootImage terrainImgs2[] = new GreenfootImage[]{dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,
+                                                                     dnStones, dnStones,
+                                                                     dnGround,dnGround,dnStones,dnStones,dnGround,dnGround};
+                                                                     
+                for(int i = 0; i < 20; i++)
+                {
+                    Block block = new Block(terrainSizeXSizeYCoordsXCoordsY2[0][i],terrainSizeXSizeYCoordsXCoordsY2[1][i],terrainImgs2[i]);
+                    addObject(block, terrainSizeXSizeYCoordsXCoordsY2[2][i], terrainSizeXSizeYCoordsXCoordsY2[3][i]);
+                }
                 actor.windyLvl(false);
+                //Sets background
                 dungeonBg2.scale(getWidth(), getHeight());
                 setBackground(dungeonBg2);
                 //progress bar image
                 progressBar bar2 = new progressBar(30, 198, progressBarImg[1]);
                 addObject(bar2, 980, 700);
-                //creates bounds
-                Block block19 = new Block(48, 800, dnGround);
-                addObject(block19, 976, 400);
-                Block block20 = new Block(48, 800, dnGround);
-                addObject(block20, 24, 400);
-                //creates platforms
-                Block block21 = new Block(96, 96, dnGround);
-                addObject(block21, 592, 675);
-                Block block22 = new Block(96, 96, dnGround);
-                addObject(block22, 496, 675);
-                Block block23 = new Block(96, 48, dnGround);
-                addObject(block23, 904, 600);
-                Block block24 = new Block(96, 48, dnGround);
-                addObject(block24, 475, 450);
-                Block block25 = new Block(96, 48, dnGround);
-                addObject(block25, 285, 402);
-                Block block26 = new Block(96, 48, dnGround);
-                addObject(block26, 96, 354);
-                Block block27 = new Block(96, 48, dnGround);
-                addObject(block27, 210, 170);
-                Block block28 = new Block(96, 96, dnGround);
-                addObject(block28, 306, 48);
-                Block block29 = new Block(96, 96, dnGround);
-                addObject(block29, 306, 144);
-                Block block31 = new Block(96, 48, dnGround);
-                addObject(block31, 571, 450);
                 //creates slopes
                 slopeLeftRight slopeLR3 = new slopeLeftRight(this, 96, 96, 494, 48, dnSlopeLR);
                 addObject(slopeLR3, 494, 48);
                 slopeLeftRight slopeLR4 = new slopeLeftRight(this, 96, 96, 542, 96, dnSlopeLR);
                 addObject(slopeLR4, 542, 96);
-                Block block30 = new Block(96, 96, dnGround);
-                addObject(block30, 542, 192);
                 slopeLeftRight slopeLR5 = new slopeLeftRight(this, 96, 96, 590, 240, dnSlopeLR);
                 addObject(slopeLR5, 590, 240);
-                Block block32 = new Block(96, 96, dnGround);
-                addObject(block32, 542, 242);
-                Block block56 = new Block(96, 96, dnStones);
-                addObject(block56, 494, 144);
-                Block block57 = new Block(96, 96, dnStones);
-                addObject(block57, 494, 240);
-                
                 slopeRightLeft slopeRL3 = new slopeRightLeft(this, 96, 96, 904, 48, dnSlopeRL);
                 addObject(slopeRL3, 904, 48);
                 slopeRightLeft slopeRL4 = new slopeRightLeft(this, 96, 96, 856, 96, dnSlopeRL);
                 addObject(slopeRL4, 856, 96);
-                Block block33 = new Block(96, 96, dnGround);
-                addObject(block33, 856, 192);
                 slopeRightLeft slopeRL5 = new slopeRightLeft(this, 96, 96, 808, 240, dnSlopeRL);
                 addObject(slopeRL5, 808, 240);
-                Block block34 = new Block (96, 96, dnGround);
-                addObject(block34, 856, 240);
-                Block block58 = new Block(96, 96, dnStones);
-                addObject(block58, 904, 144);
-                Block block59 = new Block(96, 96, dnStones);
-                addObject(block59, 904, 240);
                 break;
             case 3: //stronghold
+                int terrainSizeXSizeYCoordsXCoordsY3[][]=
+                {
+                    {48,48,96,48,48,48,96,48,48,48,48,48,96,96,48,48,48,48,96,144,144,72,72,48,48},
+                    {96,96,96,96,96,96,48,96,96,96,96,96,48,48,48,96,96,96,48,48,48,96,96,800,800},
+                    {928,470,306,470,928,540,446,374,374,470,540,540,302,96,216,264,264,264,96,345,459,338,410,24,974},
+                    {752,752,752,656,656,196,412,388,292,484,100,4,412,412,250,226,130,34,75,24,24,484,484,400,400}
+                };
+                GreenfootImage terrainImgs3[] = new GreenfootImage[]{shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,
+                                                                     shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shStones,shStones,shGround,shGround};
+                                                                     
+                for(int i = 0; i < 25; i++)
+                {
+                    Block block = new Block(terrainSizeXSizeYCoordsXCoordsY3[0][i],terrainSizeXSizeYCoordsXCoordsY3[1][i],terrainImgs3[i]);
+                    addObject(block, terrainSizeXSizeYCoordsXCoordsY3[2][i], terrainSizeXSizeYCoordsXCoordsY3[3][i]);
+                }
                 actor.windyLvl(false);
+                //Sets background
                 strongholdBg1.scale(getWidth(), getHeight());
                 setBackground(strongholdBg1);
-                
                 //progress bar image
                 progressBar bar3 = new progressBar(30, 198, progressBarImg[2]);
                 addObject(bar3, 980, 700);
-                
-                Block block62 = new Block(48, 96, shGround);
-                addObject(block62, 928, 752);
-                Block block63 = new Block(48, 96, shGround);
-                addObject(block63, 470, 752);
-                Block block64 = new Block(96, 96, shGround);
-                addObject(block64, 306, 752);
-                Block block65 = new Block(48, 96, shGround);
-                addObject(block65, 470, 656);
-                Block block66 = new Block(48, 96, shGround);
-                addObject(block66, 928, 656);
-                Block block67 = new Block(48, 96, shGround);
-                addObject(block67, 540, 196);
+                //Creates all slopes
                 slopeRightLeft slopeRL6 = new slopeRightLeft(this, 96, 96, 952, 460, shSlopeRL);
                 addObject(slopeRL6, 952, 460);
-                Block block68 = new Block(96, 48, shGround);
-                addObject(block68, 446, 412);
-                Block block69 = new Block(48, 96, shGround);
-                addObject(block69, 374, 388);
-                Block block70 = new Block(48, 96, shGround);
-                addObject(block70, 374, 292);
-                Block block71 = new Block(48, 96, shGround);
-                addObject(block71, 470, 484);
-                Block block72 = new Block(48, 96, shGround);
-                addObject(block72, 540, 100);
-                Block block73 = new Block(48, 96, shGround);
-                addObject(block73, 540, 4);
-                Block block74 = new Block(96, 48, shGround);
-                addObject(block74, 302, 412);
-                Block block75 = new Block(96, 48, shGround);
-                addObject(block75, 96, 412);
-                Block block76 = new Block(48, 48, shGround);
-                addObject(block76, 216, 250);
-                Block block77 = new Block(48, 96, shGround);
-                addObject(block77, 264, 226);
-                Block block78 = new Block(48, 96, shGround);
-                addObject(block78, 264, 130);
-                Block block79 = new Block(48, 96, shGround);
-                addObject(block79, 264, 34);
-                Block block80 = new Block(96, 48, shGround);
-                addObject(block80, 96, 75);
-                Block block81 = new Block(114, 48, shGround);
-                addObject(block81, 345, 24);
-                Block block82 = new Block(114, 48, shGround);
-                addObject(block82, 459, 24);
                 slopeRightLeft slopeRL13 = new slopeRightLeft(this, 96, 96, 248, 485, shSlopeRL);
                 addObject(slopeRL13, 254, 484);
-                Block block110 = new Block(72, 96, shStones);
-                addObject(block110, 338, 484);
-                Block block111 = new Block(72, 96, shStones);
-                addObject(block111, 410, 484);
-                //creates bounds
-                Block block60 = new Block(48, 800, shGround);
-                addObject(block60, 976, 400);
-                Block block61 = new Block(48, 800, shGround);
-                addObject(block61, 24, 400);
                 break;
             case 4: //stronghold
+                int terrainSizeXSizeYCoordsXCoordsY4[][]=
+                {
+                    {81,81,81,81,81,72,72,40,96,96,48,96,96,96,96,96,96,96,96,96,96,96,48,48,48},
+                    {48,81,81,81,81,48,48,96,48,48,96,48,96,96,48,96,96,48,48,48,48,48,48,800,800},
+                    {280,489,530,448,529,916,844,890,400,96,550,496,90,150,192,96,96,290,386,482,568,674,280,24,976},
+                    {776,704,704,780,780,600,600,450,510,414,210,272,486,486,150,126,30,24,24,24,24,24,270,400,400}
+                };
+                GreenfootImage terrainImgs4[] = new GreenfootImage[]{shGround,shGround,shGround,shStones,shStones,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shStones,shStones,shGround,
+                                                                    shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround};
+                                                                     
+                for(int i = 0; i < 25; i++)
+                {
+                    Block block = new Block(terrainSizeXSizeYCoordsXCoordsY4[0][i],terrainSizeXSizeYCoordsXCoordsY4[1][i],terrainImgs4[i]);
+                    addObject(block, terrainSizeXSizeYCoordsXCoordsY4[2][i], terrainSizeXSizeYCoordsXCoordsY4[3][i]);
+                }
                 actor.windyLvl(false);
                 //bgmSkyBlue.stop();
                 
                 //progress bar image
                 progressBar bar4 = new progressBar(30, 198, progressBarImg[3]);
                 addObject(bar4, 980, 700);
-                
+                //Sets background
                 strongholdBg2.scale(getWidth(), getHeight());
                 setBackground(strongholdBg2);
-                //Blocks top and bottom transition
-                Block block85 = new Block(81, 48, shGround);
-                addObject(block85, 280, 776);
+                //Creates all slopes
                 slopeRightLeft slopeRL8 = new slopeRightLeft(this, 81, 81, 361, 751, shSlopeRL);
                 addObject(slopeRL8, 361, 751);
                 slopeRightLeft slopeRL9 = new slopeRightLeft(this, 81, 81, 408, 704, shSlopeRL);
                 addObject(slopeRL9, 408, 704);
-                Block block86 = new Block(81, 81, shGround);
-                addObject(block86, 489, 704);
-                Block block87 = new Block(81, 81, shGround);
-                addObject(block87, 530, 704);
-                Block block88 = new Block(81, 81, shStones);
-                addObject(block88, 448, 780);
-                Block block93 = new Block(81, 81, shStones);
-                addObject(block93, 529, 780);
-                
-                Block block89 = new Block(72, 48, shGround);
-                addObject(block89, 916, 600);
-                Block block90 = new Block(72, 48, shGround);
-                addObject(block90, 844, 600);
                 slopeRightLeft slopeRL7 = new slopeRightLeft(this, 96, 96, 840, 450, shSlopeRL);
                 addObject(slopeRL7, 840, 450);
-                Block block91 = new Block(40, 96, shGround);
-                addObject(block91, 890, 450);
-                
-                Block block92 = new Block(96, 48, shGround);
-                addObject(block92, 400, 510);
-                
                 slopeLeftRight slopeLR6 = new slopeLeftRight(this, 96, 96, 220, 486, shSlopeLR);
                 addObject(slopeLR6, 220, 486);
                 slopeLeftRight slopeLR7 = new slopeLeftRight(this, 96, 96, 172, 438, shSlopeLR);
                 addObject(slopeLR7, 172, 438);
-                Block block94 = new Block(96, 48, shGround);
-                addObject(block94, 96, 414);
-                Block block95 = new Block(48, 96, shGround);
-                addObject(block95, 550, 210);
-                
                 slopeRightLeft slopeRL10 = new slopeRightLeft(this, 96, 96, 400, 296, shSlopeRL);
                 addObject(slopeRL10, 400, 296);
-                Block block96 = new Block(96, 48, shGround);
-                addObject(block96, 496, 272);
-                Block block97 = new Block(96, 96, shStones);
-                addObject(block97, 90, 486);
-                Block block98 = new Block(96, 96, shStones);
-                addObject(block98, 150, 486);
-                Block block99 = new Block(96, 48, shGround);
-                addObject(block99, 192, 150);
-                Block block100 = new Block(96, 96, shGround);
-                addObject(block100, 96, 126);
-                Block block101 = new Block(96, 96, shGround);
-                addObject(block101, 96, 30);
-                Block block102 = new Block(96, 48, shGround);
-                addObject(block102, 290, 24);
-                Block block103 = new Block(96, 48, shGround);
-                addObject(block103, 386, 24);
-                Block block104 = new Block(96, 48, shGround);
-                addObject(block104, 482, 24);
-                Block block105 = new Block(96, 48, shGround);
-                addObject(block105, 578, 24);
-                Block block106 = new Block(96, 48, shGround);
-                addObject(block106, 674, 24);
-                Block block107 = new Block(96, 48, shGround);
-                //addObject(block107, 770, 24);
                 slopeRightLeft slopeRL11 = new slopeRightLeft(this, 96, 96, 952, 100, shSlopeRL);
                 addObject(slopeRL11, 952, 100);
                 slopeRightLeft slopeRL12 = new slopeRightLeft(this, 96, 96, 904, 148, shSlopeRL);
                 addObject(slopeRL12, 904, 148);
-                Block block108 = new Block(48, 48, shGround);
-                addObject(block108, 280, 270);
-                //creates bounds
-                Block block83 = new Block(48, 800, shGround);
-                addObject(block83, 976, 400);
-                Block block84 = new Block(48, 800, shGround);
-                addObject(block84, 24, 400);
                 break;
             case 5://grass
                 actor.windyLvl(false);
@@ -720,17 +568,123 @@ public class MyWorld extends World
                 addObject(ib10, 724, 696);
                 iceBlock ib12 = new iceBlock(96, 48, snow);
                 addObject(ib12, 512, 168);
+                break;
+            case 10:
+                dungeonBg1.scale(getWidth(), getHeight());
+                setBackground(dungeonBg1);
                 
+                Block block112 = new Block(96, 96, dnGround);
+                addObject(block112, 952, 752);
+                Block block113 = new Block(96, 96, dnGround);
+                addObject(block113, 856, 752);
+                Block block114 = new Block(96, 96, dnGround);
+                addObject(block114, 760, 752);
+                Block block115 = new Block(96, 96, dnGround);
+                addObject(block115, 664, 752);
+                Block block116 = new Block(96, 96, dnGround);
+                addObject(block116, 568, 752);
+                Block block117 = new Block(96, 96, dnGround);
+                addObject(block117, 472, 752);
+                Block block118 = new Block(96, 96, dnGround);
+                addObject(block118, 376, 752);
+                Block block119 = new Block(96, 96, dnGround);
+                addObject(block119, 280, 752);
+                Block block120 = new Block(96, 96, dnGround);
+                addObject(block120, 184, 752);
+                Block block121 = new Block(96, 96, dnGround);
+                addObject(block121, 88, 752);
+                Block block122 = new Block(96, 96, dnGround);
+                addObject(block122, -8, 752);
                 
-            break;
+                button button1 = new button(40, 40, 1, buttonImgs[0], buttonImgs[1]);
+                addObject(button1, 850, 500);
+                button button2 = new button(40, 40, 2, buttonImgs[2], buttonImgs[3]);
+                addObject(button2, 775, 500);
+                button button3 = new button(40, 40, 3, buttonImgs[4], buttonImgs[5]);
+                addObject(button3, 700, 500);
+                button button4 = new button(40, 40, 4, buttonImgs[6], buttonImgs[7]);
+                addObject(button4, 625, 500);
+                button button5 = new button(40, 40, 5, buttonImgs[8], buttonImgs[9]);
+                addObject(button5, 550, 500);
+                button button6 = new button(40, 40, 6, buttonImgs[10], buttonImgs[11]);
+                addObject(button6, 475, 500);
+                button button7 = new button(40, 40, 7, buttonImgs[12], buttonImgs[13]);
+                addObject(button7, 400, 500);
+                button button8 = new button(40, 40, 8, buttonImgs[14], buttonImgs[15]);
+                addObject(button8, 325, 500);
+                button button9 = new button(40, 40, 9, buttonImgs[16], buttonImgs[17]);
+                addObject(button9, 250, 500);
+                
+                SmokingHotBBQ bbq2 = new SmokingHotBBQ(96, 96);
+                addObject(bbq2, 100, 656);
+                
+                Block block123 = new Block(48, 600, dnGround);
+                addObject(block123, 976, 300);
+                Block block124 = new Block(48, 800, dnGround);
+                addObject(block124, 24, 400);
+                break;
         }
+    }
+    public void hiddenWorld()
+    {
+        if(actor.getX() < 0 && actor.getY() > 600)
+        {
+            level = 10;
+            clearWorld();
+            actor.setLocation(1000, actor.getY());
+        }
+        if(actor.getX() > 1000 && actor.getY() > 600 && level == 10)
+        {
+            level = 1;
+            clearWorld();
+            actor.setLocation(0, actor.getY());
+        }
+    }
+    //Teleports actor to differnt world depending on button pressed and sets location for each level
+    public void teleportWorld(int level)
+    {
+        this.level = level;
+        clearWorld();
+        switch(level)
+        {
+            case 1:
+                actor.setLocation(500, 700);
+                break;
+            case 2:
+                actor.setLocation(550, 550);
+                break;
+            case 3:
+                actor.setLocation(310, 550);
+                break;
+            case 4:
+                actor.setLocation(300, 550);
+                break;
+            case 5:
+                actor.setLocation(500, 700);
+                break;
+            case 6:
+                actor.setLocation(100, 600);
+                break;
+            case 7:
+                actor.setLocation(100, 600);
+                break;
+            case 8:
+                actor.setLocation(375, 500);
+                break;
+            case 9:
+                actor.setLocation(730, 600);
+                break;
+        }
+    }
+    //Removes all objects in the world
+    public void clearWorld()
+    {
+        removeObjects(getObjects(gameAssets.class));
+        prepare();
     }
     //Clears current screen and sets to next level 
     public void nextLevel()
     {
-        removeObjects(getObjects(Terrain.class)); //Removes all objects
-        removeObjects(getObjects(Slopes.class));
-        removeObjects(getObjects(SmokingHotBBQ.class));
         removeObjects(getObjects(gameAssets.class));
         
         level++;
@@ -739,11 +693,8 @@ public class MyWorld extends World
     //Clears current screen and set to previous level
     public void previousLevel()
     {
-        removeObjects(getObjects(Terrain.class)); //Removes all objects 
-        removeObjects(getObjects(Slopes.class));
-        removeObjects(getObjects(SmokingHotBBQ.class));
         removeObjects(getObjects(gameAssets.class));
-        
+
         level--;
         prepare();
     }
