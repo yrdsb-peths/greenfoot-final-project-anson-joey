@@ -277,17 +277,22 @@ public class SquatKing extends BoundDetection
             }
         }
         //Creates logic for carrying current x velocity or sliding velocity
-        if(velocityX > 0 && canJumpRight() || (slideVelocity > 0 && canJumpRight()))
+        if(velocityX > 0 && canJumpRight())
         {
             setLocation(getX() + velocityX, getY());
-            setLocation(getX() + slideVelocity, getY());
         }
-        if((velocityX < 0 && canJumpLeft()) || (slideVelocity < 0 && canJumpLeft()))
+        if(velocityX < 0 && canJumpLeft())
         {
             setLocation(getX() + velocityX, getY());
+        }
+        if(onIceGround() && slideVelocity > 0 && canJumpRight())
+        {
             setLocation(getX() + slideVelocity, getY());
         }
-        
+        if(onIceGround() && slideVelocity < 0 && canJumpLeft())
+        {
+            setLocation(getX() + slideVelocity, getY());
+        }
     }
     //Creates all logic for jump mechanic
     public void jumpTimer()
