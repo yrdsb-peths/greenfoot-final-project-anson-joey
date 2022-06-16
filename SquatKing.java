@@ -202,7 +202,7 @@ public class SquatKing extends BoundDetection
         }
         else
         {
-            if(velocityY < 15)
+            if(velocityY < 20)
             {
                 velocityY += GRAVITY; 
             }
