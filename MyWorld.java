@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     private int speed = 5;
-    public int level = 4;
+    public int level = 9;
     private boolean touchingbbq = false;
     //Dungeon biome images
     GreenfootImage dnGround = new GreenfootImage("images/Dungeon terrain/tile001.png");
@@ -507,12 +507,12 @@ public class MyWorld extends World
                 
                 iceBlock ib9 = new iceBlock(96, 48, snow);
                 addObject(ib9, 372,720);
-                iceBlock ib8 = new iceBlock(48, 48, snow);
+                iceBlock ib8 = new iceBlock(96, 48, snow);
                 addObject(ib8, 724,528);
                 Block b71 = new Block(48, 48, snowStones);
                 addObject(b71, 452, 372);
                 Block b72 = new Block(48, 48, snowStones);
-                addObject(b72, 512, 168);
+                addObject(b72, 560, 168);
                 iceBlock ib13 = new iceBlock(96, 48, snow);
                 addObject(ib13, 276, 240);
                 break;
@@ -529,33 +529,20 @@ public class MyWorld extends World
                 Block edge4 = new Block(96, 800);
                 addObject(edge4, 1000, 400);
                 
-                Block b52 = new Block(72, 96, snowStonesL);
-                addObject(b52, 288,288);
-                Block b53 = new Block(72, 96, snowStonesL);
-                addObject(b53, 288,384);
-                Block b54 = new Block(72, 96, snowStonesL);
-                addObject(b54, 288,480);
-                Block b55 = new Block(72, 96, snowStonesL);
-                addObject(b55, 288,576);
-                Block b32 = new Block(72, 96, snowStonesL);
-                addObject(b32, 288,672);
                 Block b33 = new Block(72, 96, snowStonesL);
                 addObject(b33, 288,768);
                 Block b49 = new Block(72, 96, snowStonesL);
                 addObject(b49, 288,866);
                 
-                Block b58 = new Block(72, 96, snowStonesR);
-                addObject(b58, 808,288);
-                Block b59 = new Block(72, 96, snowStonesR);
-                addObject(b59, 712,288);
+                
                 Block b60 = new Block(72, 96, snowStonesR);
                 addObject(b60, 712,384);
                 Block b64 = new Block(72, 96, snowStonesR);
                 addObject(b64, 712,480);
                 Block b61 = new Block(72, 96, snowStonesR);
-                //addObject(b61, 712,576);
+                addObject(b61, 712,576);
                 Block b62 = new Block(72, 96, snowStonesR);
-                //addObject(b62, 808,672);
+                addObject(b62, 712,672);
                 Block b63 = new Block(72, 96, snowStonesR);
                 addObject(b63, 712,768);
                 Block b67 = new Block(72, 96, snowStonesR);
@@ -564,10 +551,29 @@ public class MyWorld extends World
                 SmokingHotBBQ bbq = new SmokingHotBBQ(50, 100);
                 addObject(bbq, 808, 192);
                 
+                
                 iceBlock ib10 = new iceBlock(96, 48, snow);
-                addObject(ib10, 724, 696);
-                iceBlock ib12 = new iceBlock(96, 48, snow);
-                addObject(ib12, 512, 168);
+                addObject(ib10, 276, 696);
+                Block b77 = new Block(48, 48, snowStones);
+                addObject(b77, 516,554);
+                Block b78 = new Block(48, 48, snowStones);
+                addObject(b78, 228,482);
+                
+                
+                
+                Block b73 = new Block(96, 96, snowStones);
+                addObject(b73, 480,288);
+                Block b74 = new Block(96, 96, snowStones);
+                addObject(b74, 528,288);
+                Block b75 = new Block(96, 96, snowStones);
+                addObject(b75, 624,288);
+                Block b59 = new Block(96, 96, snowStones);
+                addObject(b59, 720,288);
+                Block b58 = new Block(96, 96, snowStones);
+                addObject(b58, 816,288);
+                Block b76 = new Block(96, 96, snowStones);
+                addObject(b76, 910,288);
+                
                 break;
             case 10:
                 dungeonBg1.scale(getWidth(), getHeight());

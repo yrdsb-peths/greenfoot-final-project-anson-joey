@@ -8,18 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class iceBlock extends Terrain
 {
-    GreenfootImage grass = new GreenfootImage("images/Grass terrain/tile002.png");
+    GreenfootImage snow = new GreenfootImage("images/Snow terrain/tile002.png");
     //Creates construtor with custom or default image using overlooading
     public iceBlock(int x, int y, GreenfootImage terrainType)
     {
-        GreenfootImage image = terrainType;
+        GreenfootImage image = new GreenfootImage(terrainType);
         image.scale(x, y);
         setImage(image);
     }
     
     public iceBlock(int x, int y)
     {
-        GreenfootImage image = grass;
+        GreenfootImage image = snow;
         image.scale(x, y);
         setImage(image);
     }
