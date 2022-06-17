@@ -25,7 +25,7 @@ public class statsScreen extends World
         addObject(time, 500, 220);
         addObject(jumps, 500, 400);
         addObject(intFall, 500, 600);
-        //addObject(new fade(null), getWidth()/2, getHeight()/2);
+        addObject(new fade(null), getWidth()/2, getHeight()/2);
     }
     
     public void act()
@@ -41,7 +41,6 @@ public class statsScreen extends World
         }
         jumps.setValue(stats[0]);
         intFall.setValue(stats[1]);
-        ;
         time.setValue(((hours < 10)? "0"+ hours : hours) + " : " + ((mins < 10)? "0"+ mins : mins) + " : " + ((seconds < 10)? "0"+ seconds : seconds));
     }
 }

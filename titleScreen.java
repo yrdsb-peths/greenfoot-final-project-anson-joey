@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class titleScreen extends World
 {
-    private int transVal;
     public static GreenfootSound menuMusic = new GreenfootSound("menuMusic.mp3");
+    private boolean nextWorldToggle = false;
     public titleScreen()
     {    
         super(1000, 800, 1);
@@ -18,11 +18,12 @@ public class titleScreen extends World
     public void act()
     {
         menuMusic.playLoop();
-        if(Greenfoot.isKeyDown("space"))
+        if(Greenfoot.isKeyDown("space") && nextWorldToggle == false)
         {
             descriptionWorld world = new descriptionWorld();
             fade fadeout = new fade(world);
             addObject(fadeout, getWidth() / 2, getHeight() / 2);
+            nextWorldToggle = true;
         }
     }
 }

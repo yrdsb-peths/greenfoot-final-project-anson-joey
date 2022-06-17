@@ -536,7 +536,7 @@ public class MyWorld extends World
             clearWorld();
             actor.setLocation(1000, actor.getY());
         }
-        if(actor.getX() > 1000 && actor.getY() > 600 && level == 10)
+        if(actor.getX() > 1000 && actor.getY() > 600 && level == 11)
         {
             level = 1;
             clearWorld();

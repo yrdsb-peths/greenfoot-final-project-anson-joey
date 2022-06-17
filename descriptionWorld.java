@@ -10,7 +10,7 @@ public class descriptionWorld extends World
 {
     titleScreen world = new titleScreen();
     GreenfootSound startSound = new GreenfootSound("startSound.mp3");
-    
+    private boolean nextWorldToggle = false;
     public descriptionWorld()
     {    
         super(1000, 800, 1); 
@@ -19,7 +19,7 @@ public class descriptionWorld extends World
     
     public void act()
     {
-        if(Greenfoot.isKeyDown("space"))
+        if(Greenfoot.isKeyDown("space") && nextWorldToggle == false)
         {
             world.menuMusic.stop();
             startSound.setVolume(100);
@@ -27,6 +27,7 @@ public class descriptionWorld extends World
             MyWorld world = new MyWorld();
             fade fadeout = new fade(world);
             addObject(fadeout, getWidth() / 2, getHeight() / 2);
+            nextWorldToggle = true;
         }
     }
 }
