@@ -27,7 +27,7 @@ public class MyWorld extends World
     GreenfootImage grassRL = new GreenfootImage("images/Grass terrain/slopeRightLeft.png");
     GreenfootImage bridge = new GreenfootImage("images/Grass terrain/tile106.png");
     GreenfootImage dirt = new GreenfootImage("images/Grass terrain/tile013.png");
-    GreenfootImage sideTile = new GreenfootImage("images/Grass terrain/tile073.png");
+    GreenfootImage sideTile = new GreenfootImage("boundAsset.png");
     //Snow biome images
     GreenfootImage snow = new GreenfootImage("images/Snow terrain/tile002.png");
     GreenfootImage snowSlopeRL = new GreenfootImage("images/Snow terrain/slopeRightLeft.png");
@@ -148,16 +148,16 @@ public class MyWorld extends World
                 int terrainSizeXSizeYCoordsXCoordsY1[][]=
                 {
                     {96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,48,48}, //Width for all blocks
-                    {96,96,96,48,48,48,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,800,600}, //Height for all blocks
+                    {96,96,96,48,48,48,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,96,510,510}, //Height for all blocks
                     {500,404,596,500,596,404,692,692,836,932,692,788,884,788,788,884,884,980,980,980,308,164,68,116,212,308,20,20,116,212,164,68,976,24}, //X coordinates for all blocks
-                    {752,752,752,325,325,325,656,560,464,464,752,752,752,656,560,656,560,560,656,752,560,464,464,752,752,752,752,560,560,560,150,150,400,300} //Y coordinates for all blocks
+                    {752,752,752,325,325,325,656,560,464,464,752,752,752,656,560,656,560,560,656,752,560,464,464,752,752,752,752,560,560,560,150,150,255,255} //Y coordinates for all blocks
                 };
                 //GreenfootImages for all blocks
                 GreenfootImage terrainImgs1[] = new GreenfootImage[]{dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,
                                                                     dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,
                                                                     dnGround,dnGround,dnGround,
                                                                     dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,dnStone,
-                                                                    dnGround,dnGround,dnGround,dnGround}; 
+                                                                    dnGround,dnGround,sideTile,sideTile}; 
                 //Creates all terrain blocks (specifically block.class)                                             
                 for(int i = 0; i < 34; i++)
                 {
@@ -202,7 +202,7 @@ public class MyWorld extends World
                 };
                 //GreenfootImages for all blocks
                 GreenfootImage terrainImgs2[] = new GreenfootImage[]{dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,dnGround,
-                                                                     dnStones, dnStones,dnGround,dnGround,dnStones,dnStones,dnGround,dnGround}; 
+                                                                     dnStones, dnStones,dnGround,dnGround,dnStones,dnStones,sideTile,sideTile}; 
                                                                      
                 for(int i = 0; i < 20; i++)
                 {
@@ -240,7 +240,7 @@ public class MyWorld extends World
                 };
                 //GreenfootImages for all blocks
                 GreenfootImage terrainImgs3[] = new GreenfootImage[]{shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,
-                                                                     shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shStones,shStones,shGround,shGround}; 
+                                                                     shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shStones,shStones,sideTile,sideTile}; 
                                                                      
                 for(int i = 0; i < 25; i++)
                 {
@@ -270,7 +270,7 @@ public class MyWorld extends World
                 };
                 //GreenfootImages for all blocks
                 GreenfootImage terrainImgs4[] = new GreenfootImage[]{shGround,shGround,shGround,shStones,shStones,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shStones,shStones,shGround,
-                                                                    shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround}; 
+                                                                    shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,shGround,sideTile,sideTile}; 
                                                                      
                 for(int i = 0; i < 26; i++)
                 {
