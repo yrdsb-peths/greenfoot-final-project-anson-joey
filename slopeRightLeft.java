@@ -1,16 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
- * Write a description of class diagonal_block here.
+ * slopeRightLeft actor class; Diagonal is from top right to bottom left
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * 
+ * Joey & Anson
+ * June 17, 2022
  */
 public class slopeRightLeft extends Slopes
 {
-    /**
-     * Act - do whatever the diagonal_block wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     private boolean isOnSlope;
     //Creates construtor with custom or default image using overlooading
     public slopeRightLeft (World world, int x, int y, int xCoord,int yCoord)

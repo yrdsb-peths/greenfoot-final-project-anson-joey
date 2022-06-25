@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Slopes here.
+ * Slopes actor class;
+ * Doesn't actually do anything, just for organization and grouping purposes
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Joey & Anson
+ * June 17, 2022
  */
 public class Slopes extends gameAssets
 {

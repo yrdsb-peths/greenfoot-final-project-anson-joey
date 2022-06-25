@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class windImage1 here.
+ * windImage1 actor class;
+ * Scrolling display image to indicate that a level is windy
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Joey & Anson
+ * June 17, 2022
  */
 public class windImage1 extends wind
 {
@@ -16,10 +17,6 @@ public class windImage1 extends wind
         windImage2 wind2 = new windImage2(direction);
         world.addObject(wind2, -500, 400);
     }
-    /**
-     * Act - do whatever the windImage1 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act()
     {
         shiftX(direction);

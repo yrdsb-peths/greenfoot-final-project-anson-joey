@@ -1,18 +1,22 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ProgressBar here.
+ * progressBar actor class;
+ * Image to indicate your progress to the top
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Joey & Anson
+ * June 17, 2022
  */
 public class progressBar extends gameAssets
 {
-    /**
-     * Act - do whatever the ProgressBar wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+    /** 
+     * Constructor for progressBar actor
+     * 
+     * @param x determines image width
+     * @param y determines image height
+     * @param progressImage determines which image to use based on which level you are on
+     * @return none
      */
-    
     public progressBar(int x, int y, GreenfootImage progressImage)
     {
         GreenfootImage image = new GreenfootImage(progressImage); 

@@ -1,9 +1,8 @@
 #BlueJ class context
 comment0.target=windImage1
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ windImage1\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ windImage1\ actor\ class;\r\n\ Scrolling\ display\ image\ to\ indicate\ that\ a\ level\ is\ windy\r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=world\ direction
 comment1.target=windImage1(MyWorld,\ java.lang.String)
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ windImage1\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 numComments=3

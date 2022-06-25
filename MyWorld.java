@@ -1,10 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * MyWorld world class; It's the main world where the game takes place.
+ * Contains tileset & background images, level design, music, and
+ * logic for moving between areas of the world.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Joey & Anson
+ * June 17, 2022
  */
 public class MyWorld extends World
 {
@@ -88,7 +90,7 @@ public class MyWorld extends World
         {
             previousLevel();
             actor.setLocation(actor.getX(), 0);
-            Utils.setlvlsFall();
+            Utils.setlvlsFall(); //keeps track of how many levels you've fallen in total
         }
         if(actor.isTouchingBBQ() == true && touchingbbq == false)
         {
@@ -109,6 +111,11 @@ public class MyWorld extends World
         }
         if(level >= 5 && level <= 8)
         {
+            bgmFallenKing.stop();
+        }
+        if(level == 11)
+        {
+            bgmSkyBlue.stop();
             bgmFallenKing.stop();
         }
         if(musicTimer.millisElapsed() >= 10000 && (level >= 1 && level <= 4))
@@ -278,7 +285,6 @@ public class MyWorld extends World
                     addObject(block, terrainSizeXSizeYCoordsXCoordsY4[2][i], terrainSizeXSizeYCoordsXCoordsY4[3][i]);
                 }
                 actor.windyLvl(false);
-                //bgmSkyBlue.stop();
                 
                 //progress bar image
                 progressBar bar4 = new progressBar(30, 198, progressBarImg[3]);

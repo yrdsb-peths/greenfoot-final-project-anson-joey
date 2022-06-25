@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=descriptionWorld
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ descriptionWorld\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ descriptionWorld\ world\ class;\ It\ displays\ game\ instructions.\r\n\ Contains\ instruction\ text\ and\ switches\ to\ the\ MyWorld\ world\ when\ space\ is\ pressed.\r\n\ Stops\ menu\ music\ and\ plays\ a\ little\ jingle\ when\ switching\ to\ MyWorld.\r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=
 comment1.target=descriptionWorld()
 comment2.params=

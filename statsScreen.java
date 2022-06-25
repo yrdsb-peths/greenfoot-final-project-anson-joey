@@ -1,10 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class statsScreen here.
+ * statsScreen world class; It displays your gameplay stats.
+ * Displays your time, jump #, and levels fallen # taken to complete the game.
+ * Grabs these stats from the Utils class that keeps track of them.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Joey & Anson
+ * June 17, 2022
  */
 public class statsScreen extends World
 {
@@ -16,10 +18,10 @@ public class statsScreen extends World
     /**
      * Constructor for objects of class statsScreen.
      * 
+     * @param stats[] array holding 
      */
     public statsScreen(int stats[])
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1); 
         this.stats = stats;
         addObject(time, 500, 220);
@@ -27,7 +29,12 @@ public class statsScreen extends World
         addObject(intFall, 500, 600);
         addObject(new fade(null), getWidth()/2, getHeight()/2);
     }
-    
+    /** 
+     * Sets stats variables locally in statsScreen class for display.
+     * Calculates formats time from milliseconds to hours, minutes, and seconds.
+     * 
+     * No parameters or returns
+     */
     public void act()
     {
         int seconds = (stats[2] / 1000) % 60 ;

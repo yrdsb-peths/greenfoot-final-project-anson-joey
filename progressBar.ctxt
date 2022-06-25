@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=progressBar
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ ProgressBar\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ progressBar\ actor\ class;\r\n\ Image\ to\ indicate\ your\ progress\ to\ the\ top\r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=x\ y\ progressImage
 comment1.target=progressBar(int,\ int,\ greenfoot.GreenfootImage)
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ ProgressBar\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment1.text=\ \r\n\ Constructor\ for\ progressBar\ actor\r\n\ \r\n\ @param\ x\ determines\ image\ width\r\n\ @param\ y\ determines\ image\ height\r\n\ @param\ progressImage\ determines\ which\ image\ to\ use\ based\ on\ which\ level\ you\ are\ on\r\n\ @return\ none\r\n
 numComments=2

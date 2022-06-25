@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class fade here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * 
+ * Joey & Anson
+ * June 17, 2022
  */
 public class fade extends gameAssets
 {

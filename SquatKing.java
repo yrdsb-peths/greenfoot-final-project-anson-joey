@@ -1,5 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * SquatKing player class; Contains logic for
+ * controls, sfx, animations, movement, and physics.
+ * 
+ * Joey & Anson
+ * June 17, 2022
+ */
 public class SquatKing extends BoundDetection
 {
     //Declares all variables needed for game mechanics and logic
@@ -20,13 +27,20 @@ public class SquatKing extends BoundDetection
     GreenfootImage rightJump[] = new GreenfootImage[3];
     GreenfootImage leftJump[] = new GreenfootImage[3];
     GreenfootImage rightSlopeImage, leftSlopeImage;
-    
+
     windImage1 wind1Actor;
     windImage2 wind2Actor;
 
+    /** 
+     * Constructor for SquatKing actor
+     * 
+     * @param x determines image width
+     * @param y determines image height
+     * @return none
+     */
     public SquatKing(int x, int y)
     {
-        //Appeneds to lists and/or assigns variables with images
+        //Appends to lists and/or assigns variables with images
         for(int i = 0; i < rightWalk.length; i++)
         {
             rightWalk[i] = new GreenfootImage("walk" + i + ".png");
@@ -65,24 +79,35 @@ public class SquatKing extends BoundDetection
         setImage(rightIdle[0]);
     }
 
+    /** 
+     * Runs the other methods that contain game logic
+     * 
+     * No parameters or returns
+     */
     public void act()
     {
-        frames++;
+        frames++; // used for timing/delay purposes
         animate();
         verticlePhysics();
         horizontalPhysics();
         wind();
         if(Greenfoot.isKeyDown("up") && (onGround() || onIceGround()))
         {
-            Utils.setJumps();
+            Utils.setJumps(); // keeps track of total amount of jumps
             jumpTimer(); 
         }
         walkMovement();
     }
 
+    /** 
+     * Moves the player left or right constantly if the level is a windy one.
+     * A level can only have wind blowing from one direction.
+     * Amount of movement is higher when not on the ground.
+     * 
+     * No parameters or returns
+     */
     public void wind()
     {
-        //Creates logic when at windy level
         if(isWindyLvl == true)
         {
             if(onGround())
@@ -110,6 +135,11 @@ public class SquatKing extends BoundDetection
         }
     }
 
+    /** 
+     * Does all of the animating of the player image
+     * 
+     * No parameters or returns
+     */
     public void animate()
     {
         //Sets animation timer
@@ -156,10 +186,15 @@ public class SquatKing extends BoundDetection
             setImage(leftJump[2]);
         }
     }
-    //Creates and controls all movements involving the Y axis
+
+    /** 
+     * Controls all of the player movement involving the Y-Axis
+     * 
+     * No parameters or returns
+     */
     public void verticlePhysics()
     {   
-        //Creates slope movement logic
+        //Slides down a slope when on one
         if(onSlopeLeft)
         {   
             setImage(rightSlopeImage);
@@ -182,64 +217,74 @@ public class SquatKing extends BoundDetection
         }
         //Updates actor Y coordinate
         setLocation(getX(), getY() + velocityY); 
-        //Creates movement logic for when on ground block        
+        //Stops vertical and jumping movement when on a ground block        
         if(onGround())
         {
             velocityY = 0;
             velocityX = 0;
             slideVelocity = 0;
-            // plays sound when landing
+            //Plays sound when landing
             if(landed == false) 
             {
                 Greenfoot.playSound("landSound.mp3");
                 landed = true;
             }
-            while(onGround())
+            //Moves player out of blocks if they fall in from the top
+            while(onGround()) 
             {
                 setLocation(getX(), getY()-1);
             }
             setLocation(getX(), getY()+1);
         }
         else
-        {
+        {   
+            //Accelerates player downwards by force of gravity. Terminal velocity of 20 pixels per frame
             if(velocityY < 20)
             {
                 velocityY += GRAVITY; 
             }
         }
-        //Creates movement logic to bounce off ceilings
+        //Stops upward velocity when you bump your head
         if(bumpedHead())
         {
             velocityY = 0;
-            while(bumpedHead())
+            //Moves player out of blocks if they jump in from the bottom
+            while(bumpedHead()) 
             {
                 setLocation(getX(), getY()+1);
             }
             Greenfoot.playSound("bumpSound.mp3"); 
         }
-        
+
         onSlopeLeft = false;
         onSlopeRight = false;
     }
-    //Creates and controls all movement that involves the X axis
+
+    /** 
+     * Controls all of the player movement involving the X-axis
+     * 
+     * No parameters or returns
+     */
     public void horizontalPhysics()
     {
-        //Creates movement logic for when on ice block
+        //Slides player on ice blocks depending on how large velocityX was when landing
         if(onIceGround())
         {
+            //Moves player out of ice blocks if they fall in from the top
             while(onIceGround())
             {
                 setLocation(getX(), getY()-1);
             }
             setLocation(getX(), getY()+1);
             velocityY = 0;
-
-            if(landed == false) // plays sound when landing
+            
+            //Plays sound when landing
+            if(landed == false) 
             {
                 Greenfoot.playSound("iceLandSound.mp3");
                 landed = true;
             }
-
+            //Sets slide direction and slide magnitude
             if(velocityX > 0)
             {
                 slideVelocity = map(velocityX, 5, 10, 2, 5);
@@ -250,7 +295,7 @@ public class SquatKing extends BoundDetection
                 slideVelocity = (map(velocityX * -1, 5, 10, 2, 5)) * -1;
                 velocityX = 0;
             }
-
+            //Sets amount of frames it takes to stop sliding
             if(slideVelocity > 0)
             {
                 if(frames%7 == 0)
@@ -276,7 +321,7 @@ public class SquatKing extends BoundDetection
                 Greenfoot.playSound("bumpSound.mp3");   
             }
         }
-        //Creates logic for carrying current x velocity or sliding velocity
+        //Does horizontal player movement when sliding and jumping
         if(velocityX > 0 && canJumpRight())
         {
             setLocation(getX() + velocityX, getY());
@@ -294,7 +339,12 @@ public class SquatKing extends BoundDetection
             setLocation(getX() + slideVelocity, getY());
         }
     }
-    //Creates all logic for jump mechanic
+    /** 
+     * Handles the player input of jumping. 
+     * Controls magnitude of velocity X and Y based on amount of time up is held.
+     * 
+     * No parameters or returns
+     */
     public void jumpTimer()
     {
         setImage(rightJump[0]);
@@ -312,7 +362,7 @@ public class SquatKing extends BoundDetection
                 wind1Actor.shiftX(windDirection);
                 wind2Actor.shiftX(windDirection);
             }
-            
+
             chargeTime = timer.millisElapsed();
             //Sets jump direction
             if(!Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("right"))
@@ -333,10 +383,10 @@ public class SquatKing extends BoundDetection
         {
             chargeTime = 1000;
         }
-        //Remaps the chargetime to other values for y velocity and x velocity
+        //Maps velocity X and Y to a range of values based on chargeTime
         velocityY = map(chargeTime, 0, 1000, 5, 25) * -1;
         velocityX = map(chargeTime, 0, 1000, 5, 10);
-        //Checks which direction to set x velocity
+        //Sets direction of velocityX based on the direction variable in the while loop
         if(direction.equals("null"))
         {
             velocityX = 0;
@@ -350,17 +400,24 @@ public class SquatKing extends BoundDetection
             velocityX = Math.abs(velocityX);
         }   
     }
-    //Creates all walk movement logic
+    
+    /** 
+     * Handles the player input of walking. 
+     * Moves left and right based on SPEED constant
+     * when left or right arrow keys are pressed while on a ground type block.
+     * 
+     * No parameters or returns
+     */
     public void walkMovement()
     {
         //Creates walk movement for when on ground block
         if(onGround())
         {
-            if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
+            if(Greenfoot.isKeyDown("left") && canMoveLeft() && canMoveLeftSlope()){
                 setLocation(getX() - SPEED, getY());
                 facing = "left";
             }
-            if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight() && canMoveRightSlope()){
+            if(Greenfoot.isKeyDown("right") && canMoveRight() && canMoveRightSlope()){
                 setLocation(getX() + SPEED, getY());
                 facing = "right";
             }
@@ -368,57 +425,91 @@ public class SquatKing extends BoundDetection
         //Creates walk movement for when on ice block
         if(onIceGround())
         {
-            if((Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && canMoveLeft() && canMoveLeftSlope()){
+            if(Greenfoot.isKeyDown("left") && canMoveLeft() && canMoveLeftSlope()){
                 setLocation(getX() - SPEED, getY());
                 facing = "left";
                 slideVelocity = -SPEED;
             }
-            if((Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && canMoveRight() && canMoveRightSlope()){
+            if(Greenfoot.isKeyDown("right") && canMoveRight() && canMoveRightSlope()){
                 setLocation(getX() + SPEED, getY());
                 facing = "right";
                 slideVelocity = SPEED;
             }
         }
     }
-    //Checks if actor can jump left (checks for terrain class only)
+    
+    /** 
+     * Checks if actor can jump left without clipping into a block (checks for terrain class only)
+     * 
+     * No parameters
+     * @return true if there is no terrain, false if there is terrain
+     */
     public boolean canJumpLeft()
     {
         boolean canJumpL = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/-2+1, Terrain.class) != null || //top left
-            getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/2-1, Terrain.class) != null) //bottom left
-            {
-                canJumpL = false;
-            }
+        if (getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/-2+1, Terrain.class) != null || //top left of player sprite
+        getOneObjectAtOffset(getImage().getWidth()/-2+velocityX, getImage().getHeight()/2-1, Terrain.class) != null) //bottom left of player sprite
+        {
+            canJumpL = false;
+        }
         return canJumpL;
     }
-    //Checks if actor can jump right (checks for terrain class only)
+    
+    /** 
+     * Checks if actor can jump right without clipping into a block (checks for terrain class only)
+     * 
+     * No parameters
+     * @return true if there is no terrain, false if there is terrain
+     */
     public boolean canJumpRight()
     {
         boolean canJumpR = true;
-        if (getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/-2+1, Terrain.class) != null || //top right
-            getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/2-1, Terrain.class) != null) //bottom right
-            {
-                canJumpR = false;
-            }
+        if (getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/-2+1, Terrain.class) != null || //top right of player sprite
+        getOneObjectAtOffset(getImage().getWidth()/2+velocityX, getImage().getHeight()/2-1, Terrain.class) != null) //bottom right of player sprite
+        {
+            canJumpR = false;
+        }
         return canJumpR;
     }
-    //Setter methods for slope detection and windy level 
+    
+    /**
+     * Sets if SquatKing is on a slopeLeftRight block from the slopeLeftRight class.
+     * 
+     * @param onSlopeLeft whether or not player is on slopeLeftRight block
+     */
     public void onSlopeLeft(boolean onSlopeLeft)
     {
         this.onSlopeLeft = onSlopeLeft;
     }
-
+    
+    /**
+     * Sets if SquatKing is on a slopeRightLeft block from the slopeRightLeft class.
+     * 
+     * @param onSlopeRight whether or not player is on slopeRightLeft block
+     */
     public void onSlopeRight(boolean onSlopeRight)
     {
         this.onSlopeRight = onSlopeRight;
     }
 
+    /**
+     * Sets if SquatKing is in a windy level from the game world class. (true case)
+     * 
+     * @param isWindyLvl whether or not the level is windy
+     * @param windDirection the direction the wind is blowing in
+     */
     public void windyLvl(boolean isWindyLvl, String windDirection)
     {
         this.isWindyLvl = isWindyLvl;
         this.windDirection = windDirection;
     }
-    
+
+    /**
+     * Sets if SquatKing is in a windy level from the game world class. (false case)
+     * Overrides the previous method since if there's no wind, there's no wind direction either.
+     * 
+     * @param isWindyLvl whether or not the level is windy
+     */
     public void windyLvl(boolean isWindyLvl)
     {
         this.isWindyLvl = isWindyLvl;

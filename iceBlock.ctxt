@@ -1,8 +1,7 @@
 #BlueJ class context
 comment0.target=iceBlock
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ iceBlock\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ iceBlock\ actor\ class;\r\n\ Used\ to\ create\ the\ game\ map.\ Interacts\ with\ SquatKing\ actor\r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=x\ y\ terrainType
 comment1.target=iceBlock(int,\ int,\ greenfoot.GreenfootImage)
-comment2.params=x\ y
-comment2.target=iceBlock(int,\ int)
-numComments=3
+comment1.text=\ \r\n\ Constructor\ for\ iceBlock\ actor\r\n\ \r\n\ @param\ x\ determines\ image\ width\r\n\ @param\ y\ determines\ image\ height\r\n\ @param\ terrainType\ determines\ image\ used\r\n\ @return\ none\r\n
+numComments=2

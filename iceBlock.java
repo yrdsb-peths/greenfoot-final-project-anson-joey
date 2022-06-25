@@ -1,25 +1,25 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class iceBlock here.
+ * iceBlock actor class;
+ * Used to create the game map. Interacts with SquatKing actor
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Joey & Anson
+ * June 17, 2022
  */
 public class iceBlock extends Terrain
 {
-    GreenfootImage snow = new GreenfootImage("images/Snow terrain/tile002.png");
-    //Creates construtor with custom or default image using overlooading
+     /** 
+     * Constructor for iceBlock actor
+     * 
+     * @param x determines image width
+     * @param y determines image height
+     * @param terrainType determines image used
+     * @return none
+     */
     public iceBlock(int x, int y, GreenfootImage terrainType)
     {
         GreenfootImage image = new GreenfootImage(terrainType);
-        image.scale(x, y);
-        setImage(image);
-    }
-    
-    public iceBlock(int x, int y)
-    {
-        GreenfootImage image = snow;
         image.scale(x, y);
         setImage(image);
     }

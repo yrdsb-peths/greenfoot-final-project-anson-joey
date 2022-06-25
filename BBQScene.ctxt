@@ -1,8 +1,10 @@
 #BlueJ class context
 comment0.target=BBQScene
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ BBQScene\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ BBQScene\ world\ class;\ It's\ an\ endscreen\ image.\r\n\ Contains\ the\ ending\ background\ image\ and\ plays\ some\ music.\r\n\ Switches\ to\ the\ statsScreen\ world\ when\ prompted.\r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=
 comment1.target=BBQScene()
+comment1.text=\r\n\ Constructor\ for\ BBQScene\ world\r\n\ \r\n\ No\ parameters\ or\ returns\r\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\r\n\ This\ act\ loop\ changes\ the\ world\ to\ the\ statsScreen\ world\r\n\ when\ you\ press\ space,\ or\ after\ 10,000\ milliseconds\ (10\ seconds).\r\n
 numComments=3

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=slopeLeftRight
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ diagonal_block\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ slopeLeftRight\ actor\ class;\ Diagonal\ is\ from\ top\ left\ to\ bottom\ right\r\n\ \r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=world\ x\ y\ xCoord\ yCoord
 comment1.target=slopeLeftRight(greenfoot.World,\ int,\ int,\ int,\ int)
 comment2.params=world\ x\ y\ xCoord\ yCoord\ terrainType

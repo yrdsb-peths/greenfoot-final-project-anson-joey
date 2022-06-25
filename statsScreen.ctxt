@@ -1,9 +1,10 @@
 #BlueJ class context
 comment0.target=statsScreen
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ statsScreen\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ statsScreen\ world\ class;\ It\ displays\ your\ gameplay\ stats.\r\n\ Displays\ your\ time,\ jump\ \#,\ and\ levels\ fallen\ \#\ taken\ to\ complete\ the\ game.\r\n\ Grabs\ these\ stats\ from\ the\ Utils\ class\ that\ keeps\ track\ of\ them.\r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=stats
 comment1.target=statsScreen(int[])
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ statsScreen.\r\n\ \r\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ statsScreen.\r\n\ \r\n\ @param\ stats[]\ array\ holding\ \r\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\ \r\n\ Sets\ stats\ variables\ locally\ in\ statsScreen\ class\ for\ display.\r\n\ Calculates\ formats\ time\ from\ milliseconds\ to\ hours,\ minutes,\ and\ seconds.\r\n\ \r\n\ No\ parameters\ or\ returns\r\n
 numComments=3

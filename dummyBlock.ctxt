@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=dummyBlock
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ dummyBlock\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ \r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=x\ y\ terrainType
 comment1.target=dummyBlock(int,\ int,\ greenfoot.GreenfootImage)
 comment2.params=x\ y

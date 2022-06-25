@@ -1,10 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class descriptionWorld here.
+ * descriptionWorld world class; It displays game instructions.
+ * Contains instruction text and switches to the MyWorld world when space is pressed.
+ * Stops menu music and plays a little jingle when switching to MyWorld.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Joey & Anson
+ * June 17, 2022
  */
 public class descriptionWorld extends World
 {

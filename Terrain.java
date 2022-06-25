@@ -1,12 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ScrollObjects here.
+ * Terrain actor class;
+ * Doesn't actually do anything, just for organization and grouping purposes.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Joey & Anson
+ * June 17, 2022
  */
-public abstract class Terrain extends gameAssets
+public class Terrain extends gameAssets
 {
 
 }

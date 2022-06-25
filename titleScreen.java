@@ -1,15 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class titleScreen here.
+ * titleScreen world class; It's a title screen.
+ * Contains a title and some music. Switches to the descriptionWorld world when space is pressed.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Joey & Anson
+ * June 17, 2022
  */
 public class titleScreen extends World
 {
     public static GreenfootSound menuMusic = new GreenfootSound("menuMusic.mp3");
     private boolean nextWorldToggle = false;
+    
     public titleScreen()
     {    
         super(1000, 800, 1);

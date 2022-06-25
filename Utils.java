@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Creates a class to keep track of statistics using class variables
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Joey & Anson
+ * June 17, 2022
  */
 public class Utils extends Actor
 {
@@ -18,10 +18,21 @@ public class Utils extends Actor
         stats[2] = time;
     }
     
+    /** 
+     * Increases jumps by 1 
+     * 
+     * No parameters or returns
+     */
     public static void setJumps()
     {
         jumps++;
     }
+    
+    /** 
+     * Increases levels fallen by 1
+     * 
+     * No parameters or returns
+     */
     public static void setlvlsFall()
     {
         lvlsFall++;

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=MyWorld
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ MyWorld\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ MyWorld\ world\ class;\ It's\ the\ main\ world\ where\ the\ game\ takes\ place.\r\n\ Contains\ tileset\ &\ background\ images,\ level\ design,\ music,\ and\r\n\ logic\ for\ moving\ between\ areas\ of\ the\ world.\r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=
 comment1.target=MyWorld()
 comment10.params=
