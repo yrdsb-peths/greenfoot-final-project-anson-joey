@@ -1,6 +1,7 @@
 #BlueJ class context
 comment0.target=wind
-comment0.text=\r\n\ Wind\ actor\ class;\r\n\ \r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
+comment0.text=\r\n\ Wind\ actor\ class;\r\n\ Scrolling\ display\ image\ to\ indicate\ that\ a\ level\ is\ windy\r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=direction
 comment1.target=void\ shiftX(java.lang.String)
+comment1.text=\r\n\ Creates\ wind\ scrolling\ animation\ to\ either\ side\r\n\ \r\n\ @param\ direction\ determines\ scrolling\ direction\r\n
 numComments=2

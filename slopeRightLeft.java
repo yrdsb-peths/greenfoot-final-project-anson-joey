@@ -9,7 +9,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class slopeRightLeft extends Slopes
 {
     private boolean isOnSlope;
-    //Creates construtor with custom or default image using overlooading
+    /**
+     * Creates construtor with custom or default image using overloading
+     * 
+     * @param world sets which world to place the actors
+     * @param x sets width
+     * @param y sets height
+     * @param xCoord determines side bounds of the slope
+     * @param yCoord determines top and bottom bounds of the slope
+     */
     public slopeRightLeft (World world, int x, int y, int xCoord,int yCoord)
     {
         GreenfootImage image = new GreenfootImage("images/Grass terrain/slopeLeftRight.png");
@@ -37,7 +45,13 @@ public class slopeRightLeft extends Slopes
             getWorld().getObjects(SquatKing.class).get(0).onSlopeRight(onSlopeRight());
         }
     }
-    
+    /**
+     * Returns a boolean indicating if SquatKing.class is touching the slope using diagonal bounds
+     * 
+     * No parameters 
+     * 
+     * @return true if touching SquatKing.class, else return false
+     */
     public boolean onSlopeRight()
     {
         isOnSlope = false;

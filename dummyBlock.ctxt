@@ -1,10 +1,12 @@
 #BlueJ class context
 comment0.target=dummyBlock
-comment0.text=\r\n\ \r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
+comment0.text=\r\n\ Creates\ a\ fake\ block\ that\ can\ be\ walked\ through\ \r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=x\ y\ terrainType
 comment1.target=dummyBlock(int,\ int,\ greenfoot.GreenfootImage)
+comment1.text=\r\n\ Creates\ construtor\ with\ custom\ or\ default\ images\ using\ overloading\r\n\ \r\n\ @param\ x\ determines\ width\r\n\ @param\ y\ determines\ height\r\n\ @param\ terrainType\ determines\ image\ of\ actor\r\n
 comment2.params=x\ y
 comment2.target=dummyBlock(int,\ int)
 comment3.params=
 comment3.target=void\ act()
+comment3.text=\r\n\ Changes\ the\ transparency\ of\ the\ actor\ if\ touching\ SquatKing.class\r\n\ \r\n\ No\ returns\ or\ parameters\r\n
 numComments=4

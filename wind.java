@@ -10,6 +10,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public abstract class wind extends gameAssets
 {
     private int scrollSpeed = 7;
+    /**
+     * Creates wind scrolling animation to either side
+     * 
+     * @param direction determines scrolling direction
+     */
     public void shiftX(String direction)
     {
         if(direction.equals("right"))

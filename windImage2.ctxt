@@ -3,6 +3,7 @@ comment0.target=windImage2
 comment0.text=\r\n\ windImage2\ actor\ class;\r\n\ Scrolling\ display\ image\ to\ indicate\ that\ a\ level\ is\ windy\r\n\ \r\n\ Joey\ &\ Anson\r\n\ June\ 17,\ 2022\r\n
 comment1.params=direction
 comment1.target=windImage2(java.lang.String)
+comment1.text=\r\n\ Creates\ second\ wind\ image\ that\ scrolls\ and\ resets\ to\ create\ a\ cohesive\ image\r\n\ \r\n\ @param\ direction\ sets\ direction\ to\ scroll\r\n
 comment2.params=
 comment2.target=void\ act()
 numComments=3

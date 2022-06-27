@@ -11,6 +11,14 @@ public class button extends gameAssets
     private int level;
     boolean mouseDown;
     GreenfootImage pressedImage;
+    /**
+     * Creates construtor to create button
+     * 
+     * @param x determines width
+     * @param y determines height
+     * @param unpressedButtonImage determines default button image
+     * @param pressedButtonImage determines image to display when button is pressed
+     */
     public button(int x, int y, int level, GreenfootImage unpressedButtonImage, GreenfootImage pressedButtonImage)
     {
         this.level = level;
@@ -25,8 +33,9 @@ public class button extends gameAssets
     }
     
     /**
-     * Act - do whatever the changeWorldButton wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Changes the image and world SquatKing.class is in if button actor is pressed
+     * 
+     * No returns or parameters
      */
     public void act()
     {

@@ -37,11 +37,20 @@ public class Utils extends Actor
     {
         lvlsFall++;
     }
+    /**
+     * Sets the total time the player has played the game
+     * 
+     * No parameters or returns
+     */
     public static void setTime(int gameTime)
     {
         time = gameTime;
     }
-    
+    /**
+     * getter methods to retrieve all stats using an array
+     * 
+     * @return getStats returns all stats in a array
+     */
     public static int[] getStats()
     {
         return stats;

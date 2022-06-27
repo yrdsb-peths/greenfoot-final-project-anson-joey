@@ -58,6 +58,11 @@ public class MyWorld extends World
     SimpleTimer gameTimer = new SimpleTimer();
     
     SquatKing actor;
+    /**
+     * Construtor to create a new gameworld
+     * 
+     * No returns or parameters
+     */
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -76,7 +81,6 @@ public class MyWorld extends World
         prepareActor();
         prepare();
     }
-    
     public void act()
     {
         actor = getObjects(SquatKing.class).get(0);
@@ -102,7 +106,11 @@ public class MyWorld extends World
         }
         playMusic();
     }
-    
+    /**
+     * Plays different music depending on the level the player is currently at
+     * 
+     * No returns or parameters
+     */
     public void playMusic()
     {
         if(level >= 1 && level <= 4)
@@ -137,6 +145,11 @@ public class MyWorld extends World
         gameTimer.mark();
     }
     
+    /**
+     * Initilizes and sets the world to BBQScene if it detects that the player has touched a BBQ
+     * 
+     * No returns or parameters
+     */
     private void changeWorld()
     {
         Utils.setTime(gameTimer.millisElapsed());
@@ -145,7 +158,11 @@ public class MyWorld extends World
         fade fadeout1 = new fade(world1);
         addObject(fadeout1, getWidth() / 2, getHeight() / 2);
     }
-    
+    /**
+     * Initilizes and creates all levels 
+     * 
+     * No returns or parameters
+     */
     private void prepare()
     {
         actor = getObjects(SquatKing.class).get(0);
@@ -533,7 +550,11 @@ public class MyWorld extends World
                 break;
         }
     }
-    //Teleports actor to hidden world
+    /**
+     * Teleports actor to hidden world
+     * 
+     * No parameters or returns
+     */
     public void hiddenWorld()
     {
         if(actor.getX() < 0 && actor.getY() > 600)
@@ -549,7 +570,11 @@ public class MyWorld extends World
             actor.setLocation(0, actor.getY());
         }
     }
-    //Teleports actor to differnt world depending on button pressed and sets location for each level
+    /**
+     * Teleports actor to differnt world depending on button pressed and sets location for each level
+     * 
+     * No parameters or returns
+     */
     public void teleportWorld(int level)
     {
         this.level = level;
@@ -585,13 +610,21 @@ public class MyWorld extends World
                 break;
         }
     }
-    //Removes all objects in the world
+    /**
+     * Removes gameAsset.class objects in the world
+     * 
+     * No parameters or returns
+     */
     public void clearWorld()
     {
         removeObjects(getObjects(gameAssets.class));
         prepare();
     }
-    //Clears current screen and sets to next level 
+    /**
+     * Clears current screen and sets to next level 
+     * 
+     * No parameters or returns
+     */
     public void nextLevel()
     {
         removeObjects(getObjects(gameAssets.class));
@@ -599,7 +632,11 @@ public class MyWorld extends World
         level++;
         prepare();
     }
-    //Clears current screen and set to previous level
+    /**
+     * Clears current screen and set to previous level
+     * 
+     * No parameters or returns
+     */
     public void previousLevel()
     {
         removeObjects(getObjects(gameAssets.class));

@@ -10,6 +10,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class windImage2 extends wind
 {
     private String direction;
+    /**
+     * Creates second wind image that scrolls and resets to create a cohesive image
+     * 
+     * @param direction sets direction to scroll
+     */
     public windImage2(String direction)
     {
         this.direction = direction;
